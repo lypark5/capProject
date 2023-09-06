@@ -5,3 +5,6 @@ __pycache__/
 .DS_Store
 .vscode/
 node_modules
+*.db
+dev.db
+instance/dev.db
