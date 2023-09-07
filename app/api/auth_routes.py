@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -62,9 +62,19 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        profile_pic = form.data["profile_pic"]
+        profile_pic.filename = get_unique_filename(profile_pic.filename)
+        upload = upload_file_to_s3(profile_pic)
+
+        if 'url' not in upload:                     # basically if there is no value input into the profile pic input: aka no url key in upload json
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401    
+
         user = User(
             username=form.data['username'],
+            first_name=form.data['first_name'],
+            last_name=form.data['last_name'],
             email=form.data['email'],
+            profile_pic=upload['url'],
             password=form.data['password']
         )
         db.session.add(user)
