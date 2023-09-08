@@ -24,14 +24,14 @@ class Recipe(db.Model):
 
 
   def to_dict(self):
-  return {
-    'id': self.id,
-    'userId': self.user_id,
-    'url': self.url,
-    'foodName': self.food_name,
-    'description': self.description,
-    'ingredients': self.ingredients,
-    'instructions': self.instructions,
-    'createdAt': self.created_at,
-    'updatedAt': self.updated_at
-  }
+    return {
+      'id': self.id,
+      'userId': self.user_id,
+      'url': self.url,
+      'foodName': self.food_name,
+      'description': self.description,
+      'ingredients': self.ingredients,
+      'instructions': self.instructions,
+      'createdAt': self.created_at,
+      'updatedAt': self.updated_at
+    }

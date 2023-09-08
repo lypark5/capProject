@@ -5,15 +5,26 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-
+        username='Demo', first_name='Demo', last_name='Lition', email='demo@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/steve.jpg', password='password')
+    kiki = User(
+        username='Kiki', first_name='Kiki', last_name='Delivery', email='kiki@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/kiki.jpg', password='password')
+    jake = User(
+        username='JakeTheDog', first_name='Jake', last_name='Dog', email='jake@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/jake.jpg', password='password')
+    lisa = User(
+        username='Lisa', first_name='Lisa', last_name='Ponyo', email='lisa@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/lisa.jpg', password='password')
+    asuna = User(
+        username='Asuna', first_name='Asuna', last_name='Yuuki', email='asuna@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/asuna.png', password='password')
+    shokugeki = User(
+        username='Shokugeki', first_name='Soma', last_name='Yukihira', email='shokugeki@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/yukihira.jpg', password='password')
+    megumi = User(
+        username='Megumi', first_name='Megumi', last_name='Tadokoro', email='megumi@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/megumi.jpg', password='password')
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(kiki)
+    db.session.add(jake)
+    db.session.add(lisa)
+    db.session.add(asuna)
+    db.session.add(shokugeki)
+    db.session.add(megumi)
     db.session.commit()
 
 
