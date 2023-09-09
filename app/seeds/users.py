@@ -12,8 +12,8 @@ def seed_users():
         username='JakeTheDog', first_name='Jake', last_name='Dog', email='jake@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/jake.jpg', password='password')
     lisa = User(
         username='Lisa', first_name='Lisa', last_name='Ponyo', email='lisa@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/lisa.jpg', password='password')
-    asuna = User(
-        username='Asuna', first_name='Asuna', last_name='Yuuki', email='asuna@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/asuna.png', password='password')
+    spongebob = User(
+        username='Spongebob', first_name='Spongebob', last_name='Squarepants', email='spongebob@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spongebob.jpg', password='password')
     shokugeki = User(
         username='Shokugeki', first_name='Soma', last_name='Yukihira', email='shokugeki@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/yukihira.jpg', password='password')
     megumi = User(
@@ -22,7 +22,7 @@ def seed_users():
     db.session.add(kiki)
     db.session.add(jake)
     db.session.add(lisa)
-    db.session.add(asuna)
+    db.session.add(spongebob)
     db.session.add(shokugeki)
     db.session.add(megumi)
     db.session.commit()
