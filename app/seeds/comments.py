@@ -1,0 +1,43 @@
+from app.models import db, environment, SCHEMA, Comment
+from sqlalchemy.sql import text
+
+def seed_comments():
+  comment1 = Comment(
+    user_id=8,
+    recipe_id=7,
+    comment="IT'S RAWWWWWWWW!!!"
+  )
+  comment2 = Comment(
+    user_id=8,
+    recipe_id=3,
+    comment="WHERE'S THE LAMB SAUCCCCEEEE!?!"
+  )
+  comment3 = Comment(
+    user_id=8,
+    recipe_id=9,
+    comment="DON'T PUT RICE CRACKERS ON FISH, YOU DONUT!!!"
+  )
+  comment4 = Comment(
+    user_id=4,
+    recipe_id=9,
+    comment="LOL gordon boutta get BANNED"
+  )
+  comment5 = Comment(
+    user_id=5,
+    recipe_ID=9,
+    comment="smdh"
+  )
+  comment6 = Comment(
+    user_id=7,
+    recipe_id=3,
+    comment="ty for this recipe, my mom loved it!"
+    comment_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/herringReal.jpg'
+  )
+  comment7 = Comment(
+  user_id=8,
+  recipe_id=6,
+  comment="IT'S RAWWWWWWWW!!!"
+  )
+  comment8 = Comment(
+    user_id
+  )
