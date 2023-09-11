@@ -13,8 +13,6 @@ const GetAllRecipesFunction = () => {
   const users = useSelector(state => state.users.allUsers);
   const recipeArr = Object.values(recipes);
   const userArr = Object.values(users);
-  console.log('recipessssssss =', recipes)        // empty object
-  console.log('userssssss =', users)          // empty object
 
 
   useEffect(() => {
@@ -23,9 +21,9 @@ const GetAllRecipesFunction = () => {
   }, [dispatch]);
 
 
-  // recipeArr.forEach(recipe => {
-  //   recipe['Author'] = userArr.find(user => user.id === recipe.userId)        // tacking on the 'author' user obj to every recipe object.
-  // });
+  recipeArr.forEach(recipe => {
+    recipe['Author'] = userArr.find(user => user.id === recipe.userId)        // tacking on the 'author' user obj to every recipe object.  Success!
+  });
 
 
   return (

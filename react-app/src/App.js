@@ -9,6 +9,7 @@ import LandingPage from "./components/LandingPage";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import GetAllRecipesFunction from "./components/Recipes/GetAllRecipes";
 import GetRecipeDetailsFunction from "./components/Recipes/GetRecipeDetails";
+import GetAllRecipesOfCurrentFunction from "./components/Recipes/ManageMyRecipes";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <ProtectedRoute path ='/recipes/all'>
             <GetAllRecipesFunction />
+          </ProtectedRoute>
+          <ProtectedRoute path ='/recipes/manage'>
+            <GetAllRecipesOfCurrentFunction />
           </ProtectedRoute>
           <ProtectedRoute path ='/recipes/:recipeId'>
             <GetRecipeDetailsFunction />

@@ -30,3 +30,14 @@ def recipe_details(recipeId):
   """
   recipe = Recipe.query.get(recipeId)
   return recipe.to_dict()
+
+@recipe_routes.route('/delete/<int:recipeId>', methods=['DELETE'])
+@login_required
+def delete_recipe(recipeId):
+  """
+  Delete a specific recipe.
+  """
+  to_delete = Recipe.query.get(recipeId)
+  db.session.delete(to_delete)
+  db.session.commit()
+  return {"Message": "Recipe Deleted Successfully"}

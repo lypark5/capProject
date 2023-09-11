@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllUsersThunk } from "../../../store/users";
 import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipes";
-// import { UserBlurb } from "../UserBlurb";
 // import * as sessionActions from "../../store/comments";
 // import GetAllCommentsByPhotoIdFunction from "../GetAllComments";
 // import { CreateComments } from "../CreateComments";
@@ -21,32 +20,31 @@ const GetRecipeDetailsFunction = () => {
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
     dispatch(getAllUsersThunk());
-    dispatch(getAllRecipesThunk(currentUser.id));
-    // dispatch(sessionActions.thunkGetAllCommentsByPhotoId(photoId));
+    // dispatch(getAllRecipesThunk(currentUser.id));    // this is what broke this page.
+    // dispatch(sessionActions.thunkGetAllCommentsByPhotoId(photoId));    // add this back during comments.
   }, [dispatch]);
 
-  // if (!currentUser) return null;    // ok try it with this commented out, it will break, take notes.
+  recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this, yup
 
-  const handleClick = (e, id) => {          // where this
-    e.stopPropagation();
-    history.push(`/users/${id}/photos`)
-  }
-
-  // recipe["Author"] = Object.values(users).find(user => user.id === recipe.userId);
-  recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this
-
-
+// in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
     <div>
+      <div>{recipe.foodName}</div>
       <div>
-        {/* do i need the question marks?  ↓↓ */}
-        <img src={recipe?.url} alt={recipe?.title}></img>
+        <span>
+          {/* do i need the question marks?  ↓↓ i don't think so*/}
+          <img src={recipe.url} alt={recipe.title}></img>
+          <span>{recipe.description}</span>
+          <div>
+            <img src={recipe.Author?.profilePic} alt={recipe.Author?.username}></img>
+            <span>{recipe.Author?.username}</span>
+          </div>
+        </span>
+        <span>{recipe.ingredients}</span>
       </div>
+      <div>{recipe.instructions}</div>
     </div>
   )
-
-
-
 }
 
 
