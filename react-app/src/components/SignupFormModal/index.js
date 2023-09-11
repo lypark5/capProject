@@ -7,7 +7,7 @@ import './SignupForm.css';
 
 function SignupFormModal() {
 	const dispatch = useDispatch();
-	// const history = useHistory();            // see if i can NOT use useHistory
+	const history = useHistory();            
 	const [username, setUsername] = useState('');
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -87,7 +87,8 @@ function SignupFormModal() {
 		setEmail('');
 		setProfilePic('');
 		setPassword('');
-	}																											// i didn't do history.push here
+		history.push('/recipes/all');
+	}																											
 
 	return (
 		<div>
