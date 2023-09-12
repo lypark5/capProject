@@ -11,6 +11,7 @@ import GetAllRecipesFunction from "./components/Recipes/GetAllRecipes";
 import GetRecipeDetailsFunction from "./components/Recipes/GetRecipeDetails";
 import GetAllRecipesOfCurrentFunction from "./components/Recipes/ManageMyRecipes";
 import RecipeFormFunction from "./components/Recipes/CreateRecipe";
+import EditRecipeFunction from "./components/Recipes/EditRecipe";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path ='/recipes/manage'>
             <GetAllRecipesOfCurrentFunction />
+          </ProtectedRoute>
+          <ProtectedRoute path ='/recipes/:recipeId/edit'>
+            <EditRecipeFunction />
           </ProtectedRoute>
           <ProtectedRoute path ='/recipes/:recipeId'>
             <GetRecipeDetailsFunction />
