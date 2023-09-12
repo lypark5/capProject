@@ -1,7 +1,8 @@
 // action type constants
 const GET_ALL_RECIPES = "recipes/GET_ALL_RECIPES";
 const GET_RECIPE_DETAILS = "recipes/GET_RECIPE_DETAILS";
-const GET_CURRENT_USER_RECIPES = "recipes/GET_CURRENT_USER_RECIPES"
+const CREATE_RECIPE = "recipes/CREATE_RECIPE";
+const UPDATE_RECIPE = "recipes/UPDATE_RECIPE";
 const DELETE_RECIPE = "recipes/DELETE_RECIPE";
 
 
@@ -16,10 +17,15 @@ const getRecipeDetailsAction = (recipe) => ({         // aperture style
   recipe
 })
 
-// const getCurrentUserRecipesAction = (recipes) => ({
-//   type: GET_CURRENT_USER_RECIPES,
-//   recipes
-// })
+const createRecipeAction = (recipe) => ({
+  type: CREATE_RECIPE,
+  recipe
+})
+
+const updateRecipeAction = (recipe) => ({
+  type: UPDATE_RECIPE,
+  recipe
+})
 
 const deleteRecipeAction = (recipeId) => ({
   type: DELETE_RECIPE,
@@ -50,9 +56,47 @@ export const getRecipeDetailsThunk = (recipeId) => async (dispatch) => {        
   }
 }
 
-// export const getCurrentUserRecipesThunk = (userId) => async (dispatch) => {
-//   const res = await fetch(`/api/recipes/users/${userId}`)
-// }
+export const createRecipeThunk = (formData) => async (dispatch) => {
+  const res = await fetch('/api/recipes/new', {
+    method: 'POST',
+    body: formData
+  })
+  if (res.ok) {
+    const recipe = await res.json();
+    dispatch(createRecipeAction(recipe));
+    console.log('i am in ok thunkkkkkk')
+    return recipe;
+  } else if (res.status < 500) {
+		const data = await res.json();
+    console.log('i am in non server error thunkkkkkk')
+		if (data.errors) {
+			return data.errors;
+		}
+	} else {
+    console.log('i am in server error thunkkkkk')
+		return ["An error occurred. Please try again."];
+	}
+}
+
+export const updateRecipeThunk = (formData) => async (dispatch) => {
+  const res = await fetch(`/api/recipes/${formData.recipeId}/edit`, {             // i think we use formData.id because we define it in create component line 39
+    method: 'PUT',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData)
+  });
+  if (res.ok) {
+    const updatedRecipe = await res.json();
+    dispatch(updateRecipeAction(updatedRecipe));
+    return updatedRecipe;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+}
 
 export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
   const res = await fetch(`/api/recipes/${recipeId}/delete`, {
@@ -76,7 +120,36 @@ export default function recipeReducer(state = initialState, action) {
       return newState;
     }
     case GET_RECIPE_DETAILS: {
-      return { ...state, allRecipes: {...state.allRecipes}, singleRecipe: {...action.recipe}, currentUserRecipes: {} };
+      return { 
+        ...state, 
+        allRecipes: {...state.allRecipes}, 
+        singleRecipe: {...action.recipe}, 
+        currentUserRecipes: {} 
+      };
+    }
+    // case CREATE_RECIPE: {
+    //   return {
+    //     ...state,
+    //     allRecipes: {...state.allRecipes, [action.formData.id]: action.formData},
+    //     singleRecipe: action.formData,   // or action.formData 
+    //     currentUserRecipes: {...state.currentUserRecipes, [action.formData.id]: action.formData }
+    //   }
+    // }
+    case CREATE_RECIPE: {
+      return {
+        ...state,
+        allRecipes: {...state.allRecipes, [action.recipe.id]: action.recipe},
+        singleRecipe: action.recipe,   // or action.formData 
+        currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: action.recipe }
+      }
+    }
+    case UPDATE_RECIPE: {
+      return {
+        ...state,
+        allRecipes: {...state.allRecipes, [action.formData.id]: { ...action.formData }},
+        singleRecipe: action.formData,        
+        currentUserRecipes: {...state.currentUserRecipes, [action.formData.id]: {...action.formData}}
+      }
     }
     // case DELETE_RECIPE: {
     //   const newState = { ...state, allRecipes: { ...state.allRecipes }, singleRecipe: { ...state.singleRecipe }, currentUserRecipes: { ...state.currentUserRecipes } }
