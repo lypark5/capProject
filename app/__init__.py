@@ -7,8 +7,10 @@ from flask_login import LoginManager
 from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
+from .api.recipe_routes import recipe_routes
 from .seeds import seed_commands
 from .config import Config
+# from .api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
@@ -28,6 +30,7 @@ app.cli.add_command(seed_commands)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
+app.register_blueprint(recipe_routes, url_prefix='/api/recipes')
 db.init_app(app)
 Migrate(app, db)
 
