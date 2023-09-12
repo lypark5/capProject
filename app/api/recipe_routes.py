@@ -1,9 +1,9 @@
 from flask import Blueprint, session, request
 from flask_login import login_required, current_user
 from app.models import Recipe, db
-# from app.forms import CreateRecipeForm
-# from app.forms import UpdateRecipeForm
-# from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+from app.forms import CreateRecipeForm
+from app.forms import UpdateRecipeForm
+from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from sqlalchemy import and_
 
 recipe_routes = Blueprint('recipes', __name__)
@@ -16,10 +16,6 @@ def all_recipes():
   This is the logged-in home page. It displays all recipes of all users.
   """
   recipes = Recipe.query.all()
-  # console.log('this is backend, recipes====', recipes)
-  # res = [recipe.to_dict() for recipe in recipes]
-  # console.log('this is backend, res====', res)
-  # return {'Recipes': res}
   return {'Recipes': [recipe.to_dict() for recipe in recipes]}
 
 @recipe_routes.route('/<int:recipeId>')         #converting the recipeId param string into an integer.
@@ -30,6 +26,60 @@ def recipe_details(recipeId):
   """
   recipe = Recipe.query.get(recipeId)
   return recipe.to_dict()
+
+@recipe_routes.route('/new', methods=['POST'])
+@login_required
+def create_recipe():
+  """
+  Create a new recipe.
+  """
+  form = CreateRecipeForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    url = form.data["url"]
+    url.filename = get_unique_filename(url.filename)
+    upload = upload_file_to_s3(url)
+  
+    if "url" not in upload:
+      return {"errors": upload}
+
+    new_recipe = Recipe(
+      user_id=current_user.id,
+      food_name=form.data['food_name'],
+      description=form.data['description'],
+      url=upload['url'],
+      ingredients=form.data['ingredients'],
+      instructions=form.data['instructions']
+    )
+    print('i am in backenddddddddd')
+    db.session.add(new_recipe)
+    db.session.commit()
+    return new_recipe.to_dict()
+
+  if form.errors:
+    print(form.errors)
+    return {'errors': form.errors}
+
+@recipe_routes.route('/<int:recipeId>/edit', methods=['PUT'])
+@login_required
+def update_recipe_route(recipeId):
+  form = UpdateRecipeForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    recipe_to_edit = Recipe.query.get(recipeId)
+    recipe_to_edit.food_name = form.data['food_name']
+    recipe_to_edit.description = form.data['description']
+    recipe_to_edit.url = form.data['url']
+    recipe_to_edit.ingredients = form.data['ingredients']
+    recipe_to_edit.instructions = form.data['instructions']
+
+    db.session.commit()
+    return recipe_to_edit.to_dict()
+
+  if form.errors:
+    return {'errors': form.errors}
 
 @recipe_routes.route('/delete/<int:recipeId>', methods=['DELETE'])
 @login_required
