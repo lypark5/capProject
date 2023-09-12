@@ -64,16 +64,13 @@ export const createRecipeThunk = (formData) => async (dispatch) => {
   if (res.ok) {
     const recipe = await res.json();
     dispatch(createRecipeAction(recipe));
-    console.log('i am in ok thunkkkkkk')
     return recipe;
   } else if (res.status < 500) {
 		const data = await res.json();
-    console.log('i am in non server error thunkkkkkk')
 		if (data.errors) {
 			return data.errors;
 		}
 	} else {
-    console.log('i am in server error thunkkkkk')
 		return ["An error occurred. Please try again."];
 	}
 }
@@ -146,9 +143,9 @@ export default function recipeReducer(state = initialState, action) {
     case UPDATE_RECIPE: {
       return {
         ...state,
-        allRecipes: {...state.allRecipes, [action.formData.id]: { ...action.formData }},
-        singleRecipe: action.formData,        
-        currentUserRecipes: {...state.currentUserRecipes, [action.formData.id]: {...action.formData}}
+        allRecipes: {...state.allRecipes, [action.recipe.id]: { ...action.recipe }},
+        singleRecipe: action.recipe,        
+        currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: {...action.recipe}}
       }
     }
     // case DELETE_RECIPE: {
