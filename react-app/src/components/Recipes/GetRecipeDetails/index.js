@@ -25,7 +25,7 @@ const GetRecipeDetailsFunction = () => {
   }, [dispatch]);
 
   recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this, yup
-  console.log('new commentttttts', comments)
+
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
     <div>
