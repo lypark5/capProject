@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllUsersThunk } from "../../../store/users";
 import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipes";
-// import * as sessionActions from "../../store/comments";
-// import GetAllCommentsByPhotoIdFunction from "../GetAllComments";
+import * as sessionActions from "../../../store/comments";
+import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";
 // import { CreateComments } from "../CreateComments";
 
 
@@ -14,14 +14,14 @@ const GetRecipeDetailsFunction = () => {
   const users = Object.values(useSelector(state => state.users.allUsers));
   const currentUser = useSelector(state => state.session.user);
   const recipe = useSelector(state => state.recipes.singleRecipe);
-  // const comments = Object.values(useSelector(state => state.comments.photoComments)).filter(comment => comment.photoId == photoId);
+  const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
 
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
     dispatch(getAllUsersThunk());
     // dispatch(getAllRecipesThunk(currentUser.id));    // this is what broke this page.
-    // dispatch(sessionActions.thunkGetAllCommentsByPhotoId(photoId));    // add this back during comments.
+    dispatch(sessionActions.getAllCommentsByRecipeIdThunk(recipeId));    
   }, [dispatch]);
 
   recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this, yup
@@ -43,6 +43,11 @@ const GetRecipeDetailsFunction = () => {
         <span>{recipe.ingredients}</span>
       </div>
       <div>{recipe.instructions}</div>
+      <div>
+        {Object.values(comments).length ? comments.toReversed().map(comment =>
+          <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
+        ):<p>Be the first to leave a comment!</p>}
+      </div>
     </div>
   )
 }
