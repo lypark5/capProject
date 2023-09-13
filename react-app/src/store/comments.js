@@ -1,6 +1,7 @@
 // action type constants
 const GET_ALL_COMMENTS = 'comments/GET_ALL_COMMENTS';
 const CREATE_COMMENT = 'comments/CREATE_COMMENT';
+const DELETE_COMMENT = 'comments/DELETE_COMMENT';
 
 
 // action creators
@@ -13,6 +14,11 @@ const createCommentAction = (comment) => ({
   type: CREATE_COMMENT,
   comment
 });
+
+const deleteCommentAction = (commentId) => ({
+  type: DELETE_COMMENT,
+  commentId
+})
 
 
 // thunk action creators
@@ -44,6 +50,18 @@ export const createCommentThunk = (commentData, recipeId) => async (dispatch) =>
   }
 }
 
+export const deleteCommentThunk = (commentId) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${commentId}/delete`, {
+    method: 'DELETE'
+  });
+  if (res.ok) {
+    dispatch(deleteCommentAction(commentId));
+  } else {
+    const data = await res.json();    // bad error
+    return data;
+  }
+}
+
 
 // reducer
 const initialState = { recipeComments: {}, userComments: {} };  
@@ -60,6 +78,11 @@ export default function commentReducer (state = initialState, action) {
     case CREATE_COMMENT: {
       const newState = {...state, recipeComments: {...state.recipeComments}};
       newState.recipeComments[action.comment.id] = action.comment;
+      return newState;
+    }
+    case DELETE_COMMENT: {
+      const newState = {...state, recipeComments: {...state.recipeComments}};
+      delete newState.recipeComments[action.commentId];
       return newState;
     }
 
