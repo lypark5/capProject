@@ -3,12 +3,13 @@ import { deleteRecipeThunk } from '../../../store/recipes';       // get current
 import { useModal } from '../../../context/Modal';
 
 
-function DeleteRecipeModalFunction({recipeId, userId}) {
+function DeleteRecipeModalFunction({recipeId}) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const yesDeleteRecipeFunction = async() => {
     await dispatch(deleteRecipeThunk(recipeId));
+    console.log('inside yes delete option of modal')
     closeModal();
   }
 
