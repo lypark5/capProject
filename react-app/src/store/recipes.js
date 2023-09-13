@@ -78,12 +78,14 @@ export const createRecipeThunk = (formData) => async (dispatch) => {
 export const updateRecipeThunk = (formData) => async (dispatch) => {
   const res = await fetch(`/api/recipes/${formData.recipeId}/edit`, {             // i think we use formData.id because we define it in create component line 39
     method: 'PUT',
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData)
+    body: formData
   });
+
   if (res.ok) {
+    console.log('i am in res.ok of update thunkkkkkk')
     const updatedRecipe = await res.json();
     dispatch(updateRecipeAction(updatedRecipe));
+    console.log('updatedREcipe ressss in thunk from backend', updatedRecipe)
     return updatedRecipe;
   } else if (res.status < 500) {
     const data = await res.json();
@@ -91,6 +93,7 @@ export const updateRecipeThunk = (formData) => async (dispatch) => {
       return data.errors;
     }
   } else {
+    console.log('i am in server error thunkkkkkkkk')
     return ["An error occurred. Please try again."];
   }
 }
@@ -124,19 +127,11 @@ export default function recipeReducer(state = initialState, action) {
         currentUserRecipes: {} 
       };
     }
-    // case CREATE_RECIPE: {
-    //   return {
-    //     ...state,
-    //     allRecipes: {...state.allRecipes, [action.formData.id]: action.formData},
-    //     singleRecipe: action.formData,   // or action.formData 
-    //     currentUserRecipes: {...state.currentUserRecipes, [action.formData.id]: action.formData }
-    //   }
-    // }
     case CREATE_RECIPE: {
       return {
         ...state,
         allRecipes: {...state.allRecipes, [action.recipe.id]: action.recipe},
-        singleRecipe: action.recipe,   // or action.formData 
+        singleRecipe: action.recipe, 
         currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: action.recipe }
       }
     }
@@ -148,17 +143,10 @@ export default function recipeReducer(state = initialState, action) {
         currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: {...action.recipe}}
       }
     }
-    // case DELETE_RECIPE: {
-    //   const newState = { ...state, allRecipes: { ...state.allRecipes }, singleRecipe: { ...state.singleRecipe }, currentUserRecipes: { ...state.currentUserRecipes } }
-    //   delete newState.allRecipes[action.payload]
-    //   delete newState.currentUserRecipes[action.payload]
-    //   delete newState.singleRecipe;
-    //   return { ...newState, allRecipes: { ...newState.allRecipes }, singleRecipe: { ...newState.singleRecipe }, currentUserRecipes: { ...newState.currentUserRecipes } };
-    // }
     case DELETE_RECIPE: {
       const newState = { ...state, allRecipes: { ...state.allRecipes }, singleRecipe: { ...state.singleRecipe }, currentUserRecipes: { ...state.currentUserRecipes } }
-      delete newState.allRecipes[action.recipes]
-      delete newState.currentUserRecipes[action.payload]
+      delete newState.allRecipes[action.recipeId]
+      delete newState.currentUserRecipes[action.recipeId]
       delete newState.singleRecipe;
       return { ...newState, allRecipes: { ...newState.allRecipes }, singleRecipe: { ...newState.singleRecipe }, currentUserRecipes: { ...newState.currentUserRecipes } };
     }

@@ -52,7 +52,7 @@ def create_recipe():
       ingredients=form.data['ingredients'],
       instructions=form.data['instructions']
     )
-    print('i am in backenddddddddd')
+
     db.session.add(new_recipe)
     db.session.commit()
     return new_recipe.to_dict()
@@ -61,25 +61,67 @@ def create_recipe():
     print(form.errors)
     return {'errors': form.errors}
 
+# @recipe_routes.route('/<int:recipeId>/edit', methods=['PUT'])
+# @login_required
+# def update_recipe_route(recipeId):
+#   """
+#   Update a recipe by id.
+#   """
+#   form = UpdateRecipeForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
+
+#   if form.validate_on_submit():
+#     recipe_to_edit = Recipe.query.get(recipeId)
+#     recipe_to_edit.food_name = form.data['food_name']
+#     recipe_to_edit.description = form.data['description']
+#     recipe_to_edit.url = form.data['url']
+#     recipe_to_edit.ingredients = form.data['ingredients']
+#     recipe_to_edit.instructions = form.data['instructions']
+
+#     print('i am in backenddddddddd')
+
+#     db.session.commit()
+#     return recipe_to_edit.to_dict()
+
+#   if form.errors:
+#     return {'errors': form.errors}
+
+
 @recipe_routes.route('/<int:recipeId>/edit', methods=['PUT'])
 @login_required
 def update_recipe_route(recipeId):
+  """
+  Update a recipe by id.
+  """
   form = UpdateRecipeForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-    recipe_to_edit = Recipe.query.get(recipeId)
-    recipe_to_edit.food_name = form.data['food_name']
-    recipe_to_edit.description = form.data['description']
-    recipe_to_edit.url = form.data['url']
-    recipe_to_edit.ingredients = form.data['ingredients']
-    recipe_to_edit.instructions = form.data['instructions']
+    url = form.data["url"]
+    url.filename = get_unique_filename(url.filename)
+    upload = upload_file_to_s3(url)
+  
+    if "url" not in upload:
+      return {"errors": upload}
 
+    new_recipe = Recipe(
+      user_id=current_user.id,
+      food_name=form.data['food_name'],
+      description=form.data['description'],
+      url=upload['url'],
+      ingredients=form.data['ingredients'],
+      instructions=form.data['instructions']
+    )
+
+    db.session.add(new_recipe)
     db.session.commit()
-    return recipe_to_edit.to_dict()
-
+    return new_recipe.to_dict()
+    
   if form.errors:
     return {'errors': form.errors}
+
+
+
 
 @recipe_routes.route('/delete/<int:recipeId>', methods=['DELETE'])
 @login_required

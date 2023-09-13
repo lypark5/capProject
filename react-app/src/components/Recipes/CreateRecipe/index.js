@@ -14,36 +14,77 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   const [url, setUrl] = useState(recipe ? recipe.url : '');  
   const [ingredients, setIngredients] = useState(recipe ? recipe.ingredients : '');
   const [instructions, setInstructions] = useState(recipe ? recipe.instructions : '');
-  const [disabled, setDisabled] = useState(true);
+  // const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);    // for testing
   const [errors, setErrors] = useState({});
-  const [buttonClass, setButtonClass] = useState("disabled-signup-button");
+  const [buttonClass, setButtonClass] = useState("disabled-update-button");
+
+
 
 
 
   // need to review if statements
+  // useEffect(() => {
+  //   const errObj = {};
+  //   if (foodName && foodName.length < 1) errObj.foodName = "food name is required";
+  //   if (foodName?.length > 1) {
+  //     setDisabled(false);
+  //     setButtonClass("enabled-signup-button")
+  //   } else {
+  //     setDisabled(true);
+  //   }
+  //   setErrors(errObj);
+  // }, [foodName]);
+
+
+  const recipeBeingEdited = useSelector(state => state.recipes.singleRecipe);
+
   useEffect(() => {
     const errObj = {};
-    if (foodName && foodName.length < 1) errObj.foodName = "food name is required";
-    if (foodName.length > 1) {
-      setDisabled(false);
-      setButtonClass("enabled-signup-button")
-    } else {
-      setDisabled(true);
+    if (!Object.values(recipeBeingEdited).length) {
+      dispatch(sessionActions.getRecipeDetailsThunk(recipe.id))}
+    if (recipeBeingEdited) {
+      setFoodName(recipeBeingEdited.foodName);
+      setDescription(recipeBeingEdited.description);
+      setUrl(recipeBeingEdited.url);
+      setIngredients(recipeBeingEdited.ingredients);
+      setInstructions(recipeBeingEdited.instructions);
+
+      if (foodName && foodName.length < 3) errObj.foodName = "Food name must be at least 3 characters long";
+      // if (foodName && foodName.length >= 3) {
+      //   setDisabled(false);
+      //   setButtonClass('enabled-update-button')
+      // } else {
+      //   setDisabled(true);
+      // }
+      setErrors(errObj);
     }
-    setErrors(errObj);
-  }, [foodName]);
+  }, [recipeBeingEdited.foodName])
 
   const handleSubmit = async(e) => {                                  // when you push submit,
     e.preventDefault();
     if (formType === "Update") {                                      // for edit forms:
-      const recipeData = { recipeId: recipe.id, foodName, description, url, ingredients, instructions };   // this is what the data body of the current recipe is that is being edited.
-      const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(recipeData));
+      const editedRecipe = new FormData();
+      editedRecipe.append("food_name", foodName); 
+      editedRecipe.append("description", description);
+      editedRecipe.append("url", url);
+      editedRecipe.append("ingredients", ingredients);
+      editedRecipe.append("instructions", instructions);
+      
 
+      const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(editedRecipe));
+      console.log('i am in handle submit of updateeeeeee')
       if (updatedRecipe.id) {                   // if this recipe that is being edited exists,
         history.push('/recipes/manage');        // history.push to my recipes
+      } else {
+        return recipe.errors;
       }
 
     } else {                                                          // for create form:
+
+
+
+      // later try to change formData to newRecipe
       const formData = new FormData();
       formData.append("food_name", foodName);         // first arg is real property name, need snake case
       formData.append("description", description);
@@ -52,8 +93,6 @@ const RecipeFormFunction = ({ recipe, formType }) => {
       formData.append("instructions", instructions);
       const newRecipe = await dispatch(sessionActions.createRecipeThunk(formData));
       if (newRecipe.id) {                             // if new recipe exists,
-        console.log('i am in create handle submitttttt')
-        // await dispatch(sessionActions.thunkGetCurrentUserPhotos(currentUser.id));    // i don't think i need this cuz i have it as a component.
         history.push('/recipes/manage');
       }
     }
