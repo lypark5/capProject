@@ -117,6 +117,7 @@ const RecipeFormFunction = ({ recipe, formType }) => {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
+        {/* make an update version where it is not required */}
         <input
           type='file'
           placeholder='Choose your photo'

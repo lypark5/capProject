@@ -1,7 +1,8 @@
 from flask import Blueprint, session, request
 from flask_login import login_required, current_user
 from app.models import Recipe, db, Comment, User
-# from app.forms import CreateCommentForm
+from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
+from app.forms import CreateCommentForm
 
 
 comment_routes = Blueprint('comments', __name__)
@@ -25,36 +26,45 @@ def all_comments(recipeId):
   return res
 
 
-# @comment_routes.route('/<int:recipeId>/new', methods=["POST"])
-# @login_required
-# def create_comment(recipeId):
-#   """
-#   Create new comment
-#   """
-#   form = CreateCommentForm()
-#   form['csrf_token'].data = request.cookies['csrf_token']
-
-#   if form.validate_on_submit():
-
-#     new_comment = Comment(
-#       comment=form.data["comment"],
-#       user_id=current_user.id,
-#       recipe_id=recipeId
-#     )
-
-#     db.session.add(new_comment)
-#     db.session.commit()
-#     return new_comment.to_dict()
-
-#   if form.errors:
-#       print(form.errors)
-#       return {'errors': form.errors}
-
-
-@comment_routes.route('/<int:id>/delete', methods=["DELETE"])
+@comment_routes.route('/<int:recipeId>/new', methods=["POST"])
 @login_required
-def delete_comment(id):
-  to_delete = Comment.query.get(id)
+def create_comment(recipeId):
+  """
+  Create a new comment.
+  """
+  form = CreateCommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    comment_pic = form.data["comment_pic"]
+    comment_pic.filename = get_unique_filename(comment_pic.filename)
+    upload = upload_file_to_s3(comment_pic)
+    print('create_comment uploaddddddd = ', upload)
+    # return upload
+  
+    if "url" not in upload:               # when you request to aws, it should return a dict to u.  url is a keyword inside there.
+      return {"errors": upload}
+
+    new_comment = Comment(
+      comment=form.data["comment"],
+      comment_pic=upload['url'],
+      user_id=current_user.id,
+      recipe_id=recipeId
+    )
+
+    db.session.add(new_comment)
+    db.session.commit()
+    return new_comment.to_dict()
+
+  if form.errors:
+      print(form.errors)
+      return {'errors': form.errors}
+
+
+@comment_routes.route('/<int:commentId>/delete', methods=["DELETE"])
+@login_required
+def delete_comment(commentId):
+  to_delete = Comment.query.get(commentId)
   db.session.delete(to_delete)
   db.session.commit()
   return {"Message": "Comment Deleted Successfully"}

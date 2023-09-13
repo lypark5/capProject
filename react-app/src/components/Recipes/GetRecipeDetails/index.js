@@ -5,7 +5,7 @@ import { getAllUsersThunk } from "../../../store/users";
 import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipes";
 import * as sessionActions from "../../../store/comments";
 import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";
-// import { CreateComments } from "../CreateComments";
+import CreateCommentsFunction from "../../Comments/CreateComment";
 
 
 const GetRecipeDetailsFunction = () => {
@@ -43,6 +43,9 @@ const GetRecipeDetailsFunction = () => {
         <span>{recipe.ingredients}</span>
       </div>
       <div>{recipe.instructions}</div>
+      <div>
+        <CreateCommentsFunction />
+      </div>
       <div>
         {Object.values(comments).length ? comments.toReversed().map(comment =>
           <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
