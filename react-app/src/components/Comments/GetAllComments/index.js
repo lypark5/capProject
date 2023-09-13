@@ -14,6 +14,12 @@ const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {
       <div>
 
           <div id='comment'>{comment?.comment}</div>
+
+          {comment?.commentPic &&
+            <img src={comment.commentPic}/>
+          }
+
+
           {/* {currentUser.id === comment.userId &&
             <OpenModalButton
               modalComponent={<DeleteCommentsModal commentId={comment.id} userid={currentUser.id} photoId={photoId}/>}
