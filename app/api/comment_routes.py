@@ -61,10 +61,10 @@ def create_comment(recipeId):
       return {'errors': form.errors}
 
 
-@comment_routes.route('/<int:id>/delete', methods=["DELETE"])
+@comment_routes.route('/<int:commentId>/delete', methods=["DELETE"])
 @login_required
-def delete_comment(id):
-  to_delete = Comment.query.get(id)
+def delete_comment(commentId):
+  to_delete = Comment.query.get(commentId)
   db.session.delete(to_delete)
   db.session.commit()
   return {"Message": "Comment Deleted Successfully"}

@@ -1,5 +1,5 @@
-// import OpenModalButton from '../OpenModalButton'
-// import { DeleteCommentsModal } from '../DeleteCommentsModal';
+import OpenModalButton from "../../OpenModalButton";
+import DeleteCommentModalFunction from "../DeleteCommentModal";
 
 const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {  // props passed in from get recipe detail component page
 
@@ -20,13 +20,12 @@ const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {
           }
 
 
-          {/* {currentUser.id === comment.userId &&
+          {currentUser.id === comment.userId &&
             <OpenModalButton
-              modalComponent={<DeleteCommentsModal commentId={comment.id} userid={currentUser.id} photoId={photoId}/>}
-              buttonText={<i className="fas fa-trash-alt" id='comment-trash-icon'></i>}
-              id='comment-trash-button'
+              modalComponent={<DeleteCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
+              buttonText='delete'
             />
-          } */}
+          }
 
         <span id='commentator-item'>
           <span id='commentator-author'>{comment?.Author?.username}</span>
