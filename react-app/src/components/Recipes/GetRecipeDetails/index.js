@@ -14,7 +14,7 @@ const GetRecipeDetailsFunction = () => {
   const users = Object.values(useSelector(state => state.users.allUsers));
   const currentUser = useSelector(state => state.session.user);
   const recipe = useSelector(state => state.recipes.singleRecipe);
-  const comments = Object.values(useSelector(state => state.comments.comments)).filter(comment => comment.recipeId == recipeId);
+  const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const GetRecipeDetailsFunction = () => {
   }, [dispatch]);
 
   recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this, yup
-
+  console.log('new commentttttts', comments)
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
     <div>
@@ -45,7 +45,7 @@ const GetRecipeDetailsFunction = () => {
       <div>{recipe.instructions}</div>
       <div>
         {Object.values(comments).length ? comments.toReversed().map(comment =>
-          <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipe.id}/>
+          <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
         ):<p>Be the first to leave a comment!</p>}
       </div>
     </div>

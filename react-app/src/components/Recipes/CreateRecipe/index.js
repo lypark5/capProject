@@ -42,11 +42,11 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   useEffect(() => {
     const errObj = {};
     if (!Object.values(recipeBeingEdited).length) {
-      dispatch(sessionActions.getRecipeDetailsThunk(recipe.id))}
+      dispatch(sessionActions.getRecipeDetailsThunk(recipeBeingEdited.id))}
     if (recipeBeingEdited) {
       setFoodName(recipeBeingEdited.foodName);
       setDescription(recipeBeingEdited.description);
-      setUrl(recipeBeingEdited.url);
+      // setUrl(recipeBeingEdited.url);
       setIngredients(recipeBeingEdited.ingredients);
       setInstructions(recipeBeingEdited.instructions);
 
