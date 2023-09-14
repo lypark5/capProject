@@ -68,7 +68,7 @@ def create_comment(recipeId):
 
 
 
-@comment_routes.route('/<int:recipeId>/new', methods=["PUT"])
+@comment_routes.route('/<int:commentId>/edit', methods=["PUT"])
 @login_required
 def update_comment(commentId):
   """
@@ -86,7 +86,7 @@ def update_comment(commentId):
       return {"errors": upload}
 
     comment_to_edit = Comment.query.get(commentId)
-    comment_to_edit.comment=form.data['comment'],
+    comment_to_edit.comment=form.data['comment']
     comment_to_edit.comment_pic=upload['url']
     print('edit_comment uploaddddddd = ', upload)
 

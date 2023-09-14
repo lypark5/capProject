@@ -67,7 +67,7 @@ def create_recipe():
 #   """
 #   Update a recipe by id.
 #   """
-#   form = UpdateRecipeForm()
+#   form = EditRecipeForm()
 #   form['csrf_token'].data = request.cookies['csrf_token']
 
 #   if form.validate_on_submit():
@@ -93,30 +93,37 @@ def update_recipe_route(recipeId):
   """
   Update a recipe by id.
   """
-  form = UpdateRecipeForm()
+  form = EditRecipeForm()
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
-    url = form.data["url"]
-    url.filename = get_unique_filename(url.filename)
-    upload = upload_file_to_s3(url)
-  
-    if "url" not in upload:
-      return {"errors": upload}
+    url = form.data["url"]  
+    if url is not None: 
+      url.filename = get_unique_filename(url.filename)
+      upload = upload_file_to_s3(url)
+      new_recipe = Recipe(
+        user_id=current_user.id,
+        food_name=form.data['food_name'],
+        description=form.data['description'],
+        url=upload['url'],
+        ingredients=form.data['ingredients'],
+        instructions=form.data['instructions']
+      )
+      db.session.add(new_recipe)
+      db.session.commit()
+      return new_recipe.to_dict()
 
-    new_recipe = Recipe(
-      user_id=current_user.id,
-      food_name=form.data['food_name'],
-      description=form.data['description'],
-      url=upload['url'],
-      ingredients=form.data['ingredients'],
-      instructions=form.data['instructions']
+  new_recipe = Recipe(
+    user_id=current_user.id,
+    food_name=form.data['food_name'],
+    description=form.data['description'],
+    ingredients=form.data['ingredients'],
+    instructions=form.data['instructions']
     )
+  db.session.add(new_recipe)
+  db.session.commit()
+  return new_recipe.to_dict()
 
-    db.session.add(new_recipe)
-    db.session.commit()
-    return new_recipe.to_dict()
-    
   if form.errors:
     return {'errors': form.errors}
 

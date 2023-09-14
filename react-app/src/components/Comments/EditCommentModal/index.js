@@ -27,13 +27,13 @@ const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
     const errObj = {};
     setCommentTxt(commentBeingEdited.comment);
     setCommentPic(commentBeingEdited.commentPic);
-    if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
-    if (commentTxt.length > 3 && commentTxt.length < 100) {
+    // if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
+    // if (commentTxt.length > 3 && commentTxt.length < 100) {
+    //   setDisabled(false);
+    //   setButtonId('enabled-comment-button')
+    // } else {
       setDisabled(false);
-      setButtonId('enabled-comment-button')
-    } else {
-      setDisabled(true);
-    }
+    // }
     setErrors(errObj);
   }, [dispatch, commentBeingEdited.commentTxt, commentBeingEdited.commentPic]);
 
@@ -43,7 +43,7 @@ const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
     editedCommentData.append("comment", commentTxt);         // first arg is real property name, need snake case
     editedCommentData.append("comment_pic", commentPic);
 
-    const updatedComment = await dispatch(editCommentThunk(editedCommentData));
+    const updatedComment = await dispatch(editCommentThunk(editedCommentData, commentId));
     if (updatedComment.id) {                             // if edited recipe exists,
       await dispatch(getAllCommentsByRecipeIdThunk(+recipeId))
       // await get recipe detail thunk?
@@ -66,7 +66,6 @@ const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
           type='file'
           placeholder='Choose your photo'
           onChange={(e) => setCommentPic(e.target.files[0])}
-          required
           accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
         />
         {/* {valObj.commentTxt && <p className="errors">{valObj.commentTxt}</p>} */}

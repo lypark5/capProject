@@ -5,3 +5,8 @@
 .hidden {
   display: none;
 }
+
+#nav-div-to-center-logo {
+  display: flex;
+  justify-content: center;
+}

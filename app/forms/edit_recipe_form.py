@@ -6,7 +6,7 @@ from app.models import Recipe
 from app.api.aws_routes import ALLOWED_EXTENSIONS
 
 class EditRecipeForm(FlaskForm):
-  url = FileField('Choose Your Photo', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+  url = FileField('Choose Your Photo', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
   food_name = StringField('Add a title', validators=[DataRequired(), Length(min=3)])
   description = TextAreaField('Add a description', validators=[DataRequired(), Length(min=3, max=1000)])
   ingredients = TextAreaField('List your ingredients, separated by a comma and space between each', validators=[DataRequired(), Length(min=3, max=1000)])

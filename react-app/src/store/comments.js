@@ -56,8 +56,8 @@ export const createCommentThunk = (commentData, recipeId) => async (dispatch) =>
   }
 }
 
-export const editCommentThunk = (formData) => async (dispatch) => {
-  const res = await fetch(`/api/comments/${formData.commentId}/edit`, {
+export const editCommentThunk = (formData, commentId) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${commentId}/edit`, {
     method: 'PUT',
     body: formData
   });
@@ -66,13 +66,17 @@ export const editCommentThunk = (formData) => async (dispatch) => {
     const editedComment = await res.json();
     dispatch(editCommentAction(editedComment));
     return editedComment;
-  } else if (res.status < 500) {
+  } 
+  // else if (res.status < 500) {
+  //   const data = await res.json();
+  //   if (data.errors) {
+  //     return data.errors;
+  //   }
+  // } 
+  else {
     const data = await res.json();
-    if (data.errors) {
-      return data.errors;
-    }
-  } else {
-    return ["An error occurred. Please try again."];
+    return data;
+    // return ["An error occurred. Please try again."];
   }
 }
 
@@ -102,7 +106,7 @@ export default function commentReducer (state = initialState, action) {
       return newState;
     }
     case CREATE_COMMENT: {
-      const newState = {...state, recipeComments: {...state.recipeComments}};
+      const newState = {...state, recipeComments: {...state.recipeComments}};  // ...state is a copy of the initial state.  recipeComments: {...state.recipeComments} is copying and spreading the prev state values into there.
       newState.recipeComments[action.comment.id] = action.comment;
       return newState;
     }
