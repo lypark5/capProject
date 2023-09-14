@@ -16,9 +16,9 @@ const createCommentAction = (comment) => ({
   comment
 });
 
-const editCommentAction = (commentId) => ({
+const editCommentAction = (comment) => ({
   type: EDIT_COMMENT,
-  commentId
+  comment
 })
 
 const deleteCommentAction = (commentId) => ({
@@ -46,6 +46,26 @@ export const createCommentThunk = (commentData, recipeId) => async (dispatch) =>
     const commentData = await res.json();
     dispatch(createCommentAction(commentData));
     return commentData;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+}
+
+export const editCommentThunk = (formData) => async (dispatch) => {
+  const res = await fetch(`/api/comments/${formData.commentId}/edit`, {
+    method: 'PUT',
+    body: formData
+  });
+
+  if (res.ok) {
+    const editedComment = await res.json();
+    dispatch(editCommentAction(editedComment));
+    return editedComment;
   } else if (res.status < 500) {
     const data = await res.json();
     if (data.errors) {
@@ -84,6 +104,11 @@ export default function commentReducer (state = initialState, action) {
     case CREATE_COMMENT: {
       const newState = {...state, recipeComments: {...state.recipeComments}};
       newState.recipeComments[action.comment.id] = action.comment;
+      return newState;
+    }
+    case EDIT_COMMENT: {
+      const newState = {...state, recipeComments: {...state.recipeComments}};
+      newState.recipeComments[action.comment.id] = {...action.comment};
       return newState;
     }
     case DELETE_COMMENT: {

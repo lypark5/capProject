@@ -1,5 +1,6 @@
 import OpenModalButton from "../../OpenModalButton";
 import DeleteCommentModalFunction from "../DeleteCommentModal";
+import EditCommentModalFunction from "../EditCommentModal";
 
 const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {  // props passed in from get recipe detail component page
 
@@ -18,7 +19,12 @@ const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {
           {comment?.commentPic &&
             <img src={comment.commentPic}/>
           }
-
+          {currentUser.id === comment.userId &&
+            <OpenModalButton
+              modalComponent={<EditCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
+              buttonText='edit'
+            />
+          }
 
           {currentUser.id === comment.userId &&
             <OpenModalButton
