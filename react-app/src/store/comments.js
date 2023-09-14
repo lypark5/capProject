@@ -1,6 +1,7 @@
 // action type constants
 const GET_ALL_COMMENTS = 'comments/GET_ALL_COMMENTS';
 const CREATE_COMMENT = 'comments/CREATE_COMMENT';
+const EDIT_COMMENT = 'comments/EDIT_COMMENT';
 const DELETE_COMMENT = 'comments/DELETE_COMMENT';
 
 
@@ -14,6 +15,11 @@ const createCommentAction = (comment) => ({
   type: CREATE_COMMENT,
   comment
 });
+
+const editCommentAction = (commentId) => ({
+  type: EDIT_COMMENT,
+  commentId
+})
 
 const deleteCommentAction = (commentId) => ({
   type: DELETE_COMMENT,

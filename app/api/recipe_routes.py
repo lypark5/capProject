@@ -2,7 +2,7 @@ from flask import Blueprint, session, request
 from flask_login import login_required, current_user
 from app.models import Recipe, db
 from app.forms import CreateRecipeForm
-from app.forms import UpdateRecipeForm
+from app.forms import EditRecipeForm
 from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from sqlalchemy import and_
 

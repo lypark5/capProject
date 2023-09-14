@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length
 from app.models import Recipe
 from app.api.aws_routes import ALLOWED_EXTENSIONS
 
-class UpdateRecipeForm(FlaskForm):
+class EditRecipeForm(FlaskForm):
   url = FileField('Choose Your Photo', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
   food_name = StringField('Add a title', validators=[DataRequired(), Length(min=3)])
   description = TextAreaField('Add a description', validators=[DataRequired(), Length(min=3, max=1000)])
