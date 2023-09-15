@@ -57,7 +57,7 @@ def create_recipe():
     db.session.commit()
     return new_recipe.to_dict()
 
-  if form.errors:
+  else:
     print(form.errors)
     return {'errors': form.errors}
 

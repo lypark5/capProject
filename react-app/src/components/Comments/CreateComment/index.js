@@ -54,7 +54,6 @@ const CreateCommentFunction = () => {
         />
         <input
           type='file'
-          placeholder='Choose your photo'
           onChange={(e) => setCommentPic(e.target.files[0])}
           required
           accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"

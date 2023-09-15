@@ -122,7 +122,6 @@ const RecipeFormFunction = ({ recipe, formType }) => {
         {formType === 'Update' ?
           <input
             type='file'
-            placeholder='Choose your photo'
             onChange={(e) => setUrl(e.target.files[0])}
             accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
           />

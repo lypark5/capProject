@@ -56,7 +56,7 @@ def create_comment(recipeId):
     db.session.commit()
     return new_comment.to_dict()
 
-  if form.errors:
+  else:
       print(form.errors)
       return {'errors': form.errors}
 
