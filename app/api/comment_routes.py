@@ -68,7 +68,36 @@ def create_comment(recipeId):
 
 
 
-@comment_routes.route('/<int:commentId>/edit', methods=["PUT"])
+# @comment_routes.route('/<int:commentId>/edit', methods=["PUT"])
+# @login_required
+# def update_comment(commentId):
+#   """
+#   Edit a specific comment written by you by comment id.
+#   """
+#   form = EditCommentForm()
+#   form['csrf_token'].data = request.cookies['csrf_token']
+
+#   if form.validate_on_submit():
+#     comment_pic = form.data["comment_pic"]
+#     comment_pic.filename = get_unique_filename(comment_pic.filename)
+#     upload = upload_file_to_s3(comment_pic)
+    
+#     if "url" not in upload:               # when you request to aws, it should return a dict to u.  url is a keyword inside there.
+#       return {"errors": upload}
+
+#     comment_to_edit = Comment.query.get(commentId)
+#     comment_to_edit.comment=form.data['comment']
+#     comment_to_edit.comment_pic=upload['url']
+#     print('edit_comment uploaddddddd = ', upload)
+
+#     db.session.commit()
+#     return comment_to_edit.to_dict()
+
+#   if form.errors:
+#       print(form.errors)
+#       return {'errors': form.errors}
+
+@comment_routes.route('/<int:commentId>/edit', methods=["GET", "POST"])
 @login_required
 def update_comment(commentId):
   """
@@ -78,25 +107,13 @@ def update_comment(commentId):
   form['csrf_token'].data = request.cookies['csrf_token']
 
   if form.validate_on_submit():
+    comment_to_update = Comment.query.get(commentId)
+
     comment_pic = form.data["comment_pic"]
     comment_pic.filename = get_unique_filename(comment_pic.filename)
     upload = upload_file_to_s3(comment_pic)
     
-    if "url" not in upload:               # when you request to aws, it should return a dict to u.  url is a keyword inside there.
-      return {"errors": upload}
-
-    comment_to_edit = Comment.query.get(commentId)
-    comment_to_edit.comment=form.data['comment']
-    comment_to_edit.comment_pic=upload['url']
-    print('edit_comment uploaddddddd = ', upload)
-
-    db.session.commit()
-    return comment_to_edit.to_dict()
-
-  if form.errors:
-      print(form.errors)
-      return {'errors': form.errors}
-
+    comment_to_update.user
 
 
 
