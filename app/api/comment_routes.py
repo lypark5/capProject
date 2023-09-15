@@ -4,7 +4,6 @@ from app.models import Recipe, db, Comment, User
 from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
 from app.forms import CreateCommentForm, EditCommentForm
 
-
 comment_routes = Blueprint('comments', __name__)
 
 
@@ -64,6 +63,39 @@ def create_comment(recipeId):
     return {'errors': form.errors}
 
 
+@comment_routes.route('/<int:commentId>/edit', methods=['PUT'])
+@login_required
+def update_comment(commentId):
+  """
+  Update a comment (text only)
+  """
+  form = EditCommentForm()
+  form['csrf_token'].data = request.cookies['csrf_token']
+
+  if form.validate_on_submit():
+    comment_to_edit = Comment.query.get(commentId)
+    comment_to_edit.comment = form.data['comment']
+
+    db.session.commit()
+    return comment_to_edit.to_dict()
+
+  if form.errors:
+    return {'errors': form.errors}
+
+
+@comment_routes.route('/<int:commentId>/delete', methods=["DELETE"])
+@login_required
+def delete_comment(commentId):
+  to_delete = Comment.query.get(commentId)
+  db.session.delete(to_delete)
+  db.session.commit()
+  return {"Message": "Comment Deleted Successfully"}
+
+
+
+
+
+
 ########################
 # @comment_routes.route('/<int:commentId>/edit', methods=['PUT'])       # for replacing file, only works for no new pic replacing old pic, or new pic.  cannot grab old pic.
 # @login_required
@@ -103,33 +135,3 @@ def create_comment(recipeId):
 #   if form.errors:
 #     return {'errors': form.errors}
 #############################
-
-
-# edit comment with no file to update.
-@comment_routes.route('/<int:commentId>/edit', methods=['PUT'])
-@login_required
-def update_comment(commentId):
-  """
-  Update a comment (text only)
-  """
-  form = EditCommentForm()
-  form['csrf_token'].data = request.cookies['csrf_token']
-
-  if form.validate_on_submit():
-    comment_to_edit = Comment.query.get(commentId)
-    comment_to_edit.comment = form.data['comment']
-
-    db.session.commit()
-    return comment_to_edit.to_dict()
-
-  if form.errors:
-    return {'errors': form.errors}
-
-
-@comment_routes.route('/<int:commentId>/delete', methods=["DELETE"])
-@login_required
-def delete_comment(commentId):
-  to_delete = Comment.query.get(commentId)
-  db.session.delete(to_delete)
-  db.session.commit()
-  return {"Message": "Comment Deleted Successfully"}
