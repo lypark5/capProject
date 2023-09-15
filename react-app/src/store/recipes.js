@@ -75,8 +75,8 @@ export const createRecipeThunk = (formData) => async (dispatch) => {
 	}
 }
 
-export const updateRecipeThunk = (formData) => async (dispatch) => {
-  const res = await fetch(`/api/recipes/${formData.recipeId}/edit`, {             // i think we use formData.id because we define it in create component line 39
+export const updateRecipeThunk = (formData, recipeId) => async (dispatch) => {
+  const res = await fetch(`/api/recipes/${recipeId}/edit`, {             // i think we use formData.id because we define it in create component line 39
     method: 'PUT',
     body: formData
   });

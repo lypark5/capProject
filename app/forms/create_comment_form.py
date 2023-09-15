@@ -8,4 +8,4 @@ from app.api.aws_routes import ALLOWED_EXTENSIONS
 class CreateCommentForm(FlaskForm):
   comment = TextAreaField('Add your comment here...', validators=[DataRequired(), Length(min=3, max=255)])
   comment_pic = FileField('Choose your photo', validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
-  submit = SubmitField('Submit')
+  # submit = SubmitField('Submit')

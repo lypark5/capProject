@@ -5,7 +5,7 @@ import { getAllUsersThunk } from "../../../store/users";
 import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipes";
 import * as sessionActions from "../../../store/comments";
 import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";
-import CreateCommentsFunction from "../../Comments/CreateComment";
+import CreateCommentFunction from "../../Comments/CreateComment";
 
 
 const GetRecipeDetailsFunction = () => {
@@ -16,7 +16,7 @@ const GetRecipeDetailsFunction = () => {
   const recipe = useSelector(state => state.recipes.singleRecipe);
   const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
-
+  console.log('this is comments', comments)
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
     dispatch(getAllUsersThunk());
@@ -44,7 +44,7 @@ const GetRecipeDetailsFunction = () => {
       </div>
       <div>{recipe.instructions}</div>
       <div>
-        <CreateCommentsFunction />
+        <CreateCommentFunction />
       </div>
       <div>
         {Object.values(comments).length ? comments.toReversed().map(comment =>

@@ -10,7 +10,7 @@ class Recipe(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
-  url = db.Column(db.String(255), nullable=False)
+  url = db.Column(db.String(255), nullable=True)
   food_name = db.Column(db.String(100), nullable=False)
   description = db.Column(db.String(1000), nullable=False)
   ingredients = db.Column(db.String(1000), nullable=False)
