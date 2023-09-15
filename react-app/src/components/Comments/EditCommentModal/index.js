@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { editCommentThunk, getAllCommentsByRecipeIdThunk } from "../../../store/comments";
+import { editCommentThunk, getAllCommentsByRecipeIdThunk, deleteCommentThunk } from "../../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import { useModal } from '../../../context/Modal';
 // import { thunkGetSinglePhoto } from "../../store/photos";
 
 const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
   const dispatch = useDispatch();
+  const { closeModal } = useModal();
   // const history = useHistory();
   // const comments = useSelector(state => state.comments.recipeComments);
   // const {recipeId} = useParams();
@@ -13,7 +15,8 @@ const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
   const [commentTxt, setCommentTxt] = useState('');
   const [commentPic, setCommentPic] = useState(null);
   const [errors, setErrors] = useState({});
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(true);
   const [buttonId, setButtonId] = useState('disabled-comment-button');
 
   const allCommentsEver = useSelector(state => state.comments.recipeComments)
@@ -23,32 +26,43 @@ const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
 
   console.log('current comment being editedddd', commentBeingEdited)
 
+  // useEffect(() => {
+  //   const errObj = {};
+  //   setCommentTxt(commentBeingEdited?.comment);
+  //   setCommentPic(commentBeingEdited?.commentPic);  // doesnt work?
+  //   // if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
+  //   // if (commentTxt.length > 3 && commentTxt.length < 100) {
+  //   //   setDisabled(false);
+  //   //   setButtonId('enabled-comment-button')
+  //   // } else {
+  //     setDisabled(false);
+  //   // }
+  //   setErrors(errObj);
+  // }, [dispatch, commentTxt.length, commentPic]);
+
   useEffect(() => {
-    const errObj = {};
-    setCommentTxt(commentBeingEdited.comment);
-    setCommentPic(commentBeingEdited.commentPic);
-    // if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
-    // if (commentTxt.length > 3 && commentTxt.length < 100) {
-    //   setDisabled(false);
-    //   setButtonId('enabled-comment-button')
-    // } else {
-      setDisabled(false);
-    // }
-    setErrors(errObj);
-  }, [dispatch, commentBeingEdited.commentTxt, commentBeingEdited.commentPic]);
+    dispatch(getAllCommentsByRecipeIdThunk(recipeId))
+    if (commentBeingEdited) {
+      setCommentTxt(commentBeingEdited.comment);
+      setCommentPic(commentBeingEdited.commentPic);
+    }
+  }, [commentBeingEdited?.comment]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // const errObj = {};
     const editedCommentData = new FormData();
     editedCommentData.append("comment", commentTxt);         // first arg is real property name, need snake case
-    editedCommentData.append("comment_pic", commentPic);
+    editedCommentData.append("comment_pic", commentPic? commentPic : commentBeingEdited.commentPic);
 
     const updatedComment = await dispatch(editCommentThunk(editedCommentData, commentId));
     if (updatedComment.id) {                             // if edited recipe exists,
-      await dispatch(getAllCommentsByRecipeIdThunk(+recipeId))
+      // await dispatch(getAllCommentsByRecipeIdThunk(+recipeId))
+      await dispatch(deleteCommentThunk(commentBeingEdited.id))
       // await get recipe detail thunk?
       setCommentTxt('')
       // set comment pic?
+      closeModal();
     }
   }
   

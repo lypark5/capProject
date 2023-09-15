@@ -37,28 +37,31 @@ def create_comment(recipeId):
 
   if form.validate_on_submit():
     comment_pic = form.data["comment_pic"]
-    comment_pic.filename = get_unique_filename(comment_pic.filename)
-    upload = upload_file_to_s3(comment_pic)
-    print('create_comment uploaddddddd = ', upload)
-    # return upload
-  
-    if "url" not in upload:               # when you request to aws, it should return a dict to u.  url is a keyword inside there.
-      return {"errors": upload}
+    if comment_pic is not None:
+      comment_pic.filename = get_unique_filename(comment_pic.filename)
+      upload = upload_file_to_s3(comment_pic)
+      print('create_comment uploaddddddd = ', upload)
+      new_comment = Comment(
+        comment=form.data["comment"],
+        comment_pic=upload['url'],
+        user_id=current_user.id,
+        recipe_id=recipeId
+      )
+      db.session.add(new_comment)
+      db.session.commit()
+      return new_comment.to_dict()
 
-    new_comment = Comment(
-      comment=form.data["comment"],
-      comment_pic=upload['url'],
-      user_id=current_user.id,
-      recipe_id=recipeId
+  new_comment = Comment(
+    comment=form.data["comment"],
+    user_id=current_user.id,
+    recipe_id=recipeId
     )
+  db.session.add(new_comment)
+  db.session.commit()
+  return new_comment.to_dict()
 
-    db.session.add(new_comment)
-    db.session.commit()
-    return new_comment.to_dict()
-
-  else:
-      print(form.errors)
-      return {'errors': form.errors}
+  if form.errors:
+    return {'errors': form.errors}
 
 
 
@@ -97,7 +100,7 @@ def create_comment(recipeId):
 #       print(form.errors)
 #       return {'errors': form.errors}
 
-@comment_routes.route('/<int:commentId>/edit', methods=["GET", "POST"])
+@comment_routes.route('/<int:commentId>/edit', methods=['PUT'])
 @login_required
 def update_comment(commentId):
   """
@@ -105,15 +108,35 @@ def update_comment(commentId):
   """
   form = EditCommentForm()
   form['csrf_token'].data = request.cookies['csrf_token']
+  comment = Comment.query.get(commentId)
 
   if form.validate_on_submit():
-    comment_to_update = Comment.query.get(commentId)
-
     comment_pic = form.data["comment_pic"]
-    comment_pic.filename = get_unique_filename(comment_pic.filename)
-    upload = upload_file_to_s3(comment_pic)
-    
-    comment_to_update.user
+    if comment_pic is not None:
+      comment_pic.filename = get_unique_filename(comment_pic.filename)
+      upload = upload_file_to_s3(comment_pic)
+      print('create_comment uploaddddddd = ', upload)
+      new_comment = Comment(
+        comment=form.data["comment"],
+        comment_pic=upload['url'],
+        user_id=current_user.id,
+        recipe_id=comment.recipe_id
+      )
+      db.session.add(new_comment)
+      db.session.commit()
+      return new_comment.to_dict()
+
+  new_comment = Comment(
+    comment=form.data["comment"],
+    user_id=current_user.id,
+    recipe_id=comment.recipe_id
+    )
+  db.session.add(new_comment)
+  db.session.commit()
+  return new_comment.to_dict()
+
+  if form.errors:
+    return {'errors': form.errors}
 
 
 
