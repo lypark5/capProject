@@ -56,29 +56,44 @@ export const createCommentThunk = (commentData, recipeId) => async (dispatch) =>
   }
 }
 
-export const editCommentThunk = (formData, commentId) => async (dispatch) => {
+
+///////////////////////////////////////////////
+// the formData version.  It only works when you add a new pic.  if not add, there is 0 pic.  can't grab the prev one.
+// export const editCommentThunk = (formData, commentId) => async (dispatch) => {
+//   const res = await fetch(`/api/comments/${commentId}/edit`, {
+//     method: 'PUT',
+//     body: formData
+//   });
+//   if (res.ok) {
+//     const editedComment = await res.json();
+//     dispatch(editCommentAction(editedComment));
+//     return editedComment;
+//   } 
+//   else {
+//     const data = await res.json();  // this returns the error data.
+//     return data;
+//   }
+// }
+///////////////////////////////////////////////
+
+
+export const editCommentThunk = (comment, commentId) => async (dispatch) => {
+  console.log('this is comment idddd', commentId)
   const res = await fetch(`/api/comments/${commentId}/edit`, {
     method: 'PUT',
-    body: formData
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(comment)
   });
-
   if (res.ok) {
     const editedComment = await res.json();
     dispatch(editCommentAction(editedComment));
     return editedComment;
-  } 
-  // else if (res.status < 500) {
-  //   const data = await res.json();
-  //   if (data.errors) {
-  //     return data.errors;
-  //   }
-  // } 
-  else {
-    const data = await res.json();
+  } else {
+    const data = await res.json();  // this returns the error data.
     return data;
-    // return ["An error occurred. Please try again."];
   }
 }
+
 
 export const deleteCommentThunk = (commentId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${commentId}/delete`, {

@@ -1,92 +1,121 @@
 import { useEffect, useState } from "react";
-import { editCommentThunk, getAllCommentsByRecipeIdThunk, deleteCommentThunk } from "../../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from '../../../context/Modal';
-// import { thunkGetSinglePhoto } from "../../store/photos";
+import { editCommentThunk } from "../../../store/comments";
+import { getRecipeDetailsThunk } from "../../../store/recipes";
 
-const EditCommentModalFunction = ({commentId, userId, recipeId}) => {
+const EditCommentModalFunction = ({commentId}) => {       // this variable does not need to match name in store
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  // const history = useHistory();
-  // const comments = useSelector(state => state.comments.recipeComments);
-  // const {recipeId} = useParams();
-  // const user = useSelector(state => state.session.user);
-  const [commentTxt, setCommentTxt] = useState('');
-  const [commentPic, setCommentPic] = useState(null);
+  const { recipeId } = useParams();
+  const commentBeingEdited = useSelector(state => state.comments.recipeComments[commentId]);
+  const thisRecipe = useSelector(state => state.recipes.singleRecipe);
+  const [commentTxt, setCommentTxt] = useState(commentBeingEdited.comment);
   const [errors, setErrors] = useState({});
-  const [disabled, setDisabled] = useState(false);
-  // const [disabled, setDisabled] = useState(true);
-  const [buttonId, setButtonId] = useState('disabled-comment-button');
-
-  const allCommentsEver = useSelector(state => state.comments.recipeComments)
-  const commentBeingEdited = useSelector(state => state.comments.recipeComments[commentId])
-  console.log('all commentttsssss', allCommentsEver)
-  console.log('commentIddddddddd', commentId)
-
-  console.log('current comment being editedddd', commentBeingEdited)
-
-  // useEffect(() => {
-  //   const errObj = {};
-  //   setCommentTxt(commentBeingEdited?.comment);
-  //   setCommentPic(commentBeingEdited?.commentPic);  // doesnt work?
-  //   // if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
-  //   // if (commentTxt.length > 3 && commentTxt.length < 100) {
-  //   //   setDisabled(false);
-  //   //   setButtonId('enabled-comment-button')
-  //   // } else {
-  //     setDisabled(false);
-  //   // }
-  //   setErrors(errObj);
-  // }, [dispatch, commentTxt.length, commentPic]);
+  // add disabled stuff
 
   useEffect(() => {
-    dispatch(getAllCommentsByRecipeIdThunk(recipeId))
-    if (commentBeingEdited) {
-      setCommentTxt(commentBeingEdited.comment);
-      setCommentPic(commentBeingEdited.commentPic);
+    const errObj = {};
+    if (!commentTxt) {
+      errObj.commentTxt = 'Comment is required'
     }
-  }, [commentBeingEdited?.comment]);
+    if (commentTxt && commentTxt.length < 255) {
+      errObj.commentTxt = 'Comment must be less than 255 characters.'
+    }
+
+
+    setErrors(errObj);
+  }, [commentTxt]);      // dependency array don't need to look at the length, every time the user changes this, it will rerender page.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const errObj = {};
-    const editedCommentData = new FormData();
-    editedCommentData.append("comment", commentTxt);         // first arg is real property name, need snake case
-    editedCommentData.append("comment_pic", commentPic? commentPic : commentBeingEdited.commentPic);
-
-    const updatedComment = await dispatch(editCommentThunk(editedCommentData, commentId));
-    if (updatedComment.id) {                             // if edited recipe exists,
-      // await dispatch(getAllCommentsByRecipeIdThunk(+recipeId))
-      await dispatch(deleteCommentThunk(commentBeingEdited.id))
-      // await get recipe detail thunk?
-      setCommentTxt('')
-      // set comment pic?
-      closeModal();
-    }
+    const commentObj = {comment: commentTxt}
+    await dispatch (editCommentThunk(commentObj, commentId));
+    closeModal();
   }
-  
+
 
   return (
     <div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Leave your comment here!"
           value={commentTxt}
           onChange={(e) => setCommentTxt(e.target.value)}
           type="textarea"
         />
-        <input
-          type='file'
-          placeholder='Choose your photo'
-          onChange={(e) => setCommentPic(e.target.files[0])}
-          accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-        />
         {/* {valObj.commentTxt && <p className="errors">{valObj.commentTxt}</p>} */}
-        <button type="submit" disabled={disabled} id={buttonId}>Post</button>
+        <button type="submit">Post</button>
       </form>
     </div>
   )
 }
 
 export default EditCommentModalFunction
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//what works for formData
+///////////////////////////////////////
+  // useEffect(() => {
+  //   dispatch(getAllCommentsByRecipeIdThunk(recipeId))
+  //   if (commentBeingEdited) {
+  //     setCommentTxt(commentBeingEdited.comment);
+  //     setCommentPic(commentBeingEdited.commentPic);
+  //   }
+  // }, [commentBeingEdited?.comment]);
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   // const errObj = {};
+  //   const editedCommentData = new FormData();
+  //   editedCommentData.append("comment", commentTxt);         // first arg is real property name, need snake case
+  //   editedCommentData.append("comment_pic", commentPic? commentPic : commentBeingEdited.commentPic);
+
+  //   const updatedComment = await dispatch(editCommentThunk(editedCommentData, commentId));
+  //   if (updatedComment.id) {                             // if edited recipe exists,
+  //     // await dispatch(getAllCommentsByRecipeIdThunk(+recipeId))
+  //     await dispatch(deleteCommentThunk(commentBeingEdited.id))
+  //     // await get recipe detail thunk?
+  //     setCommentTxt('')
+  //     // set comment pic?
+  //     closeModal();
+  //   }
+  // }
+
+//   return (
+//     <div>
+//       <form onSubmit={handleSubmit} encType="multipart/form-data">
+//         <textarea
+//           placeholder="Leave your comment here!"
+//           value={commentTxt}
+//           onChange={(e) => setCommentTxt(e.target.value)}
+//           type="textarea"
+//         />
+//         <input
+//           type='file'
+//           placeholder='Choose your photo'
+//           onChange={(e) => setCommentPic(e.target.files[0])}
+//           accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+//         />
+//         {/* {valObj.commentTxt && <p className="errors">{valObj.commentTxt}</p>} */}
+//         <button type="submit" disabled={disabled} id={buttonId}>Post</button>
+//       </form>
+//     </div>
+//   )
+// }
+
+// export default EditCommentModalFunction
+///////////////////////////////////////  

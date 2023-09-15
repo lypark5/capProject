@@ -16,7 +16,7 @@ const GetRecipeDetailsFunction = () => {
   const recipe = useSelector(state => state.recipes.singleRecipe);
   const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
-
+  console.log('this is comments', comments)
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
     dispatch(getAllUsersThunk());
