@@ -50,6 +50,7 @@ const CreateCommentFunction = () => {
           placeholder="Leave your comment here!"
           value={commentTxt}
           onChange={(e) => setCommentTxt(e.target.value)}
+          required
           type="textarea"
         />
         <input
