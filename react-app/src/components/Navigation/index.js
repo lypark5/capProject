@@ -22,8 +22,9 @@ function Navigation({ isLoaded }){
 
 	return (
 		<div>
+		<div id='nav-div-to-center-logo'>
 			<NavLink to={homeUrl}>Logo</NavLink>
-
+			</div>
 			{isLoaded && (
 			
 					<ProfileButton user={sessionUser} />

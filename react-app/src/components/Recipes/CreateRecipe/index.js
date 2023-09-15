@@ -46,7 +46,6 @@ const RecipeFormFunction = ({ recipe, formType }) => {
     if (recipeBeingEdited) {
       setFoodName(recipeBeingEdited.foodName);
       setDescription(recipeBeingEdited.description);
-      // setUrl(recipeBeingEdited.url);
       setIngredients(recipeBeingEdited.ingredients);
       setInstructions(recipeBeingEdited.instructions);
 
@@ -65,16 +64,19 @@ const RecipeFormFunction = ({ recipe, formType }) => {
     e.preventDefault();
     if (formType === "Update") {                                      // for edit forms:
       const editedRecipe = new FormData();
+      editedRecipe.append("id", recipeBeingEdited.id);
       editedRecipe.append("food_name", foodName); 
       editedRecipe.append("description", description);
-      editedRecipe.append("url", url);
+      editedRecipe.append("url", url? url : recipeBeingEdited.url);     // this seems broken  :s
       editedRecipe.append("ingredients", ingredients);
       editedRecipe.append("instructions", instructions);
       
-
-      const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(editedRecipe));
+      
+      const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(editedRecipe, recipeBeingEdited.id));
+      console.log('updated recipe do i exist?', updatedRecipe)
       console.log('i am in handle submit of updateeeeeee')
       if (updatedRecipe.id) {                   // if this recipe that is being edited exists,
+        await dispatch(sessionActions.deleteRecipeThunk(recipeBeingEdited.id))
         history.push('/recipes/manage');        // history.push to my recipes
       } else {
         return recipe.errors;
@@ -118,13 +120,22 @@ const RecipeFormFunction = ({ recipe, formType }) => {
           required
         />
         {/* make an update version where it is not required */}
-        <input
-          type='file'
-          placeholder='Choose your photo'
-          onChange={(e) => setUrl(e.target.files[0])}
-          required
-          accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-        />
+        {formType === 'Update' ?
+          <input
+            type='file'
+            onChange={(e) => setUrl(e.target.files[0])}
+            accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+          />
+          :
+          <input
+            type='file'
+            placeholder='Choose your photo'
+            onChange={(e) => setUrl(e.target.files[0])}
+            required
+            accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+          />
+        }
+
         <textarea
           type='textarea'
           placeholder='List your ingredients, separated by a comma and space between each'

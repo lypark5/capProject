@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 // import { thunkGetSinglePhoto } from "../../store/photos";
 
-const CreateCommentsFunction = () => {
+const CreateCommentFunction = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const comments = useSelector(state => state.comments.photoComments);
+  const comments = useSelector(state => state.comments.recipeComments);
   const {recipeId} = useParams();
   const user = useSelector(state => state.session.user);
   const [commentTxt, setCommentTxt] = useState('');
@@ -16,7 +16,7 @@ const CreateCommentsFunction = () => {
   const [disabled, setDisabled] = useState(true);
   const [buttonId, setButtonId] = useState('disabled-comment-button');
 
-  useEffect(() => {
+   useEffect(() => {
     const errObj = {};
     if (commentTxt && (commentTxt.length < 3 || commentTxt.length > 100)) errObj.commentTxt = "Comments must be between 3 and 100 characters";
     if (commentTxt.length > 3 && commentTxt.length < 100) {
@@ -50,13 +50,12 @@ const CreateCommentsFunction = () => {
           placeholder="Leave your comment here!"
           value={commentTxt}
           onChange={(e) => setCommentTxt(e.target.value)}
+          required
           type="textarea"
         />
         <input
           type='file'
-          placeholder='Choose your photo'
           onChange={(e) => setCommentPic(e.target.files[0])}
-          required
           accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
         />
         {/* {valObj.commentTxt && <p className="errors">{valObj.commentTxt}</p>} */}
@@ -66,4 +65,4 @@ const CreateCommentsFunction = () => {
   )
 }
 
-export default CreateCommentsFunction
+export default CreateCommentFunction
