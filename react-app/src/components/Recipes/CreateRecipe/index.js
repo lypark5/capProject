@@ -62,30 +62,11 @@ const RecipeFormFunction = ({ recipe, formType }) => {
 
   const handleSubmit = async(e) => {                                  // when you push submit,
     e.preventDefault();
-    if (formType === "Update") {                                      // for edit forms:
-      const editedRecipe = new FormData();
-      editedRecipe.append("id", recipeBeingEdited.id);
-      editedRecipe.append("food_name", foodName); 
-      editedRecipe.append("description", description);
-      editedRecipe.append("url", url? url : recipeBeingEdited.url);     // this seems broken  :s
-      editedRecipe.append("ingredients", ingredients);
-      editedRecipe.append("instructions", instructions);
-      
-      
-      const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(editedRecipe, recipeBeingEdited.id));
-      console.log('updated recipe do i exist?', updatedRecipe)
-      console.log('i am in handle submit of updateeeeeee')
-      if (updatedRecipe.id) {                   // if this recipe that is being edited exists,
-        await dispatch(sessionActions.deleteRecipeThunk(recipeBeingEdited.id))
-        history.push('/recipes/manage');        // history.push to my recipes
-      } else {
-        return recipe.errors;
-      }
-
-    } else {                                                          // for create form:
-
-
-
+    if (formType === "Update") { 
+      const finalRecipe = {user_id: currentUser.id, food_name: foodName, description, ingredients, instructions};
+      await dispatch(sessionActions.editRecipeThunk(finalRecipe, recipe.id));
+      history.push('/recipes/manage');
+    } else {                                        // for create form
       // later try to change formData to newRecipe
       const formData = new FormData();
       formData.append("food_name", foodName);         // first arg is real property name, need snake case
@@ -160,3 +141,29 @@ const RecipeFormFunction = ({ recipe, formType }) => {
 
 
 export default RecipeFormFunction
+
+
+
+
+
+
+////////////  form data update
+// if (formType === "Update") {                                      // for edit forms:
+//   const editedRecipe = new FormData();
+//   editedRecipe.append("id", recipeBeingEdited.id);
+//   editedRecipe.append("food_name", foodName); 
+//   editedRecipe.append("description", description);
+//   editedRecipe.append("url", url? url : recipeBeingEdited.url);     // this seems broken  :s
+//   editedRecipe.append("ingredients", ingredients);
+//   editedRecipe.append("instructions", instructions);
+  
+  
+//   const updatedRecipe = await dispatch(sessionActions.updateRecipeThunk(editedRecipe, recipeBeingEdited.id));
+//   console.log('updated recipe do i exist?', updatedRecipe)
+//   console.log('i am in handle submit of updateeeeeee')
+//   if (updatedRecipe.id) {                   // if this recipe that is being edited exists,
+//     await dispatch(sessionActions.deleteRecipeThunk(recipeBeingEdited.id))
+//     history.push('/recipes/manage');        // history.push to my recipes
+//   } else {
+//     return recipe.errors;
+//   }
