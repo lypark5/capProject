@@ -1,0 +1,45 @@
+#recipe-div {
+  width: 750px;
+  border: 1px solid red;
+}
+
+#food-pic {
+  border: 1px solid green;
+  border-radius: 3px;
+  width: 100%;
+}
+
+#small-profile-pic {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#profile-pic-n-detail-div {
+  border: 1px solid blue;
+  display: flex;
+}
+
+#details-desc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#cooking-part {
+  display: flex;
+  align-items: center;
+}
+
+#ing-div {
+  display: flex;
+  justify-content: center;
+  border: 1px solid orange;
+  width: 30%;
+}
+
+#instructions-div {
+  padding: 20px;
+  width: 70%;
+}

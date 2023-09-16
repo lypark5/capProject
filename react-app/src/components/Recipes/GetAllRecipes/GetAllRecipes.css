@@ -1,0 +1,36 @@
+#all-recipes-card {
+  border: 1px solid blue;
+  width: 850px;
+  height: 300px;
+  display: flex;
+  border-radius: 3px;
+}
+
+#all-recipes-pic {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
+#profile-card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border: 1px solid green;
+  justify-content: center;
+  align-items: center;
+}
+
+#all-recipes-profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+#little-caption {
+  display: flex;
+  flex-direction: column;
+}
