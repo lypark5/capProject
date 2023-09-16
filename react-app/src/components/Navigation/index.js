@@ -13,7 +13,7 @@ function Navigation({ isLoaded }){
 	const dispatch = useDispatch()
 	const history = useHistory()
 	let homeUrl;																													// declare the url for home button
-	sessionUser ? homeUrl = "/photos/all" : homeUrl = "/";								// if there is a logged-in user, make the home button go to get all photos, else make it go to landing page.
+	sessionUser ? homeUrl = "/recipes/all" : homeUrl = "/";								// if there is a logged-in user, make the home button go to get all photos, else make it go to landing page.
 
 	const createRecipeLinkFunction = (userId) => {												// this is for create a recipe link.
 		// dispatch(getAllRecipesThunk(userId))															// why do i need this

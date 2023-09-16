@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
 import { useModal } from '../../../context/Modal';
 import { editCommentThunk } from "../../../store/comments";
-import { getRecipeDetailsThunk } from "../../../store/recipes";
+
 
 const EditCommentModalFunction = ({commentId}) => {       // this variable does not need to match name in store
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const { recipeId } = useParams();
   const commentBeingEdited = useSelector(state => state.comments.recipeComments[commentId]);
-  const thisRecipe = useSelector(state => state.recipes.singleRecipe);
   const [commentTxt, setCommentTxt] = useState(commentBeingEdited.comment);
   const [errors, setErrors] = useState({});
   // add disabled stuff
@@ -23,19 +20,17 @@ const EditCommentModalFunction = ({commentId}) => {       // this variable does 
     if (commentTxt && commentTxt.length < 255) {
       errObj.commentTxt = 'Comment must be less than 255 characters.'
     }
-
-
     setErrors(errObj);
   }, [commentTxt]);      // dependency array don't need to look at the length, every time the user changes this, it will rerender page.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const commentObj = {comment: commentTxt}
-    await dispatch (editCommentThunk(commentObj, commentId));
+    const finalComment = {comment: commentTxt};
+    await dispatch(editCommentThunk(finalComment, commentId));
     closeModal();
   }
 
-
+  // add errors
   return (
     <div>
       <form onSubmit={handleSubmit}>
