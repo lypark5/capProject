@@ -2,7 +2,7 @@
 const GET_ALL_RECIPES = "recipes/GET_ALL_RECIPES";
 const GET_RECIPE_DETAILS = "recipes/GET_RECIPE_DETAILS";
 const CREATE_RECIPE = "recipes/CREATE_RECIPE";
-const UPDATE_RECIPE = "recipes/UPDATE_RECIPE";
+const EDIT_RECIPE = "recipes/EDIT_RECIPE";
 const DELETE_RECIPE = "recipes/DELETE_RECIPE";
 
 
@@ -22,8 +22,8 @@ const createRecipeAction = (recipe) => ({
   recipe
 })
 
-const updateRecipeAction = (recipe) => ({
-  type: UPDATE_RECIPE,
+const editRecipeAction = (recipe) => ({
+  type: EDIT_RECIPE,
   recipe
 })
 
@@ -41,7 +41,8 @@ export const getAllRecipesThunk = () => async (dispatch) => {
     dispatch(getAllRecipesAction(recipes.Recipes));
     return recipes;
   } else {
-    return 'u failed';
+    const data = await res.json();    // bad error
+    return data;
   }
 }
 
@@ -52,7 +53,8 @@ export const getRecipeDetailsThunk = (recipeId) => async (dispatch) => {        
     dispatch(getRecipeDetailsAction(recipe));                                 // dispatch action
     return recipe;                                                            // then send back this recipe obj
   } else {
-    return 'u thought';
+    const data = await res.json();    // bad error
+    return data;
   }
 }
 
@@ -71,30 +73,24 @@ export const createRecipeThunk = (formData) => async (dispatch) => {
 			return data.errors;
 		}
 	} else {
-		return ["An error occurred. Please try again."];
-	}
+    const data = await res.json();    // bad error
+    return data;
+  }
 }
 
-export const updateRecipeThunk = (formData, recipeId) => async (dispatch) => {
+export const editRecipeThunk = (recipe, recipeId) => async (dispatch) => {
   const res = await fetch(`/api/recipes/${recipeId}/edit`, {             // i think we use formData.id because we define it in create component line 39
     method: 'PUT',
-    body: formData
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(recipe)
   });
-
   if (res.ok) {
-    console.log('i am in res.ok of update thunkkkkkk')
-    const updatedRecipe = await res.json();
-    dispatch(updateRecipeAction(updatedRecipe));
-    console.log('updatedREcipe ressss in thunk from backend', updatedRecipe)
-    return updatedRecipe;
-  } else if (res.status < 500) {
-    const data = await res.json();
-    if (data.errors) {
-      return data.errors;
-    }
+    const editedRecipe = await res.json();
+    dispatch(editRecipeAction(editedRecipe));
+    return editedRecipe;
   } else {
-    console.log('i am in server error thunkkkkkkkk')
-    return ["An error occurred. Please try again."];
+    const data = await res.json();  // this returns the error data.
+    return data;
   }
 }
 
@@ -104,6 +100,9 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
   })
   if (res.ok) {
     await dispatch(deleteRecipeAction(recipeId))
+  } else {
+    const data = await res.json();    // bad error
+    return data;
   }
 }
 
@@ -135,7 +134,7 @@ export default function recipeReducer(state = initialState, action) {
         currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: action.recipe }
       }
     }
-    case UPDATE_RECIPE: {
+    case EDIT_RECIPE: {
       return {
         ...state,
         allRecipes: {...state.allRecipes, [action.recipe.id]: { ...action.recipe }},

@@ -34,6 +34,9 @@ export const getAllCommentsByRecipeIdThunk = (recipeId) => async (dispatch) => {
     const commentsData = await res.json();
     dispatch(getAllCommentsByRecipeIdAction(commentsData.comments));           // extra comments cuz in backend we added the keyword comments: with res as value.
     return commentsData;
+  } else {
+    const data = await res.json();    // bad error
+    return data;
   }
 }
 
@@ -46,39 +49,13 @@ export const createCommentThunk = (commentData, recipeId) => async (dispatch) =>
     const commentData = await res.json();
     dispatch(createCommentAction(commentData));
     return commentData;
-  } else if (res.status < 500) {
-    const data = await res.json();
-    if (data.errors) {
-      return data.errors;
-    }
   } else {
-    return ["An error occurred. Please try again."];
+    const data = await res.json();    // bad error
+    return data;
   }
 }
 
-
-///////////////////////////////////////////////
-// the formData version.  It only works when you add a new pic.  if not add, there is 0 pic.  can't grab the prev one.
-// export const editCommentThunk = (formData, commentId) => async (dispatch) => {
-//   const res = await fetch(`/api/comments/${commentId}/edit`, {
-//     method: 'PUT',
-//     body: formData
-//   });
-//   if (res.ok) {
-//     const editedComment = await res.json();
-//     dispatch(editCommentAction(editedComment));
-//     return editedComment;
-//   } 
-//   else {
-//     const data = await res.json();  // this returns the error data.
-//     return data;
-//   }
-// }
-///////////////////////////////////////////////
-
-
 export const editCommentThunk = (comment, commentId) => async (dispatch) => {
-  console.log('this is comment idddd', commentId)
   const res = await fetch(`/api/comments/${commentId}/edit`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
@@ -93,7 +70,6 @@ export const editCommentThunk = (comment, commentId) => async (dispatch) => {
     return data;
   }
 }
-
 
 export const deleteCommentThunk = (commentId) => async (dispatch) => {
   const res = await fetch(`/api/comments/${commentId}/delete`, {
@@ -140,3 +116,27 @@ export default function commentReducer (state = initialState, action) {
       return state;
   }
 }
+
+
+
+
+
+
+///////////////////////////////////////////////
+// the formData version.  It only works when you add a new pic.  if not add, there is 0 pic.  can't grab the prev one.
+// export const editCommentThunk = (formData, commentId) => async (dispatch) => {
+//   const res = await fetch(`/api/comments/${commentId}/edit`, {
+//     method: 'PUT',
+//     body: formData
+//   });
+//   if (res.ok) {
+//     const editedComment = await res.json();
+//     dispatch(editCommentAction(editedComment));
+//     return editedComment;
+//   } 
+//   else {
+//     const data = await res.json();  // this returns the error data.
+//     return data;
+//   }
+// }
+///////////////////////////////////////////////
