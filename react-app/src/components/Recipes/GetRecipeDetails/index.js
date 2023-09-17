@@ -6,6 +6,7 @@ import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipe
 import * as sessionActions from "../../../store/comments";
 import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";
 import CreateCommentFunction from "../../Comments/CreateComment";
+import './GetRecipeDetails.css';
 
 
 const GetRecipeDetailsFunction = () => {
@@ -16,41 +17,55 @@ const GetRecipeDetailsFunction = () => {
   const recipe = useSelector(state => state.recipes.singleRecipe);
   const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
-  console.log('this is comments', comments)
+  const ingArr = recipe.ingredients?.split(', ');
+  console.log('ingredients array', ingArr)
+
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
     dispatch(getAllUsersThunk());
-    // dispatch(getAllRecipesThunk(currentUser.id));    // this is what broke this page.
     dispatch(sessionActions.getAllCommentsByRecipeIdThunk(recipeId));    
   }, [dispatch]);
 
-  recipe["Author"] = users.find(user => user.id === recipe.userId);     // i think it's this, yup
+  recipe["Author"] = users.find(user => user.id === recipe.userId);     
 
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
-    <div>
-      <div>{recipe.foodName}</div>
-      <div>
-        <span>
-          {/* do i need the question marks?  ↓↓ i don't think so*/}
-          <img src={recipe.url} alt={recipe.title}></img>
-          <span>{recipe.description}</span>
-          <div>
-            <img src={recipe.Author?.profilePic} alt={recipe.Author?.username}></img>
-            <span>{recipe.Author?.username}</span>
+    <div id='detail-overlord'>
+      <div id='recipe-div'>
+        <div>
+          <h1 id='food-name'>{recipe.foodName}</h1>
+        </div>
+
+        <img src={recipe.url} alt={recipe.title} id='food-pic'></img>
+        <div id='profile-pic-n-detail-div'>
+          <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='small-profile-pic'></img>
+          <div id='details-desc'>
+            <span>by: {recipe.Author?.username}</span>
+            <span>{recipe.description}</span>
           </div>
-        </span>
-        <span>{recipe.ingredients}</span>
+        </div>
+        <div id='cooking-part'>
+          <div id='ing-div'>
+            <ul >
+              {ingArr?.map(ing => 
+                <li>{ing}</li>)}
+            </ul>
+          </div>
+          <div id='instructions-div'>{recipe.instructions}</div>
+        </div>
       </div>
-      <div>{recipe.instructions}</div>
-      <div>
-        <CreateCommentFunction />
+      <div id='comment-div'>
+        <div id='whats-this'>
+          <CreateCommentFunction />
+        </div>
+        <div id='whats-this-2'>
+          {Object.values(comments).length ? comments.toReversed().map(comment =>
+            <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
+          ):<p>Be the first to leave a comment!</p>}
+        </div>
       </div>
-      <div>
-        {Object.values(comments).length ? comments.toReversed().map(comment =>
-          <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
-        ):<p>Be the first to leave a comment!</p>}
-      </div>
+
+      
     </div>
   )
 }
