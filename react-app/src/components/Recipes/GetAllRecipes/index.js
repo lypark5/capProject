@@ -27,11 +27,11 @@ const GetAllRecipesFunction = () => {
 
 
   return (
-    <div>
-      <h3>Discover new recipes!</h3>
+    <div id='all-recipe-overlord'>
+      <h1 id='discover'>Discover new recipes!</h1>
       <div>
         {recipeArr.map(recipe =>
-          <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName}>
+          <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
             <span key={recipe.id} id='all-recipes-card'>
               <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
               <div id='profile-card'>

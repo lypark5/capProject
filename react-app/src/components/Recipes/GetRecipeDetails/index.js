@@ -30,36 +30,42 @@ const GetRecipeDetailsFunction = () => {
 
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
-    <div id='recipe-div'>
-      <div>
-        <h2>{recipe.foodName}</h2>
+    <div id='detail-overlord'>
+      <div id='recipe-div'>
+        <div>
+          <h1 id='food-name'>{recipe.foodName}</h1>
+        </div>
+
+        <img src={recipe.url} alt={recipe.title} id='food-pic'></img>
+        <div id='profile-pic-n-detail-div'>
+          <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='small-profile-pic'></img>
+          <div id='details-desc'>
+            <span>by: {recipe.Author?.username}</span>
+            <span>{recipe.description}</span>
+          </div>
+        </div>
+        <div id='cooking-part'>
+          <div id='ing-div'>
+            <ul >
+              {ingArr?.map(ing => 
+                <li>{ing}</li>)}
+            </ul>
+          </div>
+          <div id='instructions-div'>{recipe.instructions}</div>
+        </div>
+      </div>
+      <div id='comment-div'>
+        <div id='whats-this'>
+          <CreateCommentFunction />
+        </div>
+        <div id='whats-this-2'>
+          {Object.values(comments).length ? comments.toReversed().map(comment =>
+            <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
+          ):<p>Be the first to leave a comment!</p>}
+        </div>
       </div>
 
-      <img src={recipe.url} alt={recipe.title} id='food-pic'></img>
-      <div id='profile-pic-n-detail-div'>
-        <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='small-profile-pic'></img>
-        <div id='details-desc'>
-          <span>by: {recipe.Author?.username}</span>
-          <span>{recipe.description}</span>
-        </div>
-      </div>
-      <div id='cooking-part'>
-        <div id='ing-div'>
-          <ul >
-            {ingArr?.map(ing => 
-              <li>{ing}</li>)}
-          </ul>
-        </div>
-        <div id='instructions-div'>{recipe.instructions}</div>
-      </div>
-      <div>
-        <CreateCommentFunction />
-      </div>
-      <div>
-        {Object.values(comments).length ? comments.toReversed().map(comment =>
-          <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
-        ):<p>Be the first to leave a comment!</p>}
-      </div>
+      
     </div>
   )
 }

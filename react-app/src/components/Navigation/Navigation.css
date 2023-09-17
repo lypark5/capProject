@@ -15,11 +15,30 @@
   padding: 0px 20px 10px;
   border-bottom: 2px solid rgba(185, 185, 185, 0.65);
   height: 60px;
+  background-color: rgb(252, 250, 241);
+}
+
+#logo-obj {
+  display: flex;
+  align-items: center;
+}
+
+#logo {
+  width: 50px;
+  height: 50px;
+}
+
+#recipe-share {
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  color: brown;
+  padding-bottom: 6px;
 }
 
 #create-recipe-link-nav {
-  color:rgb(1, 156, 184);
-  font-weight:bold;
+  color:rgb(0, 147, 210);
+  font-family: 'Lobster', cursive;
+  font-size: 18px;
 }
 
 #profile-button {

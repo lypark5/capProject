@@ -14,9 +14,12 @@ function Navigation({ isLoaded }){
 			{isLoaded && (
 				<ProfileButton user={sessionUser} />
 			)}
-			<NavLink to={homeUrl} id='logo'>Logo</NavLink>
+			<NavLink to={homeUrl} id='logo-obj'className='link'>
+				<img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spoon-icon.png' id='logo'></img>
+				<span id='recipe-share'>recipe-share</span>
+			</NavLink>
 			{sessionUser && (
-				<NavLink to="/recipes/new" id='create-recipe-link-nav'>Upload a Recipe!</NavLink>
+				<NavLink to="/recipes/new" id='create-recipe-link-nav' className='link'>Upload a Recipe!</NavLink>
 			)}
 		</div>
 	);
