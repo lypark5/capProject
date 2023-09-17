@@ -1,6 +1,8 @@
 import OpenModalButton from "../../OpenModalButton";
 import DeleteCommentModalFunction from "../DeleteCommentModal";
 import EditCommentModalFunction from "../EditCommentModal";
+import './GetAllComments.css'
+
 
 const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {  // props passed in from get recipe detail component page
   console.log('this is comment inside getallcomm', comment)
@@ -10,36 +12,38 @@ const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {
     return cleanData;
   }
 
-  // if (comment && comment["Author"] == undefined) return <></>
-    return (
-      <div>
 
-          <div id='comment'>{comment?.comment}</div>
-
-          {comment?.commentPic &&
-            <img src={comment.commentPic}/>
-          }
-          {currentUser.id === comment.userId &&
-            <OpenModalButton
-              modalComponent={<EditCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
-              buttonText='edit'
-            />
-          }
-
-          {currentUser.id === comment.userId &&
-            <OpenModalButton
-              modalComponent={<DeleteCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
-              buttonText='delete'
-            />
-          }
-
-        <span id='commentator-item'>
-          <span id='commentator-author'>{comment?.Author?.username}</span>
-          <span id='comment-date'>{convertDate(comment?.createdAt)}</span>
-        </span>
+  return (
+    <div id='each-comment-card'>
+      <div id='comment-section'>
+        {comment?.commentPic &&
+          <img src={comment.commentPic} id='comment-pic'/>
+        }
+        <div id='comment-and-buttons'>
+          <span id='comment-text'>{comment?.comment}</span>
+          <div id='comment-buttons-div'>
+            {currentUser.id === comment.userId &&
+              <OpenModalButton
+                modalComponent={<EditCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
+                buttonText='edit'
+              />
+            }
+            {currentUser.id === comment.userId &&
+              <OpenModalButton
+                modalComponent={<DeleteCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
+                buttonText='delete'
+              />
+            }
+          </div>
+        </div>
       </div>
-    )
-  }
-// }
+      <div id='commentator-item'>
+        <span id='commentator-author'>{comment?.Author?.username}</span>
+        <span id='comment-date'>{convertDate(comment?.createdAt)}</span>
+      </div>
+    </div>
+  )
+}
+
 
 export default GetAllCommentsByRecipeIdFunction

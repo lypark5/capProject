@@ -1,0 +1,41 @@
+#each-comment-card {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+}
+
+#comment-section {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  min-height: 100px;
+}
+
+#comment-pic {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+#comment-and-buttons {
+  padding-left: 10px;
+  gap: 5px;
+  border: 1px solid purple;
+  display: flex;
+  flex-direction: column;
+}
+
+#comment-text {
+  /* border: 1px solid orange; */
+  font-size: 20px;
+}
+
+/* #comment-buttons-div {
+
+} */
+
+#commentator-item {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0px 5px 5px;
+}
