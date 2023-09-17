@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { getAllRecipesThunk } from "../../../store/recipes";
 import { getAllUsersThunk } from "../../../store/users";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-// import { UserBlurb } from '../UserBlurb';
+import { useHistory, NavLink } from "react-router-dom";
+import './GetAllRecipes.css';
 
 
 const GetAllRecipesFunction = () => {
@@ -27,12 +27,23 @@ const GetAllRecipesFunction = () => {
 
 
   return (
-    <div> i am at get all recipes
+    <div id='all-recipe-overlord'>
+      <h1 id='discover'>Discover new recipes!</h1>
       <div>
         {recipeArr.map(recipe =>
-          <span key={recipe.id}>
-            <img src={recipe.url} alt={recipe.foodName}></img>
-          </span>)}
+          <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
+            <span key={recipe.id} id='all-recipes-card'>
+              <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
+              <div id='profile-card'>
+                <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='all-recipes-profile-pic'></img>
+                <div id='little-caption'>
+                  <span>{recipe.foodName}</span>
+                  <span>by: {recipe.Author?.username}</span>
+                </div>
+              </div>
+            </span>
+          </NavLink>
+        )}
       </div>
     </div>
   )

@@ -2,3 +2,12 @@
 .errors {
   color: red;
 }
+
+.link {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Hi Melody', cursive;
+  color: brown;
+}

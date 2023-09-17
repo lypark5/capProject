@@ -8,7 +8,7 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
-  const currentUserRecipes = useSelector(state => state.recipes.currentUserRecipes)   // why we need this?
+  // const currentUserRecipes = useSelector(state => state.recipes.currentUserRecipes)   // why we need this?
   const [foodName, setFoodName] = useState(recipe ? recipe.foodName : '');      // if there is a recipe aka it is edit, useState should be pre-populated.  If no recipe, it is create, so set to empty.
   const [description, setDescription] = useState(recipe ? recipe.description : '');
   const [url, setUrl] = useState(recipe ? recipe.url : '');  
@@ -20,34 +20,15 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   const [buttonClass, setButtonClass] = useState("disabled-update-button");
 
 
-
-
-
-  // need to review if statements
-  // useEffect(() => {
-  //   const errObj = {};
-  //   if (foodName && foodName.length < 1) errObj.foodName = "food name is required";
-  //   if (foodName?.length > 1) {
-  //     setDisabled(false);
-  //     setButtonClass("enabled-signup-button")
-  //   } else {
-  //     setDisabled(true);
-  //   }
-  //   setErrors(errObj);
-  // }, [foodName]);
-
-
-  const recipeBeingEdited = useSelector(state => state.recipes.singleRecipe);
-
   useEffect(() => {
     const errObj = {};
-    if (!Object.values(recipeBeingEdited).length) {
-      dispatch(sessionActions.getRecipeDetailsThunk(recipeBeingEdited.id))}
-    if (recipeBeingEdited) {
-      setFoodName(recipeBeingEdited.foodName);
-      setDescription(recipeBeingEdited.description);
-      setIngredients(recipeBeingEdited.ingredients);
-      setInstructions(recipeBeingEdited.instructions);
+    // if (!Object.values(recipeBeingEdited).length) {
+    //   dispatch(sessionActions.getRecipeDetailsThunk(recipeBeingEdited.id))}
+    if (recipe) {
+      setFoodName(recipe.foodName);
+      setDescription(recipe.description);
+      setIngredients(recipe.ingredients);
+      setInstructions(recipe.instructions);
 
       if (foodName && foodName.length < 3) errObj.foodName = "Food name must be at least 3 characters long";
       // if (foodName && foodName.length >= 3) {
@@ -58,7 +39,7 @@ const RecipeFormFunction = ({ recipe, formType }) => {
       // }
       setErrors(errObj);
     }
-  }, [recipeBeingEdited.foodName])
+  }, [recipe?.foodName])
 
   const handleSubmit = async(e) => {                                  // when you push submit,
     e.preventDefault();
@@ -84,7 +65,12 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   return (
     <div>
       <h2>{recipe ? "Update Recipe" : "Upload Recipe"}</h2>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+
+
+
+
+      {formType === 'Update'?
+      <form onSubmit={handleSubmit}>
         <input
           type='text'
           placeholder='Food name'
@@ -100,23 +86,6 @@ const RecipeFormFunction = ({ recipe, formType }) => {
           onChange={(e) => setDescription(e.target.value)}
           required
         />
-        {/* make an update version where it is not required */}
-        {formType === 'Update' ?
-          <input
-            type='file'
-            onChange={(e) => setUrl(e.target.files[0])}
-            accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-          />
-          :
-          <input
-            type='file'
-            placeholder='Choose your photo'
-            onChange={(e) => setUrl(e.target.files[0])}
-            required
-            accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-          />
-        }
-
         <textarea
           type='textarea'
           placeholder='List your ingredients, separated by a comma and space between each'
@@ -134,9 +103,51 @@ const RecipeFormFunction = ({ recipe, formType }) => {
         {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
         <button type='submit' disabled={disabled} className={buttonClass}>Submit</button>
       </form>
+      
+      :
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <input
+          type='text'
+          placeholder='Food name'
+          value={foodName}
+          onChange={(e) => setFoodName(e.target.value)}
+          required
+        />
+        {/* {valObj.title && <p className="errors">{valObj.title}</p>} */}
+        <textarea
+          type='textarea'
+          placeholder='Add a description'
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+        <input
+          type='file'
+          placeholder='Choose your photo'
+          onChange={(e) => setUrl(e.target.files[0])}
+          required
+          accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+        />
+        <textarea
+          type='textarea'
+          placeholder='List your ingredients, separated by a comma and space between each'
+          value={ingredients}
+          onChange={(e) => setIngredients(e.target.value)}
+          required
+        />
+        <textarea
+          type='textarea'
+          placeholder='Add your instructions'
+          value={instructions}
+          onChange={(e) => setInstructions(e.target.value)}
+          required
+        />
+        {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
+        <button type='submit' disabled={disabled} className={buttonClass}>Submit</button>
+      </form>
+      }
     </div>
   )
-
 }
 
 

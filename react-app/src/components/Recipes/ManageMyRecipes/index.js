@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useHistory, NavLink, Link } from "react-router-dom";
 import DeleteRecipeModalFunction from "../DeleteRecipeModal";
+import RecipeFormFunction from "../CreateRecipe";
 import OpenModalButton from "../../OpenModalButton";
 
 
@@ -43,8 +44,11 @@ function GetAllRecipesOfCurrentFunction () {
             </Link>
 
             <div id='manage-buttons-container'>
-              {/* <button onClick={() => editButtonFunction(recipe.id)}>Update</button> */}
-              <button>edit</button>
+              {/* <button onClick={() => RecipeFormFunction(recipe.id)} formType="Update">Update</button> */}
+              <Link to={`/recipes/${recipe.id}/edit`} formType='Update'>
+                <button>Edit</button>
+              </Link>
+              {/* <RecipeFormFunction recipeId={recipe.id} formType="Update"/> */}
               <OpenModalButton 
                 // className='update-or-delete'
                 buttonText='Delete'

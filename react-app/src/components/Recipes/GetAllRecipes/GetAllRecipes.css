@@ -1,0 +1,49 @@
+/* #discover {
+  
+} */
+
+#all-recipe-overlord {
+  background-color: rgb(253, 244, 207);
+}
+
+#all-recipes-card {
+  border: 1px solid rgb(0, 119, 255);
+  width: 850px;
+  height: 300px;
+  display: flex;
+  border-radius: 3px;
+}
+
+#all-recipes-pic {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+  /* border: 1px solid red; */
+  border-radius: 3px;
+}
+
+#profile-card {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border-left: 1px solid rgb(0, 119, 255);
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(252, 250, 241);
+}
+
+#all-recipes-profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  object-fit: cover;
+  border: 2px solid rgb(0, 119, 255);
+}
+
+#little-caption {
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 147, 210);
+  font-size: 20px;
+  font-weight: bold;
+}
