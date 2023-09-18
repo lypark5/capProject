@@ -1,11 +1,12 @@
 #each-comment-card {
-  border: 1px solid blue;
+  border: 1px solid rgba(0, 147, 210);;
   display: flex;
   flex-direction: column;
+  background-color: rgb(252, 250, 241);
 }
 
 #comment-section {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   align-items: center;
   min-height: 100px;
@@ -20,14 +21,16 @@
 #comment-and-buttons {
   padding-left: 10px;
   gap: 5px;
-  border: 1px solid purple;
+  /* border: 1px solid purple; */
   display: flex;
   flex-direction: column;
 }
 
 #comment-text {
   /* border: 1px solid orange; */
-  font-size: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgba(0, 147, 210);
 }
 
 /* #comment-buttons-div {
@@ -38,4 +41,6 @@
   display: flex;
   gap: 10px;
   padding: 5px 0px 5px 5px;
+  font-size: 20px;
+  font-weight: bold;
 }

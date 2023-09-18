@@ -91,7 +91,7 @@ function SignupFormModal() {
 	}																											
 
 	return (
-		<div>
+		<div className='modal' id='signup-modal'>
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit} encType="multipart/form-data">
 				<div>

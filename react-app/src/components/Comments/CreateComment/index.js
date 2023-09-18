@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { createCommentThunk, getAllCommentsByRecipeIdThunk } from "../../../store/comments";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
+import './CreateComment.css';
 // import { thunkGetSinglePhoto } from "../../store/photos";
 
 const CreateCommentFunction = () => {
@@ -45,13 +46,14 @@ const CreateCommentFunction = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+      <form onSubmit={handleSubmit} encType="multipart/form-data" id='comment-form'>
         <textarea
           placeholder="Leave your comment here!"
           value={commentTxt}
           onChange={(e) => setCommentTxt(e.target.value)}
           required
           type="textarea"
+          id='comment-input'
         />
         <input
           type='file'

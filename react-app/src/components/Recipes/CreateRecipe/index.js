@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import * as sessionActions from "../../../store/recipes";
 import { useHistory } from "react-router-dom";
+import './CreateRecipe.css';
 
 
 const RecipeFormFunction = ({ recipe, formType }) => {
@@ -63,89 +64,98 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   };
 
   return (
-    <div>
-      <h2>{recipe ? "Update Recipe" : "Upload Recipe"}</h2>
+    <div id='create-edit-mega-background'>
+      <div id='form-div'>
+        <h2 id='create-title'>{recipe ? "Update my recipe!" : "Let's get cookin'!"}</h2>
+        {formType === 'Update'?
+        <form onSubmit={handleSubmit} className='recipe-form'>
+          <input
+            type='text'
+            placeholder='Food name'
+            value={foodName}
+            onChange={(e) => setFoodName(e.target.value)}
+            required
+            className='recipe-string'
+          />
+          {/* {valObj.title && <p className="errors">{valObj.title}</p>} */}
+          <textarea
+            type='textarea'
+            placeholder='Add a description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          <textarea
+            type='textarea'
+            placeholder='List your ingredients, separated by a comma and space between each'
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          <textarea
+            type='textarea'
+            placeholder='Add your instructions'
+            value={instructions}
+            onChange={(e) => setInstructions(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
+          {/* <button type='submit' disabled={disabled} className={buttonClass}>Submit</button> */}
+          <button type='submit' id='update-button'>Update</button>
+        </form>
+        
+        :
+        <form onSubmit={handleSubmit} encType="multipart/form-data" className='recipe-form'>
+          <input
+            type='text'
+            placeholder='Food name'
+            value={foodName}
+            onChange={(e) => setFoodName(e.target.value)}
+            required
+            className='recipe-string'
+          />
+          {/* {valObj.title && <p className="errors">{valObj.title}</p>} */}
+          <textarea
+            type='textarea'
+            placeholder='Add a description'
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          <input
+            type='file'
+            placeholder='Choose your photo'
+            onChange={(e) => setUrl(e.target.files[0])}
+            required
+            accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
+          />
+          <textarea
+            type='textarea'
+            placeholder='List your ingredients:&#10;eg) 1 carrot, 1 onion, 1 lb beef'
+            value={ingredients}
+            onChange={(e) => setIngredients(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          <textarea
+            type='textarea'
+            placeholder='Add your instructions'
+            value={instructions}
+            onChange={(e) => setInstructions(e.target.value)}
+            required
+            className='recipe-textarea'
+          />
+          {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
+          {/* <button type='submit' disabled={disabled} className={buttonClass}>Submit</button> */}
+          <button type='submit' id='submit-button'>Post</button>
+        </form>
+        }
+    </div>
 
-
-
-
-      {formType === 'Update'?
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Food name'
-          value={foodName}
-          onChange={(e) => setFoodName(e.target.value)}
-          required
-        />
-        {/* {valObj.title && <p className="errors">{valObj.title}</p>} */}
-        <textarea
-          type='textarea'
-          placeholder='Add a description'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <textarea
-          type='textarea'
-          placeholder='List your ingredients, separated by a comma and space between each'
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-          required
-        />
-        <textarea
-          type='textarea'
-          placeholder='Add your instructions'
-          value={instructions}
-          onChange={(e) => setInstructions(e.target.value)}
-          required
-        />
-        {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
-        <button type='submit' disabled={disabled} className={buttonClass}>Submit</button>
-      </form>
-      
-      :
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <input
-          type='text'
-          placeholder='Food name'
-          value={foodName}
-          onChange={(e) => setFoodName(e.target.value)}
-          required
-        />
-        {/* {valObj.title && <p className="errors">{valObj.title}</p>} */}
-        <textarea
-          type='textarea'
-          placeholder='Add a description'
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        />
-        <input
-          type='file'
-          placeholder='Choose your photo'
-          onChange={(e) => setUrl(e.target.files[0])}
-          required
-          accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
-        />
-        <textarea
-          type='textarea'
-          placeholder='List your ingredients, separated by a comma and space between each'
-          value={ingredients}
-          onChange={(e) => setIngredients(e.target.value)}
-          required
-        />
-        <textarea
-          type='textarea'
-          placeholder='Add your instructions'
-          value={instructions}
-          onChange={(e) => setInstructions(e.target.value)}
-          required
-        />
-        {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
-        <button type='submit' disabled={disabled} className={buttonClass}>Submit</button>
-      </form>
-      }
     </div>
   )
 }

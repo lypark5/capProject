@@ -5,6 +5,7 @@ import { useHistory, NavLink, Link } from "react-router-dom";
 import DeleteRecipeModalFunction from "../DeleteRecipeModal";
 import RecipeFormFunction from "../CreateRecipe";
 import OpenModalButton from "../../OpenModalButton";
+import './ManageMyRecipes.css'
 
 
 // useSelector grabs stuff from the new state
@@ -30,34 +31,37 @@ function GetAllRecipesOfCurrentFunction () {
   // if keeping it bad, after clicking delete, the page is blank cuz this spot id page no longer exists.  
   // good way, it doesn't redirect cuz it's no longer under Link path.
   return (
-    <div>
-      <div>
+    <div id='manage-overlord'>
+      <div id='all-my-recipes-container'>
        <h2>Manage Your Recipes</h2>
-      </div>
-      <div>
-        {userRecipes.length ? userRecipes.map(recipe => 
-          <span>
+      
+        <div>
+          {userRecipes.length ? userRecipes.map(recipe => 
+            <span>
 
-            <Link to={`/recipes/${recipe.id}`} title={recipe.name}>
-              <img src={recipe.url} alt={recipe.foodName}/>
               <div>{recipe.foodName}</div>
-            </Link>
-
-            <div id='manage-buttons-container'>
-              {/* <button onClick={() => RecipeFormFunction(recipe.id)} formType="Update">Update</button> */}
-              <Link to={`/recipes/${recipe.id}/edit`} formType='Update'>
-                <button>Edit</button>
+              <Link to={`/recipes/${recipe.id}`} title={recipe.name}>
+                {/* <div id='manage-card'> */}
+                  <img src={recipe.url} alt={recipe.foodName} id='manage-pic'/>
+                {/* </div> */}
               </Link>
-              {/* <RecipeFormFunction recipeId={recipe.id} formType="Update"/> */}
-              <OpenModalButton 
-                // className='update-or-delete'
-                buttonText='Delete'
-                modalComponent={<DeleteRecipeModalFunction recipeId={recipe.id} />}
-              />
-            </div>
 
-          </span>
-          ) : 'No recipes yet'}
+              <div id='manage-buttons-container'>
+                {/* <button onClick={() => RecipeFormFunction(recipe.id)} formType="Update">Update</button> */}
+                <Link to={`/recipes/${recipe.id}/edit`} formType='Update'>
+                  <button>Edit</button>
+                </Link>
+                {/* <RecipeFormFunction recipeId={recipe.id} formType="Update"/> */}
+                <OpenModalButton 
+                  // className='update-or-delete'
+                  buttonText='Delete'
+                  modalComponent={<DeleteRecipeModalFunction recipeId={recipe.id} />}
+                />
+              </div>
+
+            </span>
+            ) : 'No recipes yet'}
+        </div>
       </div>
     </div>
   )
