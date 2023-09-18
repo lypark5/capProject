@@ -1,7 +1,7 @@
-#signup-modal {
+.delete-modal {
   display: flex;
   flex-direction: column;
-  width: 250px;
   align-items: center;
-  padding: 18px 28px 40px;
+  width: 250px;
+  padding: 10px 20px 30px;
 }
