@@ -1,0 +1,25 @@
+#landing-pic-div {
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars.jpg');
+  margin-bottom:-10px;
+  height: 105vh;
+  width: 105vw;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0px;
+  margin-left: -8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#welcome-title {
+  color: white;
+  font-size: 50px;
+  margin-top: -300px;
+  margin-left: -150px;
+  border: 8px solid white;
+  border-radius: 40px;
+  padding: 5px 20px 0px;
+  background-color: rgba(0, 0, 0, 0.5);
+}

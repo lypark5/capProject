@@ -1,0 +1,27 @@
+#manage-overlord {
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/yellowFlowers.png');
+  height: 105vh;
+  width: 105vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-left: -8px;
+  display: flex;
+  justify-content: center;
+}
+
+#all-my-recipes-container {
+  margin-bottom: 300px;
+  border: 1px solid red;
+  margin-left: -100px;
+  padding: 0px 20px;
+  background-color: rgb(252, 250, 241);
+  padding-bottom: 100px;
+}
+
+#manage-pic {
+  width: 600px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 3px;
+}

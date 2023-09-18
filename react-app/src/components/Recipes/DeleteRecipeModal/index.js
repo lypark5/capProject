@@ -14,8 +14,8 @@ function DeleteRecipeModalFunction({recipeId}) {
   }
 
   return (
-    <div>
-      <h3>Confirm Delete</h3>
+    <div className='modal delete-modal'>
+      <h1>Confirm Delete</h1>
       <div className='yes-no-buttons'>
         <button onClick={yesDeleteRecipeFunction} className='yes-button'>Yes</button>
         <button onClick={closeModal} className='no-button'>No</button>

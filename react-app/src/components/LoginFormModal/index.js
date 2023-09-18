@@ -3,7 +3,7 @@ import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom";
-import "./LoginForm.css";
+import "./LoginFormModal.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ function LoginFormModal() {
 
   
   return (
-    <>
+    <div id='login-modal' className="modal">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         {/* <ul>
@@ -80,7 +80,7 @@ function LoginFormModal() {
         <button type="submit">Log In</button>
       </form>
       <button onClick={DemoUserLoginFunction}>Demo User</button>
-    </>
+    </div>
   );
 }
 

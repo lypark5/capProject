@@ -18,9 +18,12 @@ function Navigation({ isLoaded }){
 				<img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spoon-icon.png' id='logo'></img>
 				<span id='recipe-share'>recipe-share</span>
 			</NavLink>
-			{sessionUser && (
+			{/* {sessionUser && (
 				<NavLink to="/recipes/new" id='create-recipe-link-nav' className='link'>Upload a Recipe!</NavLink>
-			)}
+			)} */}
+			{sessionUser?
+				<NavLink to="/recipes/new" id='create-recipe-link-nav' className='link'>Upload a Recipe!</NavLink>
+			 : <span id='blank'>  </span>}
 		</div>
 	);
 }

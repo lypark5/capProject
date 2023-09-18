@@ -1,9 +1,27 @@
-/* #discover {
-  
-} */
+#discover {
+ text-align: center; 
+ color:rgb(0, 147, 210);
+ margin-bottom: 15px;
+ font-size: 40px;
+}
 
 #all-recipe-overlord {
   background-color: rgb(253, 244, 207);
+  height: 115%;
+  width: 105vw;
+  margin-left: -8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#all-cards-container {
+  margin-bottom: 300px;
+  border: 1px solid red;
+  margin-left: -100px;
+  padding: 0px 20px;
+  background-color: rgb(252, 250, 241);
+  padding-bottom: 100px;
 }
 
 #all-recipes-card {
@@ -12,6 +30,8 @@
   height: 300px;
   display: flex;
   border-radius: 3px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px rgb(114, 171, 236);
 }
 
 #all-recipes-pic {
@@ -29,7 +49,7 @@
   border-left: 1px solid rgb(0, 119, 255);
   justify-content: center;
   align-items: center;
-  background-color: rgb(252, 250, 241);
+  background-color: white;
 }
 
 #all-recipes-profile-pic {

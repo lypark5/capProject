@@ -1,7 +1,6 @@
 import React from "react";
-// import { useHistory } from "react-router-dom";
-// import * as sessionActions from '../../store/session';
 import { useDispatch } from "react-redux";
+import './LandingPage.css'
 
 
 function LandingPage() {
@@ -11,10 +10,8 @@ function LandingPage() {
 
 
   return (
-      <div style={{backgroundImage: "url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/yellowFlowers.png')", }}>
-          <span>
-            <h1>This is landing page</h1>
-          </span>
+      <div id='landing-pic-div'>
+        <h1 id='welcome-title'>Welcome to the party!</h1>
       </div>
   )
 }
