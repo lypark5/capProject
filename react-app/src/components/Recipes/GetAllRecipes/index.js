@@ -28,8 +28,8 @@ const GetAllRecipesFunction = () => {
 
   return (
     <div id='all-recipe-overlord'>
-      <h1 id='discover'>Discover new recipes!</h1>
-      <div>
+      <div id='all-cards-container'>
+        <h1 id='discover'>Discover new recipes!</h1>
         {recipeArr.map(recipe =>
           <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
             <span key={recipe.id} id='all-recipes-card'>

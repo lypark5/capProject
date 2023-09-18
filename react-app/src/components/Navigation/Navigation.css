@@ -12,10 +12,53 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 20px 10px;
+  padding: 0px 30px;
   border-bottom: 2px solid rgba(185, 185, 185, 0.65);
   height: 60px;
   background-color: rgb(252, 250, 241);
+  width: 100vw;
+  margin: -10px 0 0 -8px;
+}
+
+#profile-button {
+  padding: 10px 12px;
+  border-radius: 20px;
+  background-color: white;
+  position: relative;
+  border: 2px solid rgb(0, 147, 210);
+}
+
+.fa-user-circle {
+  font-size: 20px;
+  color: rgb(0, 147, 210);
+}
+
+#drop-down-menu {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  position: absolute;
+  height: 175px;
+  width: 150px;
+  top: 30px;
+  padding: 7px 0px 10px;
+}
+
+#login-drop-down {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  position: absolute;
+  height: 175px;
+  width: 150px;
+  top: 30px;
+  padding: 7px 0px 10px;
 }
 
 #logo-obj {
@@ -35,30 +78,15 @@
   padding-bottom: 6px;
 }
 
+#blank {
+  /* border: 1px solid red; */
+  margin-right: 220px;
+}
+
 #create-recipe-link-nav {
   color:rgb(0, 147, 210);
   font-family: 'Lobster', cursive;
   font-size: 18px;
+  margin-right: 80px;
 }
 
-#profile-button {
-  padding: 10px 13px;
-  border-radius: 20px;
-  background-color: white;
-  position: relative;
-}
-
-/* profile button */
-#drop-down-menu {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
-  position: absolute;
-  height: 175px;
-  width: 150px;
-  top: 30px;
-  padding: 7px 0px 10px;
-}

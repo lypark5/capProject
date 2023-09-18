@@ -10,22 +10,24 @@ def seed_comments():
   comment2 = Comment(
     user_id=8,
     recipe_id=3,
-    comment="WHERE'S THE LAMB SAUCCCCEEEE!?!"
+    comment="WHERE'S THE LAMB SAUCCCCEEEE!?!",
+    comment_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/rickroll-roll.gif'
   )
   comment3 = Comment(
-    user_id=8,
+    user_id=5,
     recipe_id=9,
-    comment="DON'T PUT RICE CRACKERS ON FISH, YOU DONUT!!!"
+    comment="smdh",
+    comment_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/dwight.gif'
   )
   comment4 = Comment(
     user_id=4,
     recipe_id=9,
-    comment="LOL gordon boutta get BANNED"
+    comment="LOL gordon boutta get BANNED 🦍"
   )
   comment5 = Comment(
-    user_id=5,
+    user_id=8,
     recipe_id=9,
-    comment="smdh"
+    comment="DON'T PUT RICE CRACKERS ON FISH, YOU DONUT!!!"
   )
   comment6 = Comment(
     user_id=7,
