@@ -15,11 +15,26 @@
 
 #welcome-title {
   color: white;
+  font-family: 'Hi Melody', cursive;
   font-size: 50px;
   margin-top: -300px;
-  margin-left: -150px;
+  margin-left: -80px;
   border: 8px solid white;
   border-radius: 40px;
   padding: 5px 20px 0px;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+#welcome-title:hover {
+  color: white;
+  font-family: 'Hi Melody', cursive;
+  font-size: 50px;
+  margin-top: -300px;
+  margin-left: -80px;
+  border: 8px solid white;
+  border-radius: 40px;
+  padding: 5px 20px 0px;
+  background-color: rgba(0, 0, 0, 0.65);
+  cursor: pointer;
 }
