@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -9,16 +8,19 @@ function LoginSignupModalFunction() {
   const { closeModal } = useModal();
 
   return (
-    <div>
+    <div className='modal' id='enter-modal'>
       <OpenModalButton
         buttonText="Log In"
         onItemClick={closeModal}
         modalComponent={<LoginFormModal />}
+        className='login-or-signup-button'
       />
+      <p id='or'>-- or --</p>
       <OpenModalButton
         buttonText="Sign Up"
         onItemClick={closeModal}
         modalComponent={<SignupFormModal />}
+        className='login-or-signup-button'
       />
     </div>
   )

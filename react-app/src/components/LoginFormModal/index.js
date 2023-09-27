@@ -80,7 +80,7 @@ function LoginFormModal() {
           className='login-input'
         />
         <div id='login-button-div'>
-          <button type="submit" id='login-button'>Log In</button>
+          <button type="submit" id='login-submit-button'>Log In</button>
         </div>
       </form>
       <button onClick={DemoUserLoginFunction} id='demo-button'>Demo User</button>
