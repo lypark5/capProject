@@ -48,32 +48,52 @@ function ProfileButton({ user }) {
       <button onClick={openMenu} id='profile-button'>
         <i className="fas fa-user-circle" />
       </button>
-      <div className={ulClassName} ref={ulRef}>
-        {user ? (
-          <div id='drop-down-menu'>
-            <p>Welcome, {user.username}!</p>
-            <p>{user.email}</p>
-            <NavLink to='/recipes/manage' onClick={() => closeMenu()}>My Recipes</NavLink>
-            <button onClick={handleLogout}>Log Out</button>
-          </div>
-        ) : (
-          <div id='login-drop-down'>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </div>
-        )}
+      <div className={ulClassName} ref={ulRef} >
+        <div id='drop-down-menu'>
+          <p className='dropdown-p'>Welcome, {user.username}!</p>
+          <p className='dropdown-p'>{user.email}</p>
+          <NavLink to='/recipes/manage' onClick={() => closeMenu()} className='link dropdown-l'>My Recipes</NavLink>
+          <button onClick={handleLogout} id='logout'>Log Out</button>
+        </div>
       </div>
-      
     </>
   );
 }
 
+
 export default ProfileButton;
+
+
+
+
+  // return (
+  //   <>
+  //     <button onClick={openMenu} id='profile-button'>
+  //       <i className="fas fa-user-circle" />
+  //     </button>
+  //     <div className={ulClassName} ref={ulRef}>
+  //       {user ? (
+  //         <div id='drop-down-menu'>
+  //           <p className='dropdown-p'>Welcome, {user.username}!</p>
+  //           <p className='dropdown-p'>{user.email}</p>
+  //           <NavLink to='/recipes/manage' onClick={() => closeMenu()} className='link dropdown-l'>My Recipes</NavLink>
+  //           <button onClick={handleLogout}>Log Out</button>
+  //         </div>
+  //       ) : (
+  //         <div id='login-drop-down'>
+  //           <OpenModalButton
+  //             buttonText="Log In"
+  //             onItemClick={closeMenu}
+  //             modalComponent={<LoginFormModal />}
+  //           />
+  //           <OpenModalButton
+  //             buttonText="Sign Up"
+  //             onItemClick={closeMenu}
+  //             modalComponent={<SignupFormModal />}
+  //           />
+  //         </div>
+  //       )}
+  //     </div>
+      
+  //   </>
+  // );
