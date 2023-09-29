@@ -1,5 +1,5 @@
 #landing-pic-div {
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars.jpg');
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars_red_trimmed.png');
   margin-bottom:-10px;
   height: 105vh;
   width: 105vw;
@@ -15,11 +15,40 @@
 
 #welcome-title {
   color: white;
+  font-family: 'Hi Melody', cursive;
   font-size: 50px;
   margin-top: -300px;
-  margin-left: -150px;
+  margin-left: -90px;
   border: 8px solid white;
   border-radius: 40px;
   padding: 5px 20px 0px;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+#welcome-title:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+#enter-modal {
+  display: flex;
+  flex-direction: column;
+  width: 375px;
+  height: 300px;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 15px;
+  border: 5px solid brown;
+  border-radius: 450px;
+  background-color: white;
+}
+
+.login-or-signup-button {
+  margin: 0px;
+  padding: 5px 10px;
+}
+
+#or {
+  font-size: 30px;
+  margin: 30px 0px;
 }
