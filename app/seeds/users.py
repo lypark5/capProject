@@ -20,6 +20,9 @@ def seed_users():
         username='Megumi', first_name='Megumi', last_name='Tadokoro', email='megumi@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/megumi.jpg', password='password')
     gordon = User(
         username='ChefGordon', first_name='Gordon', last_name='Ramsay', email='gordon@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/gordonRamsay.jpg', password='password')
+    jiji = User(
+        username='Jiji', first_name='Jiji', last_name='the_Cat', email='jiji@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/jiji.jpg', password='password')
+
     db.session.add(demo)
     db.session.add(kiki)
     db.session.add(jake)
@@ -28,6 +31,7 @@ def seed_users():
     db.session.add(shokugeki)
     db.session.add(megumi)
     db.session.add(gordon)
+    db.session.add(jiji)
     db.session.commit()
 
 
