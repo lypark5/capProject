@@ -61,7 +61,7 @@ const GetRecipeDetailsFunction = () => {
         <div id='whats-this-2'>
           {Object.values(comments).length ? comments.toReversed().map(comment =>
             <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
-          ):<p>Be the first to leave a comment!</p>}
+          ) : <p id='be-first'>Be the first to leave a comment!</p>}
         </div>
       </div>
 

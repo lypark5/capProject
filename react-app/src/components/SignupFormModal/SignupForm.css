@@ -1,7 +1,39 @@
 #signup-modal {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 350px;
   align-items: center;
-  padding: 18px 28px 40px;
+  padding: 70px 20px;
+  border: 5px solid brown;
+  border-radius: 10px;
+  background-color: white;
+}
+
+#signup-header {
+  /* border: 1px solid pink; */
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+
+#signup-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  /* border: 1px solid blue; */
+}
+
+.signup-input-div {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid purple; */
+  margin: 5px 0px;
+  width: 100%;
+}
+
+#disabled-signup-button {
+  padding: 5px;
+  border: 1px solid red;
+  width: 100px;
+  margin: 20px 0px 10px;
 }
