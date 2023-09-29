@@ -6,18 +6,26 @@
   display: none;
 }
 
-#nav-bar {
+#nav-bar-logged-out {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0px 30px;
   border-bottom: 2px solid rgba(185, 185, 185, 0.65);
   height: 60px;
   background-color: rgb(252, 250, 241);
   width: 100vw;
-  margin: -10px 0 0 -8px;
+  margin: -10px 0 0 -10px;
+}
+
+#nav-bar-logged-in {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid rgba(185, 185, 185, 0.65);
+  height: 60px;
+  background-color: rgb(252, 250, 241);
+  width: 100vw;
+  margin: -10px 0 0 -10px;
 }
 
 #profile-button {
@@ -26,6 +34,7 @@
   background-color: white;
   position: relative;
   border: 2px solid rgb(0, 147, 210);
+  margin-left: 50px;
 }
 
 .fa-user-circle {
@@ -39,26 +48,47 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px solid black;
+  border: 1px solid rgb(185, 185, 185, 0.65);
   position: absolute;
   height: 175px;
   width: 150px;
   top: 30px;
-  padding: 7px 0px 10px;
+  left: 50px;
+  padding: 7px 10px;
 }
 
-#login-drop-down {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid black;
-  position: absolute;
-  height: 175px;
-  width: 150px;
-  top: 30px;
-  padding: 7px 0px 10px;
+.dropdown-p {
+  font-size: 25px;
+  margin: 0px;
+}
+
+.dropdown-l {
+  font-size: 25px;
+  margin: 0px;
+  color: rgb(0, 116, 165);
+  border: 2px solid rgb(0, 147, 210);
+  border-radius: 5px;
+  padding: 0px 15px;
+  background-color: rgb(198, 238, 255);
+}
+
+.dropdown-l:hover {
+  font-weight: bold;
+  color: rgb(0, 147, 210);
+}
+
+#logout {
+  margin-top: 15px;
+  padding: 10px;
+  border: 2px solid rgb(185, 185, 185, 0.65);
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+#logout:hover {
+  border: 2px solid rgb(185, 185, 185);
+  font-weight: bold;
 }
 
 #logo-obj {
