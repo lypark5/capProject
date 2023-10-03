@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     # relationships
     recipes = db.relationship('Recipe', back_populates='user', cascade='all, delete-orphan')        # 1 user makes many recipes.  user is parent so cascade goes here.
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')      # 1 user makes many comments.  user is parent so cascade goes here.
+    bookmarks = db.relationship('Bookmark', back_populates='users', cascade='all, delete-orphan')
 
     @property
     def password(self):
