@@ -21,6 +21,7 @@ class Recipe(db.Model):
   #relationships
   user = db.relationship('User', back_populates='recipes')                                          # 1 user makes many recipes
   comments = db.relationship('Comment', back_populates='recipe', cascade='all, delete-orphan')      # 1 recipe has many comments.  recipe is parent so cascade goes here.
+  bookmarks = db.relationship('Bookmark', back_populates='recipe', cascade='all, delete-orphan')
 
 
   def to_dict(self):
