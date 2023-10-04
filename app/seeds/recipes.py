@@ -8,8 +8,8 @@ def seed_recipes():
     url='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/sanXianNoodles.jpg', 
     food_name='San Xian Noodles', 
     description="From the anime ''Flavors of Youth''.  I used to eat this with my grandma as a kid in Beijing.",
-    ingredients='1 pack rice noodles, 4 cups dashi stock, 1/4 cup ground chicken, 1/4 cup shitake mushrooms, 1/4 cup wood ear mushrooms, 1 egg, 1 green onion, 1 Tbsp soy sauce, 1 Tbsp sesame oil',
-    instructions='Make dashi stock.  Season the broth.  Boil rice noodles.  Sautee ground chicken and season.  Fry an egg till crispy.  Chop up the shitake mushrooms, wood ear mushrooms, and green onions.  Sautee both types of mushrooms in soy sauce and sesame oil.  Place the noodles in the broth.  Add the fried egg, sauteed mushrooms, chicken, and green onions on top.  Enjoy!'
+    ingredients='13 oz. ground chicken, ½ tsp salt, ½ tsp sugar, ¼ tsp black pepper, 2 tps corn starch, 1 Tbsp Chinese cooking wine, 1.5 tsp soy sauce, ¼ cup shiitake mushrooms, ¼ cup wood ear mushrooms, 2 Tbsp finely chopped shallot, 2 green onions, 6 cloves minced garlic, 1 tsp minced ginger, 2.5 Tbsp oil to stir-fry, 6-8 cups unsalted chicken stock, salt to taste, 1 pk rice noodles, 1 egg',
+    instructions='Slice shiitake mushrooms.  Marinade ground chicken with Chinese cooking wine, soy sauce, sugar, salt, black pepper, and corn starch.  Heat up your wok and add cooking oil.  Add minced garlic, chopped white parts of the green onions, diced shallots, and minced ginger.  Sautee for a few minutes.  Add ground chicken and sautee.  Add both types of mushrooms and sautee a few more minutes.  Add chicken stock.  Bring to a boil.  Meanwhile, boil the rice noodles.  Fry an egg till crispy.  Place the noodles in the broth.  Serve with fried egg and chopped green parts of green onion.  Enjoy!'
   )
   pancakes = Recipe(
     user_id=2,

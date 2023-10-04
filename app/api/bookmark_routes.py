@@ -6,7 +6,7 @@ from app.models import Bookmark, db, Recipe, User
 bookmark_routes = Blueprint('bookmark', __name__)
 
 
-@bookmark_routes.route('/<int:userId>/bookmarks')
+@bookmark_routes.route('/<int:userId>/all')
 @login_required
 def all_bookmarks(userId):
   """Display all recipes bookmarked by the user"""
@@ -19,7 +19,7 @@ def all_bookmarks(userId):
   return {"bookmarkedRecipes": res}
 
 
-@bookmark_routes.route('/<int:userId>/<int:recipeId>/bookmark', methods=["POST"])
+@bookmark_routes.route('/<int:userId>/<int:recipeId>/new', methods=["POST"])
 @login_required
 def new_bookmark(userId, recipeId):
   """User bookmarks a recipe"""
