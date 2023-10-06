@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 3cfafe44351a
+Revision ID: b9de75a48c92
 Revises: 
-Create Date: 2023-10-03 20:05:12.360691
+Create Date: 2023-10-05 21:39:47.530989
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = '3cfafe44351a'
+revision = 'b9de75a48c92'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,14 +50,11 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('bookmarks',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('user_id', sa.Integer(), nullable=True),
-    sa.Column('recipe_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['recipe_id'], ['recipes.id'], ),
-    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('id'),
-    sa.UniqueConstraint('user_id', 'recipe_id', name='unique_combination_constraint')
+    sa.Column('users', sa.Integer(), nullable=False),
+    sa.Column('recipes', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['recipes'], ['recipes.id'], ),
+    sa.ForeignKeyConstraint(['users'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('users', 'recipes')
     )
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -76,7 +73,6 @@ def upgrade():
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE recipes SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE bookmarks SET SCHEMA {SCHEMA};")  
 
 
 def downgrade():

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllUsersThunk } from "../../../store/users";
-import { getAllRecipesThunk, getRecipeDetailsThunk } from "../../../store/recipes";
+import { createBookmarkThunk, deleteBookmarkThunk, getRecipeDetailsThunk } from "../../../store/recipes";
 import * as sessionActions from "../../../store/comments";
 import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";
 import CreateCommentFunction from "../../Comments/CreateComment";
@@ -28,12 +28,32 @@ const GetRecipeDetailsFunction = () => {
 
   recipe["Author"] = users.find(user => user.id === recipe.userId);     
 
+  async function handleSubmit ()  {
+    await dispatch(createBookmarkThunk(recipe.id, currentUser.id))
+  }
+
+  async function unBookmarkFunction () {
+    await dispatch(deleteBookmarkThunk(recipe.id, currentUser.id))
+  }
+
+  function checkDidIBookmarkThis () {
+    if (!recipe.bookmark_user_ids?.length) return false;
+    return recipe.bookmark_user_ids.includes(currentUser.id);
+  }
+
+  console.log('recipe bookmarks', recipe?.recipe_bookmark)
+
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (
     <div id='detail-overlord'>
       <div id='recipe-div'>
         <div>
           <h1 id='food-name'>{recipe.foodName}</h1>
+          {checkDidIBookmarkThis() ? 
+            <button onClick={() => unBookmarkFunction()}>Unbookmark</button>
+            :
+            <button onClick={() => handleSubmit()}>Bookmark</button>
+          }          
         </div>
 
         <img src={recipe.url} alt={recipe.title} id='food-pic'></img>

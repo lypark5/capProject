@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from .bookmarks import bookmarks
 
 
 class Recipe(db.Model):
@@ -21,8 +22,7 @@ class Recipe(db.Model):
   #relationships
   user = db.relationship('User', back_populates='recipes')                                          # 1 user makes many recipes
   comments = db.relationship('Comment', back_populates='recipe', cascade='all, delete-orphan')      # 1 recipe has many comments.  recipe is parent so cascade goes here.
-  bookmarks = db.relationship('Bookmark', back_populates='recipe', cascade='all, delete-orphan')
-
+  recipe_bookmarks = db.relationship('User', secondary=bookmarks, back_populates='user_bookmarks')
 
   def to_dict(self):
     return {
@@ -33,6 +33,7 @@ class Recipe(db.Model):
       'description': self.description,
       'ingredients': self.ingredients,
       'instructions': self.instructions,
+      'bookmark_user_ids': [user.id for user in self.recipe_bookmarks],
       'createdAt': self.created_at,
       'updatedAt': self.updated_at
     }
