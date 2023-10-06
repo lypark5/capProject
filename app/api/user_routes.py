@@ -23,3 +23,12 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+# @user_routes.route('/test')
+# def users2():
+#     """
+#     Query for all users and returns them in a list of user dictionaries
+#     """
+#     users = User.query.all()
+#     return {'Users': [user.to_dict() for user in users]}

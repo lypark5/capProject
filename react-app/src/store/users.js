@@ -46,7 +46,7 @@ const initialState = {allUsers: {}, singleUser: {}};
 export default function userReducer(state = initialState, action) {
   switch(action.type) {
     case GET_ALL_USERS: {
-      const newState = {...state, allUsers: {...state.allUsers}, singleUsers: {}};    // first copy OG state, then spread in and fill in allUsers obj.
+      const newState = {...state, allUsers: {...state.allUsers}, singleUser: {}};    // first copy OG state, then spread in and fill in allUsers obj.
       action.users.forEach(user => {
         newState.allUsers[user.id] = user;
       });

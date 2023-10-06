@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   session,
   recipes: recipeReducer,
   users: userReducer,
-  comments: commentReducer
+  comments: commentReducer,
 });
 
 

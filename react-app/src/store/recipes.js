@@ -4,6 +4,8 @@ const GET_RECIPE_DETAILS = "recipes/GET_RECIPE_DETAILS";
 const CREATE_RECIPE = "recipes/CREATE_RECIPE";
 const EDIT_RECIPE = "recipes/EDIT_RECIPE";
 const DELETE_RECIPE = "recipes/DELETE_RECIPE";
+const CREATE_BOOKMARK = 'bookmarks/CREATE_BOOKMARK';
+const DELETE_BOOKMARK = 'bookmarks/DELETE_BOOKMARK';
 
 
 // action creators
@@ -30,6 +32,16 @@ const editRecipeAction = (recipe) => ({
 const deleteRecipeAction = (recipeId) => ({
   type: DELETE_RECIPE,
   recipeId
+})
+
+const createBookmarkAction = (bookmarks) => ({
+  type: CREATE_BOOKMARK,
+  bookmarks
+})
+
+const deleteBookmarkAction = (bookmark) => ({
+  type: DELETE_BOOKMARK,
+  bookmark
 })
 
 
@@ -103,6 +115,34 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
   } else {
     const data = await res.json();    // bad error
     return data;
+  }
+}
+
+export const createBookmarkThunk = (recipeId, userId) => async (dispatch) => {
+  console.log("i'm in thunk", recipeId, userId)
+	const res = await fetch(`/api/recipes/bookmark/${recipeId}/${userId}`, {
+		method: 'POST',
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({
+			recipe_id: recipeId,
+			user_id: userId
+		})
+	})
+
+	if (res.ok) {
+    dispatch(getRecipeDetailsThunk(recipeId));
+		return res;
+	}
+}
+
+export const deleteBookmarkThunk = (recipeId, userId) => async (dispatch) => {
+  const res = await fetch(`/api/recipes/${recipeId}/${userId}/unbookmark`, {
+    method: 'DELETE'
+  })
+
+  if (res.ok) {
+    dispatch(getRecipeDetailsThunk(recipeId));
+    return res;
   }
 }
 
