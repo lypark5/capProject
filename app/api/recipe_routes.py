@@ -1,6 +1,6 @@
 from flask import Blueprint, session, request
 from flask_login import login_required, current_user
-from app.models import Recipe, db
+from app.models import Recipe, db, User
 from app.forms import CreateRecipeForm
 from app.forms import EditRecipeForm
 from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
@@ -98,6 +98,41 @@ def delete_recipe(recipeId):
   db.session.delete(to_delete)
   db.session.commit()
   return {"Message": "Recipe Deleted Successfully"}
+
+
+#filter all the users and take away session user for delete bookmark (list comprehension to do ur custom filter method, 
+#filter out the current user that u queried)
+#for create, query for the recipe, query for the user, append the user into the recipe.recipe_bookmarks.append(user)
+
+
+@recipe_routes.route('/bookmark/<int:recipeId>/<int:userId>', methods=['POST'])
+@login_required
+def create_bookmark(recipeId, userId):
+  """
+  Create a bookmark of a recipe by session user.
+  """
+  print ("i'm in backend", recipeId, userId)
+  recipe_to_bookmark = Recipe.query.get(recipeId)
+  current_user = User.query.get(userId)
+  recipe_to_bookmark.recipe_bookmarks.append(current_user)
+  db.session.commit()
+  return {"Message": "Successfully bookmarked"}
+
+@recipe_routes.route('/<int:recipeId>/<int:userId>/unbookmark', methods=['DELETE'])
+@login_required
+def delete_bookmark(recipeId, userId):
+  """
+  Unbookmark a recipe by current user
+  """
+  recipe_to_unbookmark = Recipe.query.get(recipeId)
+  current_user = User.query.get(userId)
+  recipe_to_unbookmark.recipe_bookmarks = [user for user in recipe_to_unbookmark.recipe_bookmarks if user.id != userId]
+  db.session.commit()
+  return {"Message": "Successfully unbookmarked"}
+
+
+
+
 
 
 

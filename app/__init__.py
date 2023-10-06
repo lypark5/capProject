@@ -9,7 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.recipe_routes import recipe_routes
 from .api.comment_routes import comment_routes
-from .api.bookmark_routes import bookmark_routes
+# from .api.bookmark_routes import bookmark_routes
 from .seeds import seed_commands
 from .config import Config
 # from .api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
@@ -34,7 +34,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(recipe_routes, url_prefix='/api/recipes')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
-app.register_blueprint(bookmark_routes, url_prefix='/api/bookmarks')
+# app.register_blueprint(bookmark_routes, url_prefix='/api/bookmarks')
 db.init_app(app)
 Migrate(app, db)
 

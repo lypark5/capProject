@@ -2,9 +2,10 @@ from app.models import db, Recipe, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
-def seed_recipes():
+def seed_recipes(user):
   san_xian_noodles = Recipe(
     user_id=1, 
+    recipe_bookmarks=[user[5]],
     url='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/sanXianNoodles.jpg', 
     food_name='San Xian Noodles', 
     description="From the anime ''Flavors of Youth''.  I used to eat this with my grandma as a kid in Beijing.",
