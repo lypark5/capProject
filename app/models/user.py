@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .bookmarks import bookmarks
 
 
 class User(db.Model, UserMixin):
@@ -23,7 +24,7 @@ class User(db.Model, UserMixin):
     # relationships
     recipes = db.relationship('Recipe', back_populates='user', cascade='all, delete-orphan')        # 1 user makes many recipes.  user is parent so cascade goes here.
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')      # 1 user makes many comments.  user is parent so cascade goes here.
-    bookmarks = db.relationship('Bookmark', back_populates='users', cascade='all, delete-orphan')
+    user_bookmarks = db.relationship('Recipe', secondary=bookmarks, back_populates='recipe_bookmarks')
 
     @property
     def password(self):
@@ -44,6 +45,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'email': self.email,
             'profilePic': self.profile_pic,
+            'bookmark_recipe_ids': [recipe.id for recipe in self.user_bookmarks],
             'createdAt': self.created_at,
             'updatedAt': self.updated_at
         }
