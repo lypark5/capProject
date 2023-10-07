@@ -34,3 +34,13 @@ function Navigation({ isLoaded }){
 
 
 export default Navigation;
+
+
+/* part of nav, user will type sth inside.
+it's always gonna redirect to a results page.
+find a way to pass in each word to the result page param.   .filter
+filter all recipes with param word
+produce this filtered array.
+if array empty, no results.
+
+*/

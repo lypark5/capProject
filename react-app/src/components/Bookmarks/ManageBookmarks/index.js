@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect} from "react";
 import { getUserThunk } from "../../../store/users";
 import { useParams } from "react-router-dom";
-import { getAllRecipesThunk } from "../../../store/recipes";
+import { getAllRecipesThunk, deleteBookmarkThunk } from "../../../store/recipes";
 
 
 const GetAllBookmarksFunction = () => {
@@ -19,13 +19,14 @@ const GetAllBookmarksFunction = () => {
   // so i filled single user slice during useEffect recipe details when i push bookmark button.
   // now i have to check if state.users.singleUser variable .bookmark_recipe_ids array has length.
   // 
+  let myRecipeBookmarks = [];
+
   useEffect(async () => {
     await dispatch(getUserThunk(userId));
     await dispatch(getAllRecipesThunk());
   }, [dispatch]);
 
-  const myRecipeBookmarks = [];
-  // const pickMyBookmarksFunction = ()
+
   if (myRecipeIds) {
     for (let recipeId of myRecipeIds) {
       for (let recipe of allRecipes) {
@@ -34,7 +35,11 @@ const GetAllBookmarksFunction = () => {
     }
   }
 
-  console.log('my bookmarks objects', myRecipeBookmarks)
+  async function unBookmarkFunction (recipe) {
+    await dispatch(deleteBookmarkThunk(recipe.id, userId))
+    await dispatch(getUserThunk(userId));
+  }
+
 
   return (
     <div>
@@ -44,6 +49,7 @@ const GetAllBookmarksFunction = () => {
       : myRecipeBookmarks.map(recipe =>
         <div>
           <img src={recipe.url} />
+          <button onClick={() => unBookmarkFunction(recipe)}>Unbookmark</button>
         </div>)
       }
 
