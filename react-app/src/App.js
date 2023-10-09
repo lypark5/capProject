@@ -12,6 +12,7 @@ import GetRecipeDetailsFunction from "./components/Recipes/GetRecipeDetails";
 import GetAllRecipesOfCurrentFunction from "./components/Recipes/ManageMyRecipes";
 import RecipeFormFunction from "./components/Recipes/CreateRecipe";
 import EditRecipeFunction from "./components/Recipes/EditRecipe";
+import GetAllBookmarksFunction from "./components/Bookmarks/ManageBookmarks";
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,9 @@ function App() {
           <Route exact path='/'>
             <LandingPage />
           </Route>
+          <ProtectedRoute path ='/:userId/bookmarks'>
+            <GetAllBookmarksFunction />
+          </ProtectedRoute>
           <ProtectedRoute path ='/recipes/all'>
             <GetAllRecipesFunction />
           </ProtectedRoute>

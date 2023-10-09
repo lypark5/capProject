@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
-import { getAllUsersThunk } from "../../../store/users";
+import { getAllUsersThunk, getUserThunk } from "../../../store/users";
 import { createBookmarkThunk, deleteBookmarkThunk, getRecipeDetailsThunk } from "../../../store/recipes";
 import * as sessionActions from "../../../store/comments";
 import GetAllCommentsByRecipeIdFunction from "../../Comments/GetAllComments";

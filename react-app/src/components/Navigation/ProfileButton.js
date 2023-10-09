@@ -53,6 +53,7 @@ function ProfileButton({ user }) {
           <p className='dropdown-p'>Welcome, {user.username}!</p>
           <p className='dropdown-p'>{user.email}</p>
           <NavLink to='/recipes/manage' onClick={() => closeMenu()} className='link dropdown-l'>My Recipes</NavLink>
+          <NavLink to={`/${user.id}/bookmarks`} onClick={() => closeMenu()} className='link dropdown-l'>My Bookmarks</NavLink>
           <button onClick={handleLogout} id='logout'>Log Out</button>
         </div>
       </div>
