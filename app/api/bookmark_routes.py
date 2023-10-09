@@ -38,3 +38,10 @@
 #     db.session.delete(searchBookmark)
 #     db.session.commit()
 #     return {"bookmarkedRecipes": recipe.to_dict(), 'Delete':'DeleteBookmark'}
+
+
+# fakeroute
+# def fakeroute
+#   allRecipes = recipequery all
+
+  
