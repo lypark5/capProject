@@ -10,4 +10,4 @@ class CreateRecipeForm(FlaskForm):
   food_name = StringField('Food name', validators=[DataRequired(), Length(min=3)])
   description = TextAreaField('Add a description', validators=[DataRequired(), Length(min=3, max=1000)])
   ingredients = TextAreaField('List your ingredients, separated by a comma and space between each', validators=[DataRequired(), Length(min=3, max=1000)])
-  instructions = TextAreaField('Add your instructions', validators=[DataRequired(), Length(min=3, max=2000)])
+  instructions = TextAreaField('Add your instructions', validators=[DataRequired(), Length(min=3, max=3000)])
