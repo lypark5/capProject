@@ -15,7 +15,7 @@ class Recipe(db.Model):
   food_name = db.Column(db.String(100), nullable=False)
   description = db.Column(db.String(1000), nullable=False)
   ingredients = db.Column(db.String(1000), nullable=False)
-  instructions = db.Column(db.String(2000), nullable=False)
+  instructions = db.Column(db.String(3000), nullable=False)
   created_at = db.Column(db.DateTime(), default=datetime.now())
   updated_at = db.Column(db.DateTime(), default=datetime.now())
 
