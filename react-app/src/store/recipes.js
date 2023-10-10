@@ -6,6 +6,7 @@ const EDIT_RECIPE = "recipes/EDIT_RECIPE";
 const DELETE_RECIPE = "recipes/DELETE_RECIPE";
 const CREATE_BOOKMARK = 'bookmarks/CREATE_BOOKMARK';
 const DELETE_BOOKMARK = 'bookmarks/DELETE_BOOKMARK';
+const SEARCH_RECIPE = 'recipes/SEARCH_RECIPE';
 
 
 // action creators
@@ -42,6 +43,11 @@ const createBookmarkAction = (bookmarks) => ({
 const deleteBookmarkAction = (bookmark) => ({
   type: DELETE_BOOKMARK,
   bookmark
+})
+
+const searchRecipeAction = (recipes) => ({
+  type: SEARCH_RECIPE,
+  recipes
 })
 
 
@@ -146,6 +152,22 @@ export const deleteBookmarkThunk = (recipeId, userId) => async (dispatch) => {
   }
 }
 
+export const searchRecipeThunk = (searchWord) => async (dispatch) => {
+  const res = await fetch('/api/recipes/search', {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({'searchWord': searchWord})
+  })
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(searchRecipeAction(data));
+  } else {
+    const data = await res.json();
+    return data;
+  }
+}
+
+
 
 // reducer
 const initialState = { allRecipes: {}, singleRecipe: {}, currentUserRecipes: {} };
@@ -188,6 +210,13 @@ export default function recipeReducer(state = initialState, action) {
       delete newState.currentUserRecipes[action.recipeId]
       delete newState.singleRecipe;
       return { ...newState, allRecipes: { ...newState.allRecipes }, singleRecipe: { ...newState.singleRecipe }, currentUserRecipes: { ...newState.currentUserRecipes } };
+    }
+    case SEARCH_RECIPE: {
+      const newState = {...state, allRecipes: {}, singleRecipes: {} }
+      action.recipes.Recipes?.forEach(recipe => {
+        newState.allRecipes[recipe.id] = recipe                
+      });
+      return newState ; 
     }
 
     default:

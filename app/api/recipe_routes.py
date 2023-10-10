@@ -130,6 +130,23 @@ def delete_bookmark(recipeId, userId):
   db.session.commit()
   return {"Message": "Successfully unbookmarked"}
 
+@recipe_routes.route('/search', methods=['POST'])
+@login_required
+def search_recipe():
+  """
+  Query for a keyword in recipes and return the results of the search.
+  """
+  body = request.get_json()
+  searchData = body['searchWord']
+  print ('this is searchDataaaa', searchData)
+  # print ('this is bodddyyyyy', body)
+  chosenRecipes = Recipe.query.filter(Recipe.food_name.ilike(searchData)).all()
+  # chosenRecipes = Recipe.query.filter(Recipe.food_name.lower() == body).all()
+  if chosenRecipes:
+    res = [recipe.to_dict() for recipe in chosenRecipes]
+    return {"Recipes": res}
+  else:
+    return {"Message": "No recipes found with that food name"}
 
 
 

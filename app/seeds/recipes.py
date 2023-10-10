@@ -116,6 +116,7 @@ def seed_recipes(user):
     ingredients="all-purpose flour (for dusting), 1 ball pizza dough, 12 slices pepperoni, 1 cup cubed provolone, 1 cup cubed mozzarella, 1 cup grated Parmesan, 1 egg beaten with ½ tsp water, salt and ground black pepper, extra-virgin olive oil (for drizzling), ½ onion (chopped), 1 clove garlic (crushed), 1 can (15-oz) San Marzano crushed tomatoes, ¼ cup chopped basil",
     instructions="Heat a saucepan over medium-high heat with a drizzle of oil.  Add the onions and garlic and cook for 3-4 minutes.  Add your tomatoes, season with salt and pepper and cook until the sauce begins to simmer.  Remove from heat and add the basil.  Preheat oven to 400° F.  On a large floured surface take your pizza dough and cut it into fourths. Roll out the quartered dough until it forms a circle (think mini pizzas).  Ladle on the sauce and add 3 slices of the pepperoni, ¼ cup provolone, ¼ cup mozzarella and ¼ cup Parmesan on the bottom of a dough circle. Repeat with the remaining circles.  Brush the edges of the dough with some egg wash; this will act as the glue and seal the calzones. Fold the top of the dough over the filling and press to seal.  Once all the calzones are stuffed and sealed, brush the remaining egg wash on top of the calzones, sprinkle with salt and bake until the dough is golden brown and the cheese is melted inside, 12-15 minutes.  Enjoy!"
   )
+  
   db.session.add(san_xian_noodles)
   db.session.add(pancakes)
   db.session.add(herring_and_pumpkin_pot_pie)
