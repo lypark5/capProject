@@ -156,7 +156,7 @@ export const searchRecipeThunk = (searchWord) => async (dispatch) => {
   const res = await fetch('/api/recipes/search', {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
-		body: JSON.stringify(searchWord)
+		body: JSON.stringify({'searchWord': searchWord})
   })
   if (res.ok) {
     const data = await res.json();
