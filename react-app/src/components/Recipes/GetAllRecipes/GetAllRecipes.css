@@ -1,46 +1,96 @@
-#discover {
- text-align: center; 
- color:rgb(0, 147, 210);
- margin-bottom: 15px;
- font-size: 40px;
-}
-
 #all-recipe-overlord {
-  background-color: rgb(253, 244, 207);
-  height: 100%;
+  /* height: 105vh; */
   width: 105vw;
   margin-left: -8px;
   margin-bottom: -10px;
   display: flex;
   flex-direction: column;
+  /* align-items: center; */
+}
+
+#discover {
+ font-size: 90px;
+ color:rgba(255, 255, 255, 0.9);
+ margin: 0px;
+ padding-left: 30px;
+ text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
+}
+
+#search-n-cards {
+  display: flex;
+  width: 90%;
+  background-color: rgb(253, 244, 207);
+  min-height: 1000px;
+  justify-content: center;
+  padding-right: 180px;
+}
+
+#search-div {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  /* padding-bottom: 10px; */
+  margin: 20px 0px;
+  /* background-color: white; */
+}
+
+#search-form {
+  /* border: 1px solid blue; */
+  border: 2px solid rgba(0, 147, 210);
+  border-radius: 20px;
+  width: 300px;
+  display: flex;
+  gap: 5px;
+  background-color: white;
+  margin: 10px 25px 0 0;
+}
+
+#search-input {
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  color: rgba(0, 147, 210);
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 10px;
+}
+
+#search-input:focus {
+  outline: none;
+}
+
+#search-button {
+  background: none;
+  border: none;
+  color: rgba(0, 147, 210);
+  font-size: 16px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 #all-cards-container {
   /* border: 1px solid red; */
-  border-right: 2px solid rgba(185, 185, 185, 0.65);
-  border-left: 2px solid rgba(185, 185, 185, 0.65);
-  border-bottom: 2px solid rgba(185, 185, 185, 0.65);
-  margin-left: -100px;
-  padding: 0px 20px;
-  background-color: rgb(252, 250, 241);
-  padding-bottom: 100px;
-  margin-bottom: -1px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  width: 1450px;
+  padding: 30px 30px 100px 30px;
+  background-color: white;
+  justify-content: center;
 }
 
 #all-recipes-card {
   border: 1px solid rgb(0, 119, 255);
-  width: 850px;
+  width: 700px;
   height: 300px;
   display: flex;
   border-radius: 3px;
-  margin-bottom: 10px;
   box-shadow: 5px 5px 5px rgb(114, 171, 236);
 }
 
 #all-recipes-pic {
-  width: 600px;
+  width: 450px;
   height: 300px;
   object-fit: cover;
   /* border: 1px solid red; */
@@ -71,4 +121,22 @@
   color: rgb(0, 147, 210);
   font-size: 20px;
   font-weight: bold;
+}
+
+#no-recipe-div {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#no-recipe-p {
+  font-size: 50px;
+  margin-bottom: 7px;
+}
+
+#sad-cat {
+  border: 8px solid rgb(255, 170, 0);
+  opacity: 90%;
 }

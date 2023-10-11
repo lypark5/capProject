@@ -12,9 +12,6 @@ function Navigation({ isLoaded }){
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const sessionUser = useSelector(state => state.session.user);
-	let homeUrl;																													// declare the url for home button
-	sessionUser ? homeUrl = "/recipes/all" : homeUrl = "/";								// if there is a logged-in user, make the home button go to get all photos, else make it go to landing page.
-
 
 	async function rerenderFunction () {
 		await dispatch(getAllRecipesThunk());
@@ -36,10 +33,10 @@ function Navigation({ isLoaded }){
 	} else {
 		return (
 			<div id='nav-bar-logged-out'>
-				<NavLink to={homeUrl} id='logo-obj'className='link'>
+				<span id='logo-obj'>
 					<img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spoon-icon.png' id='logo'></img>
 					<span id='recipe-share'>recipe-share</span>
-				</NavLink>
+				</span>
 			</div>
 		)
 	}
