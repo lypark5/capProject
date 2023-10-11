@@ -15,12 +15,37 @@ const GetAllRecipesFunction = () => {
   const userArr = Object.values(users);
   const [searchWord, setSearchWord] = useState("");
   const [errors, setErrors] = useState({});
+  const [chosenBgImg, setChosenBgImg] = useState('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/foodv2.png');
 
 
+  const background_imgs = [
+    'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2v2.png',
+    'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food4v2.png',
+    'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/foodv2.png'
+  ]
+
+  
+
+
+ 
+  // let chosen_bg_img;
   useEffect(() => {
     dispatch(getAllRecipesThunk());
     dispatch(getAllUsersThunk());
   }, [dispatch]);
+
+
+  let imgStyle = {
+    backgroundImage: `url('${chosenBgImg}`,
+    width: '100%',
+    height: '500px',
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    display: 'flex',
+    alignItems: 'flex-end',
+    margin: '0px'
+  }
 
 
   recipeArr.forEach(recipe => {
@@ -30,6 +55,7 @@ const GetAllRecipesFunction = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errorsObj = {}
+    setChosenBgImg(background_imgs[Math.floor(Math.random() * background_imgs.length)]);
 
     if (searchWord.trim().length === 0) {
       errorsObj.searchWord = "Please type a word before submitting"
@@ -44,14 +70,9 @@ const GetAllRecipesFunction = () => {
 
   return (
     <div id='all-recipe-overlord'>
-
-
-
-      <div id='food-bg-pic-div'>
+      <div id='food-bg-pic-div' style={imgStyle}>
         <h1 id='discover'><em>Discover new recipes!</em></h1>
-      </div>
-
-      
+      </div>    
       <div id='search-n-cards'>
         <div id='search-div'>
           <form id="search-form" onSubmit={handleSubmit}>
@@ -82,15 +103,17 @@ const GetAllRecipesFunction = () => {
             </NavLink>
           )
         :
-          <div style={{width:'850px', border:'2px solid red'}}>
-            <p>No recipe matches your search.</p>
+          <div id='no-recipe-div'>
+            <p id='no-recipe-p'>No recipe matches your search.</p>
+            <img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/catPainting1.jpg' alt='sad_cat' id='sad-cat'/>
           </div>
         }
         </div>
       </div>
     </div>
   )
-
 }
+
+
 
 export default GetAllRecipesFunction

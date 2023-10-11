@@ -8,33 +8,20 @@
   /* align-items: center; */
 }
 
-#food-bg-pic-div {
-  /* background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2.jpg'); */
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2v2.png');
-  width: 100%;
-  height: 500px;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: flex-end;
-  /* opacity: 80%; */
-} 
-
 #discover {
  font-size: 90px;
  color:rgba(255, 255, 255, 0.9);
- margin: 0 0 0 25px;
+ margin: 0px;
+ padding-left: 30px;
  text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.75);
 }
 
 #search-n-cards {
   display: flex;
-  width: 100%;
+  width: 90%;
   background-color: rgb(253, 244, 207);
   min-height: 1000px;
   justify-content: center;
-  margin-left: -180px;
   padding-right: 180px;
 }
 
@@ -78,6 +65,7 @@
   color: rgba(0, 147, 210);
   font-size: 16px;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 #all-cards-container {
@@ -133,4 +121,22 @@
   color: rgb(0, 147, 210);
   font-size: 20px;
   font-weight: bold;
+}
+
+#no-recipe-div {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#no-recipe-p {
+  font-size: 50px;
+  margin-bottom: 7px;
+}
+
+#sad-cat {
+  border: 8px solid rgb(255, 170, 0);
+  opacity: 90%;
 }
