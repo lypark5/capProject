@@ -37,6 +37,7 @@
   position: relative;
   border: 2px solid rgb(0, 147, 210);
   margin-left: 50px;
+  cursor: pointer;
 }
 
 .fa-user-circle {

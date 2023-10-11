@@ -44,10 +44,15 @@ const GetAllRecipesFunction = () => {
 
   return (
     <div id='all-recipe-overlord'>
+
+
+
       <div id='food-bg-pic-div'>
         <h1 id='discover'><em>Discover new recipes!</em></h1>
       </div>
-      <div id='all-cards-container'>
+
+      
+      <div id='search-n-cards'>
         <div id='search-div'>
           <form id="search-form" onSubmit={handleSubmit}>
             <input
@@ -61,29 +66,30 @@ const GetAllRecipesFunction = () => {
           </form>
           {errors.searchWord && <p className='errors'>{errors.searchWord}</p>}
         </div>
-        {recipeArr.length ? recipeArr.map(recipe =>
-          <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
-            <span key={recipe.id} id='all-recipes-card'>
-              <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
-              <div id='profile-card'>
-                <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='all-recipes-profile-pic'></img>
-                <div id='little-caption'>
-                  <span>{recipe.foodName}</span>
-                  <span>by: {recipe.Author?.username}</span>
+        <div id='all-cards-container'>
+          {recipeArr.length ? recipeArr.map(recipe =>
+            <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
+              <span key={recipe.id} id='all-recipes-card'>
+                <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
+                <div id='profile-card'>
+                  <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='all-recipes-profile-pic'></img>
+                  <div id='little-caption'>
+                    <span>{recipe.foodName}</span>
+                    <span>by: {recipe.Author?.username}</span>
+                  </div>
                 </div>
-              </div>
-            </span>
-          </NavLink>
-        )
-      :
-      <div style={{width:'850px', border:'2px solid red'}}>
-        <p>No recipe matches your search.</p>
-      </div>
-      }
+              </span>
+            </NavLink>
+          )
+        :
+          <div style={{width:'850px', border:'2px solid red'}}>
+            <p>No recipe matches your search.</p>
+          </div>
+        }
+        </div>
       </div>
     </div>
   )
-
 
 }
 
