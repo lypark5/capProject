@@ -4,7 +4,7 @@ from app.models import Recipe, db, User
 from app.forms import CreateRecipeForm
 from app.forms import EditRecipeForm
 from app.api.aws_routes import get_unique_filename, upload_file_to_s3, remove_file_from_s3
-from sqlalchemy import and_
+from sqlalchemy import and_, func
 
 recipe_routes = Blueprint('recipes', __name__)
 
@@ -138,10 +138,19 @@ def search_recipe():
   """
   body = request.get_json()
   searchData = body['searchWord']
-  print ('this is searchDataaaa', searchData)
-  # print ('this is bodddyyyyy', body)
-  chosenRecipes = Recipe.query.filter(Recipe.food_name.ilike(searchData)).all()
-  # chosenRecipes = Recipe.query.filter(Recipe.food_name.lower() == body).all()
+  # print ('this is searchDataaaa', searchData)
+  # chosenRecipes = Recipe.query.filter(Recipe.food_name.ilike(searchData)).all()
+
+
+  # chosenRecipes = Recipe.query.filter(func.lower(searchData) in func.lower(Recipe.food_name)).all()
+
+
+  allRecipes = Recipe.query.all()
+  chosenRecipes = []
+  for recipe in allRecipes:
+    if searchData.lower() in recipe.food_name.lower():
+      chosenRecipes.append(recipe)
+
   if chosenRecipes:
     res = [recipe.to_dict() for recipe in chosenRecipes]
     return {"Recipes": res}
