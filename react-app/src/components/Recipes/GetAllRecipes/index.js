@@ -11,28 +11,34 @@ const GetAllRecipesFunction = () => {
   const history = useHistory();
   const recipes = useSelector(state => state.recipes.allRecipes);
   const users = useSelector(state => state.users.allUsers);
-  const recipeArr = Object.values(recipes);
   const userArr = Object.values(users);
   const [searchWord, setSearchWord] = useState("");
   const [errors, setErrors] = useState({});
   const [chosenBgImg, setChosenBgImg] = useState('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/foodv2.png');
-
-
+  const [recipeArr, setRecipeArr] = useState([]);
   const background_imgs = [
     'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2v2.png',
     'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food4v2.png',
     'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/foodv2.png'
   ]
 
-  
 
+  const shuffled = () => {
+    console.log('recipeARr beforeeeee', recipeArr)
+    setRecipeArr(Object.values(recipes).map((a) => ({ sort: Math.random(), value: a }))   // recipeArr is initially empty [], gotta use Object.values(recipes) since recipeArr isn't filled yet [].
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value));
+    console.log('recipeARr afteerrrrr', recipeArr)
+  }
 
- 
-  // let chosen_bg_img;
   useEffect(() => {
     dispatch(getAllRecipesThunk());
     dispatch(getAllUsersThunk());
   }, [dispatch]);
+
+  useEffect(() => {
+    shuffled();
+  }, [recipes]);          // this only goes into effect when we have recipes
 
 
   let imgStyle = {
@@ -46,7 +52,6 @@ const GetAllRecipesFunction = () => {
     alignItems: 'flex-end',
     margin: '0px'
   }
-
 
   recipeArr.forEach(recipe => {
     recipe['Author'] = userArr.find(user => user.id === recipe.userId)        // tacking on the 'author' user obj to every recipe object.  Success!
