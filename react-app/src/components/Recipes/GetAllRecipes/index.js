@@ -66,7 +66,7 @@ const GetAllRecipesFunction = () => {
 
 
 
-        {recipeArr.map(recipe =>
+        {recipeArr.length ? recipeArr.map(recipe =>
           <NavLink to={`/recipes/${recipe.id}`} title={recipe.foodName} className='link'>
             <span key={recipe.id} id='all-recipes-card'>
               <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
@@ -79,7 +79,12 @@ const GetAllRecipesFunction = () => {
               </div>
             </span>
           </NavLink>
-        )}
+        )
+      :
+      <div style={{width:'850px', border:'2px solid red'}}>
+        <p>No recipe matches your search.</p>
+      </div>
+      }
       </div>
     </div>
   )

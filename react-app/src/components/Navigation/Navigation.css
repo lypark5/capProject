@@ -91,9 +91,10 @@
   font-weight: bold;
 }
 
-#logo-obj {
+#center-logo-span {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 #logo {
