@@ -1,5 +1,6 @@
 #landing-pic-div {
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars_red_trimmed.png');
+  /* background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars_blue_v3.png'); */
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food_wars_blue.png');
   margin-bottom:-10px;
   height: 105vh;
   width: 105vw;

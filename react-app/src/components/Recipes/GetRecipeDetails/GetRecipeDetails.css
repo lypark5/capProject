@@ -1,22 +1,73 @@
+#detail-super-mega-overlord {
+  display: flex; 
+  justify-content: center;
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/sushi-backgroundv2.png');
+  width: 100vw;
+  height: 100%;
+  margin-left: -8px;
+  margin-bottom: -8px;
+}
+
 #detail-overlord {
   display: flex;
   flex-direction: row;
-  background-color: rgb(253, 244, 207);
+  /* background-color: rgb(91, 179, 216); */
+  /* background-color: rgb(131, 192, 217); */
+  margin-top: 30px;
+  background-color: rgb(155, 199, 217);
+  border: 5px solid rgb(255, 166, 0);
+  border-radius: 20px;
+  width: 80%;
 }
 
 #recipe-div {
   width: 70%;
-  border: 1px solid red;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#food-name-and-bookmark {
+  display: flex;
+  align-items: flex-start;
+  width: 900px;
+  border: 3px solid brown;
+  border-radius: 8px;
+  background-color: white;
+  margin: 125px 0px 30px 0px;
 }
 
 #food-name {
-  padding-left: 20px;
+  padding: 5px 30px 0px 30px;
+  font-size: 50px;
+  background-color: red;
+  margin: 0px;
+  color: white;
+  /* margin-top: 50px; */
+  /* border: 3px solid brown; */
+  border-radius: 8px; 
+}
+
+#bookmark {
+  /* margin-top: 50px; */
+  font-size: 20px;
+  cursor: pointer;
+  color: rgb(0, 32, 193);
+  background-color: rgb(230, 238, 255);
+  padding: 15px 17px;
+  border: 2px solid rgba(0, 32, 193, 0.3);
+  border-radius: 10px;
 }
 
 #food-pic {
-  border: 1px solid green;
   border-radius: 3px;
-  width: 100%;
+  height: 600px;
+  width: 900px;
+  object-fit: cover;
+  border: 5px solid rgb(255, 166, 0);
+  border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 #small-profile-pic {
@@ -43,6 +94,7 @@
   display: flex;
   align-items: center;
   font-size: 26px;
+  background-color: rgb(252, 250, 241);
 }
 
 #ing-div {
@@ -51,7 +103,7 @@
   border: 1px solid orange;
   width: 30%;
   font-size: 26px;
-  background-color: rgb(252, 250, 241);
+  background-color: rgb(246, 240, 217)
 }
 
 #instructions-div {
@@ -61,11 +113,14 @@
 
 #comment-div {
   width: 35%;
-  border: 1px solid black;
+  /* border: 2px solid red; */
+  border-top-right-radius: 20px;
+  background-color: white;
 }
 
 #whats-this {
-  border: 1px solid red;
+  border: 2px solid red;
+  border-top-right-radius: 17px;
 }
 
 #whats-this-2 {

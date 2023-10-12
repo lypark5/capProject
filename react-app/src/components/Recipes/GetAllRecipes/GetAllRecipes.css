@@ -115,12 +115,22 @@
   border: 2px solid rgb(0, 119, 255);
 }
 
-#little-caption {
+#recipe-card-author-info {
   display: flex;
   flex-direction: column;
   color: rgb(0, 147, 210);
-  font-size: 20px;
   font-weight: bold;
+  align-items: center;
+}
+
+#recipe-card-food-name {
+  font-size: 25px;
+  margin: 0px;
+}
+
+#recipe-card-author-name {
+  font-size: 20px;
+  margin: 0px;
 }
 
 #no-recipe-div {
