@@ -51,20 +51,21 @@ const GetRecipeDetailsFunction = () => {
           <div id='food-name-and-bookmark'>
             <h1 id='food-name'>{recipe.foodName}</h1>
             {checkDidIBookmarkThis() ? 
-              <button onClick={() => unBookmarkFunction()}>Unbookmark</button>
-              :
-              // <button onClick={() => handleSubmit()}>Bookmark</button>
-             
+              // <button onClick={() => unBookmarkFunction()}>Unbookmark</button>
+              <i class="fas fa-bookmark" onClick={() => unBookmarkFunction()} id='unbookmark'></i>
+              :           
               <i onClick={() => handleSubmit()} class="far fa-bookmark" id='bookmark'></i>
             }          
           </div>
 
           <img src={recipe.url} alt={recipe.title} id='food-pic'></img>
           <div id='profile-pic-n-detail-div'>
-            <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='small-profile-pic'></img>
-            <div id='details-desc'>
-              <span>by: {recipe.Author?.username}</span>
-              <span>{recipe.description}</span>
+            <div id='profile-pic-n-detail-meat'>
+              <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='small-profile-pic'></img>
+              <div id='details-desc'>
+                <span>by: {recipe.Author?.username}</span>
+                <span>{recipe.description}</span>
+              </div>
             </div>
           </div>
           <div id='cooking-part'>
@@ -81,10 +82,16 @@ const GetRecipeDetailsFunction = () => {
           <div id='whats-this'>
             <CreateCommentFunction />
           </div>
-          <div id='whats-this-2'>
-            {Object.values(comments).length ? comments.toReversed().map(comment =>
-              <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
-            ) : <p id='be-first'>Be the first to leave a comment!</p>}
+          <div id='comment-cards-section-div'>
+            <div className='whats-this-2'>
+              {Object.values(comments).length ? comments.toReversed().map(comment =>
+                <GetAllCommentsByRecipeIdFunction comment={comment} currentUser={currentUser} recipeId={recipeId}/>
+              ) 
+              : 
+              <div className="whats-this-2">
+                <p id='be-first'>Be the first to leave a comment!</p>
+              </div>}
+            </div>
           </div>
         </div>
 
