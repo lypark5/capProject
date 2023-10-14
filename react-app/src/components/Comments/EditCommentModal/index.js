@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from '../../../context/Modal';
 import { editCommentThunk } from "../../../store/comments";
+import './EditCommentModal.css';
 
 
 const EditCommentModalFunction = ({commentId}) => {       // this variable does not need to match name in store
@@ -32,16 +33,20 @@ const EditCommentModalFunction = ({commentId}) => {       // this variable does 
 
   // add errors
   return (
-    <div>
+    <div className='modal' id='edit-comment-modal'>
       <form onSubmit={handleSubmit}>
         <textarea
           placeholder="Leave your comment here!"
           value={commentTxt}
           onChange={(e) => setCommentTxt(e.target.value)}
           type="textarea"
+          id='edit-comment-input'
         />
         {/* {valObj.commentTxt && <p className="errors">{valObj.commentTxt}</p>} */}
-        <button type="submit">Post</button>
+        <div className="comment-buttons-div"> 
+          <button type="submit" className="comment-button">Update</button>
+          <button onClick={closeModal} className='comment-button'>Cancel</button>
+        </div>
       </form>
     </div>
   )

@@ -21,17 +21,19 @@ const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {
         }
         <div id='comment-and-buttons'>
           <span id='comment-text'>{comment?.comment}</span>
-          <div id='comment-buttons-div'>
+          <div className='comment-buttons-div'>
             {currentUser.id === comment.userId &&
               <OpenModalButton
                 modalComponent={<EditCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
                 buttonText='edit'
+                className='comment-button'
               />
             }
             {currentUser.id === comment.userId &&
               <OpenModalButton
                 modalComponent={<DeleteCommentModalFunction commentId={comment.id} userId={currentUser.id} recipeId={recipeId}/>}
                 buttonText='delete'
+                className='comment-button'
               />
             }
           </div>

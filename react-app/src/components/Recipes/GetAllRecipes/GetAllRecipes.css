@@ -74,24 +74,24 @@
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
-  width: 1450px;
+  width: 1200px;
   padding: 30px 30px 100px 30px;
   background-color: white;
   justify-content: center;
 }
 
 #all-recipes-card {
-  border: 1px solid rgb(0, 119, 255);
-  width: 700px;
-  height: 300px;
+  border: 1px solid rgb(0, 147, 210);;
+  width: 550px;
+  height: 225px;
   display: flex;
   border-radius: 3px;
-  box-shadow: 5px 5px 5px rgb(114, 171, 236);
+  box-shadow: 5px 5px 5px rgb(0, 147, 210);
 }
 
 #all-recipes-pic {
-  width: 450px;
-  height: 300px;
+  width: 375px;
+  height: 225px;
   object-fit: cover;
   /* border: 1px solid red; */
   border-radius: 3px;
@@ -100,19 +100,19 @@
 #profile-card {
   display: flex;
   flex-direction: column;
-  width: 250px;
-  border-left: 1px solid rgb(0, 119, 255);
+  width: 175px;
+  border-left: 1px solid rgb(0, 147, 210);
   justify-content: center;
   align-items: center;
   background-color: white;
 }
 
 #all-recipes-profile-pic {
-  width: 200px;
-  height: 200px;
+  width: 125px;
+  height: 125px;
   border-radius: 100px;
   object-fit: cover;
-  border: 2px solid rgb(0, 119, 255);
+  border: 2px solid rgb(0, 147, 210);
 }
 
 #recipe-card-author-info {

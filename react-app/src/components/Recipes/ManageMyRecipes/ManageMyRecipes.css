@@ -1,27 +1,63 @@
 #manage-overlord {
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/yellowFlowers.png');
-  height: 105vh;
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/cupcake-blue.png');
+  height: 105%;
   width: 105vw;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   margin-left: -8px;
+  margin-bottom: -8px;
   display: flex;
   justify-content: center;
 }
 
 #all-my-recipes-container {
-  margin-bottom: 300px;
-  border: 1px solid red;
+  /* margin-bottom: 300px; */
+  border: 5px solid rgb(255, 166, 0);
+  border-radius: 20px;
+  margin-top: 30px;
   margin-left: -100px;
-  padding: 0px 20px;
-  background-color: rgb(252, 250, 241);
-  padding-bottom: 100px;
+  /* padding: 0px 50px; */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* padding-bottom: 100px; */
+  display: flex;
+  flex-direction: column;
+}
+
+#manage-title {
+  font-size: 36px;
+  background-color: white;
+  margin: 0px;
+  padding: 55px 0px 10px 40px;
+  border-top-right-radius: 18px;
+  border-top-left-radius: 18px;
+  /* border: 2px solid red; */
+}
+
+#manage-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  /* border: 2px solid blue; */
+  margin-top: 60px;
+}
+
+#manage-card {
+  background-color: white;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 18px;
+  padding: 20px 40px;
+  margin: 0px 40px;
+}
+
+#manage-food-name {
+  font-size: 26px;
+  /* background-color: blue; */
 }
 
 #manage-pic {
   width: 600px;
   height: 300px;
   object-fit: cover;
-  border-radius: 3px;
+  /* border-radius: 3px; */
 }

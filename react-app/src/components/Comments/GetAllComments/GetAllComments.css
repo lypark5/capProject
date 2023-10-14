@@ -1,9 +1,12 @@
 #each-comment-card {
-  border: 1px solid rgba(0, 147, 210);;
+  border-top: 1px solid rgba(0, 147, 210);
+  border-bottom: 1px solid rgba(0, 147, 210);
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.9);
   padding: 35px 35px 0px 35px;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
 }
 
 #comment-section {
@@ -14,10 +17,11 @@
 }
 
 #comment-pic {
-  width: 200px;
-  height: 200px;
+  width: 175px;
+  height: 175px;
   object-fit: cover;
   margin-right: 15px;
+  border-radius: 15px;
 }
 
 #comment-and-buttons {
@@ -35,9 +39,20 @@
   color: rgba(0, 147, 210);
 }
 
-/* #comment-buttons-div {
+.comment-buttons-div {
+  display: flex;
+  gap: 5px;
+}
 
-} */
+.comment-button {
+  padding: 6px 12px;
+  font-size: 14px;
+  color: rgb(0, 32, 193);
+  border: 2px solid rgb(93, 122, 196);
+  border-radius: 10px;
+  background-color: rgb(238, 246, 255);
+  cursor: pointer;
+}
 
 #commentator-item {
   display: flex;
