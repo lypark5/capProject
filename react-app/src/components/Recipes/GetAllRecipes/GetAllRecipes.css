@@ -119,18 +119,20 @@
   display: flex;
   flex-direction: column;
   color: rgb(0, 147, 210);
-  font-weight: bold;
+  /* font-weight: bold; */
   align-items: center;
 }
 
 #recipe-card-food-name {
-  font-size: 25px;
+  font-size: 18px;
   margin: 0px;
+  font-family: 'Lobster', cursive;
 }
 
 #recipe-card-author-name {
   font-size: 20px;
   margin: 0px;
+  font-weight: bold;
 }
 
 #no-recipe-div {
