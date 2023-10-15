@@ -1,3 +1,89 @@
 #about-overlord {
   background-color: #9cd4ea;
+  height: 105vh;
+  width: 105vw;
+  margin-left: -8px;
+  margin-bottom: -10px;
+  display: flex;
+  justify-content: center;
+}
+
+#about-meat {
+  display: flex;
+  margin-top: 100px;
+  /* border: 1px solid red; */
+  gap: 30px;
+}
+
+#special-cat-pic {
+  width: 500px;
+  height: 800px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 8px solid white;
+}
+
+#about-words-div {
+  background-color:rgb(253, 244, 207);
+  height: 300px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  /* padding: 15px; */
+}
+
+#meet-title {
+  /* border: 1px solid red; */
+  padding-left: 20px;
+  margin-top: 50px;
+  font-size: 40px;
+  font-weight: bold;
+  width: 230px;
+  border-bottom: 1px solid brown;
+}
+
+#ludia-sentence {
+  padding-left: 20px;
+  font-size: 24px;
+  margin: 12px 0px;
+}
+
+#ludi-links-container {
+  color: rgb(0, 103, 193);
+  display: flex;
+  /* border: 1px solid red; */
+  gap: 12px;
+  margin-top: 14px;
+  justify-content: center;
+}
+
+#ludi-link1 {
+  color: rgb(0, 103, 193);
+  font-size: 26px;
+  background-color: white;
+  padding: 8px 10px 2px 10px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 4px;
+}
+
+#ludi-link1:hover {
+  color: rgb(0, 136, 255);
+  font-size: 28px;
+  border: 1px solid rgba(0, 136, 255, 0.5)
+}
+
+#ludi-link2 {
+  color: rgb(0, 103, 193);
+  font-size: 26px;
+  background-color: white;
+  padding: 8px 12px 2px 12px;
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  border-radius: 4px;
+}
+
+#ludi-link2:hover {
+  color: rgb(0, 136, 255);
+  font-size: 28px;
+  border: 1px solid rgba(0, 136, 255, 0.5)
 }

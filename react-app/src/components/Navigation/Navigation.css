@@ -139,7 +139,11 @@
 }
 
 #about-me-link {
-  color: rgb(0, 58, 193);
+  color: rgb(0, 103, 193);
+}
+
+#about-me-link:hover {
+  color: rgb(79, 173, 255);
 }
 
 #create-recipe-link-nav {
@@ -147,5 +151,9 @@
   font-family: 'Lobster', cursive;
   font-size: 18px;
   margin-right: 80px;
+}
+
+#create-recipe-link-nav:hover {
+  color: rgb(79, 173, 255);
 }
 
