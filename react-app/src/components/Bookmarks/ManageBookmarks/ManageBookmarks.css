@@ -1,0 +1,91 @@
+#bookmarks-overlord {
+  display: flex;
+  justify-content: center;
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/cupcake-pink.png');
+  height: 105vh;
+  width: 105vw;
+  margin-left: -8px;
+  margin-bottom: -8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#all-my-bookmarks-container {
+  /* margin-bottom: 100px; */
+  border: 5px solid rgb(255, 166, 0);
+  border-radius: 20px;
+  margin-top: 30px;
+  margin-left: -100px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: flex-start;
+  margin-bottom: 400px;
+}
+
+#bookmark-title {
+  font-size: 36px;
+  background-color: white;
+  margin: 0px;
+  padding: 55px 0px 10px 65px;
+  border-top-right-radius: 18px;
+  border-top-left-radius: 18px;
+  /* border: 2px solid red; */
+  border-bottom: 5px dashed rgb(255, 166, 0);
+}
+
+#manage-bookmark-cards-container {
+  display: flex;
+  /* border: 2px solid blue; */
+  flex-wrap: wrap;
+  margin: 30px;
+  gap: 30px;
+  overflow-y: scroll;
+  padding-left: 30px;
+
+}
+
+#bookmark-card {
+  background-color: white;
+  border: 2px solid rgb(194, 194, 194);
+  border-radius: 18px;
+  padding: 20px 35px 15px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#bookmark-food-name {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#bookmark-pic {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 3px;
+}
+
+#bookmark-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+  margin: 0px;
+}
+
+#unbookmark-word-button {
+  cursor: pointer;
+  color: rgb(0, 32, 193);
+  padding: 3px 15px;
+  border: 2px solid rgb(93, 122, 196);
+  border-radius: 5px;
+  background-color: rgb(238, 246, 255);
+  margin: 0px;
+}
+
+#no-bookmarks {
+  font-size: 26px;
+}
