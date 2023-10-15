@@ -16,8 +16,8 @@ const DeleteCommentModalFunction = ({commentId, recipeId}) => {
     <div className='modal delete-modal'>
       <h1>Confirm Delete</h1>
       <div className='yes-no-buttons'>
-        <button onClick={yesDeleteCommentFunction} className='yes-button'>Yes</button>
-        <button onClick={closeModal} className='no-button'>No</button>
+        <button onClick={yesDeleteCommentFunction} className='comment-button'>Yes</button>
+        <button onClick={closeModal} className='comment-button'>No</button>
       </div>
     </div>
   )

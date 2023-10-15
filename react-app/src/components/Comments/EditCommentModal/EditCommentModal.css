@@ -1,0 +1,18 @@
+#edit-comment-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 45px 40px 25px 40px;
+  align-items: center;
+  border: 5px solid rgb(255, 166, 0);
+  border-radius: 20px;
+  background-color: #CDE9F4;
+}
+
+#edit-comment-input {
+  height: 150px;
+  width: 275px;
+  border: 2px solid red;
+  font-size: 20px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}

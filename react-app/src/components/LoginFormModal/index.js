@@ -52,7 +52,7 @@ function LoginFormModal() {
   
   return (
     <div id='login-modal' className="modal2">
-      <h1>Log In</h1>
+      <h1 id='login-title'>Log In</h1>
       <form onSubmit={handleSubmit} id='login-form'>
         {/* <ul>
           {errors.map((error, idx) => (
@@ -83,7 +83,9 @@ function LoginFormModal() {
           <button type="submit" id='login-submit-button'>Log In</button>
         </div>
       </form>
-      <button onClick={DemoUserLoginFunction} id='demo-button'>Demo User</button>
+      <div id='demo-button-div'>
+        <button onClick={DemoUserLoginFunction} id='demo-button'>Demo User</button>
+      </div>
     </div>
   );
 }

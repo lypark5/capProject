@@ -33,13 +33,13 @@ function GetAllRecipesOfCurrentFunction () {
   return (
     <div id='manage-overlord'>
       <div id='all-my-recipes-container'>
-       <h2>Manage Your Recipes</h2>
-      
-        <div>
+        <div><h2 id='manage-title'>Manage Your Recipes</h2></div>
+        
+        <div id='manage-cards-container'>
           {userRecipes.length ? userRecipes.map(recipe => 
-            <span>
+            <div id='manage-card'>
 
-              <div>{recipe.foodName}</div>
+              <div id='manage-food-name'>{recipe.foodName}</div>
               <Link to={`/recipes/${recipe.id}`} title={recipe.name}>
                 {/* <div id='manage-card'> */}
                   <img src={recipe.url} alt={recipe.foodName} id='manage-pic'/>
@@ -58,8 +58,7 @@ function GetAllRecipesOfCurrentFunction () {
                   modalComponent={<DeleteRecipeModalFunction recipeId={recipe.id} />}
                 />
               </div>
-
-            </span>
+            </div>
             ) : 'No recipes yet'}
         </div>
       </div>
