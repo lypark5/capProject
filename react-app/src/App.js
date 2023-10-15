@@ -13,6 +13,7 @@ import GetAllRecipesOfCurrentFunction from "./components/Recipes/ManageMyRecipes
 import RecipeFormFunction from "./components/Recipes/CreateRecipe";
 import EditRecipeFunction from "./components/Recipes/EditRecipe";
 import GetAllBookmarksFunction from "./components/Bookmarks/ManageBookmarks";
+import AboutMePage from "./components/AboutMe";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path ='/recipes/:recipeId'>
             <GetRecipeDetailsFunction />
+          </ProtectedRoute>
+          <ProtectedRoute path ='/AboutMe'>
+            <AboutMePage />
           </ProtectedRoute>
           <Route path='/*'>
             <h1>Page Not Found</h1>

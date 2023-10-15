@@ -3,6 +3,7 @@ import React, { useEffect} from "react";
 import { getUserThunk } from "../../../store/users";
 import { useParams } from "react-router-dom";
 import { getAllRecipesThunk, deleteBookmarkThunk } from "../../../store/recipes";
+import './ManageBookmarks.css';
 
 
 const GetAllBookmarksFunction = () => {
@@ -42,17 +43,36 @@ const GetAllBookmarksFunction = () => {
 
 
   return (
-    <div>
-      <h1>i am at get all bookmarks</h1>
-      {myRecipeBookmarks.length === 0 ? 
-        <p>no bookmarks yet!</p> 
-      : myRecipeBookmarks.map(recipe =>
+    <div id='bookmarks-overlord'>
+      <div id='all-my-bookmarks-container'>
         <div>
-          <img src={recipe.url} />
-          <button onClick={() => unBookmarkFunction(recipe)}>Unbookmark</button>
-        </div>)
-      }
+          <h1 id='bookmark-title'>My Bookmarks</h1>
+        </div>
 
+
+        {/* <div id='manage-bookmark-cards-container'>
+          {myRecipeBookmarks.length === 0 ? 
+            <p>no bookmarks yet!</p> 
+          : myRecipeBookmarks.map(recipe =>
+            <div id='bookmark-card'>
+              <img src={recipe.url} id='bookmark-pic'/>
+              <button onClick={() => unBookmarkFunction(recipe)}>Unbookmark</button>
+            </div>)
+          }
+        </div> */}
+
+        <div id='manage-bookmark-cards-container'>
+          {myRecipeBookmarks.length ? myRecipeBookmarks.map(recipe =>
+            <div id='bookmark-card'>
+              <div id='bookmark-food-name'>{recipe.foodName}</div>
+              <img src={recipe.url} alt={recipe.foodName} id='bookmark-pic'/>
+              <div id='bookmark-button-container'>
+                <button onClick={() => unBookmarkFunction(recipe)} id='unbookmark-word-button'>Unbookmark</button>
+              </div>
+            </div>
+          ) : <p id='no-bookmarks'>No bookmarks yet</p>}
+        </div>
+      </div>
     </div>
   )
 }

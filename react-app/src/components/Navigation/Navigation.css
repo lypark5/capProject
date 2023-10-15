@@ -129,6 +129,19 @@
   margin-right: 220px;
 }
 
+#right-nav-span {
+  display: flex;
+  gap: 25px;
+  align-items: baseline;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: -180px
+}
+
+#about-me-link {
+  color: rgb(0, 58, 193);
+}
+
 #create-recipe-link-nav {
   color:rgb(0, 147, 210);
   font-family: 'Lobster', cursive;

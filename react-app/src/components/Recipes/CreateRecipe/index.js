@@ -104,7 +104,10 @@ const RecipeFormFunction = ({ recipe, formType }) => {
           />
           {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
           {/* <button type='submit' disabled={disabled} className={buttonClass}>Submit</button> */}
-          <button type='submit' id='update-button'>Update</button>
+          <div className='recipe-buttons-div'>
+            <button type='submit' className='recipe-button'>Update</button>
+            <button onClick={() => history.push('/recipes/manage')} className='recipe-button'>Cancel</button>
+          </div>
         </form>
         
         :
@@ -151,7 +154,9 @@ const RecipeFormFunction = ({ recipe, formType }) => {
           />
           {/* {valObj.url && <p className="errors" style={{color: "red"}}>{valObj.url}</p>} */}
           {/* <button type='submit' disabled={disabled} className={buttonClass}>Submit</button> */}
-          <button type='submit' id='submit-button'>Post</button>
+          <div className='recipe-buttons-div'>
+            <button type='submit' className='recipe-button'>Post</button>
+          </div>
         </form>
         }
     </div>
