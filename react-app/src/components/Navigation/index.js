@@ -27,7 +27,10 @@ function Navigation({ isLoaded }){
 					<img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spoon-icon.png' id='logo'></img>
 					<span id='recipe-share'>recipe-share</span>
 				</span>
-				<NavLink to="/recipes/new" id='create-recipe-link-nav' className='link'>Upload a Recipe!</NavLink>
+				<span id='right-nav-span'>
+					<NavLink to="/aboutMe" id='about-me-link' className='link'>About Me</NavLink>
+					<NavLink to="/recipes/new" id='create-recipe-link-nav' className='link'>Upload a Recipe!</NavLink>
+				</span>
 			</div>
 		)
 	} else {

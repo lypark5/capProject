@@ -1,27 +1,26 @@
 #manage-overlord {
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/cupcake-blue.png');
-  height: 105%;
+  display: flex;
+  justify-content: center;
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/cupcake.png');
+  height: 105vh;
   width: 105vw;
+  margin-left: -8px;
+  margin-bottom: -8px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  margin-left: -8px;
-  margin-bottom: -8px;
-  display: flex;
-  justify-content: center;
 }
 
 #all-my-recipes-container {
-  /* margin-bottom: 300px; */
+  margin-bottom: 100px;
   border: 5px solid rgb(255, 166, 0);
   border-radius: 20px;
   margin-top: 30px;
   margin-left: -100px;
-  /* padding: 0px 50px; */
   background-color: rgba(255, 255, 255, 0.5);
-  /* padding-bottom: 100px; */
   display: flex;
   flex-direction: column;
+  /* height: auto; */
 }
 
 #manage-title {
@@ -32,6 +31,7 @@
   border-top-right-radius: 18px;
   border-top-left-radius: 18px;
   /* border: 2px solid red; */
+  border-bottom: 5px dashed rgb(255, 166, 0);
 }
 
 #manage-cards-container {
@@ -39,12 +39,13 @@
   flex-direction: column;
   gap: 25px;
   /* border: 2px solid blue; */
-  margin-top: 60px;
+  margin: 30px 0px;
+  overflow-y: scroll;
 }
 
 #manage-card {
   background-color: white;
-  border: 2px solid rgba(255, 255, 255, 0.75);
+  border: 2px solid rgb(194, 194, 194);
   border-radius: 18px;
   padding: 20px 40px;
   margin: 0px 40px;
@@ -53,11 +54,32 @@
 #manage-food-name {
   font-size: 26px;
   /* background-color: blue; */
+  margin-top: 5px;
+  font-weight: bold;
+  color: rgb(0, 147, 210);
+  /* font-family: 'Lobster', cursive;
+  font-size: 20px; */
 }
 
 #manage-pic {
   width: 600px;
   height: 300px;
   object-fit: cover;
-  /* border-radius: 3px; */
+  border-radius: 3px;
+}
+
+#manage-buttons-container {
+  display: flex;
+  gap: 8px;
+  /* border: 1px solid red; */
+  margin-top: 5px;
+  margin-bottom: 8px;
+}
+
+#no-recipes {
+  font-size: 30px;
+  padding: 20px 40px;
+  margin: 0px 40px;
+  width: 600px;
+  text-align: center;
 }

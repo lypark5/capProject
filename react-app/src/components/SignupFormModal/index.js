@@ -104,6 +104,7 @@ function SignupFormModal() {
 						onChange={(e) => setUsername(e.target.value)}
 						placeholder="Username"
 						required
+						className='recipe-string'
 					/>
 					{errors.username && <p className="errors">{errors.username}</p>}
 				</div>
@@ -117,6 +118,7 @@ function SignupFormModal() {
 						onChange={(e) => setFirstName(e.target.value)}
 						placeholder="First Name"
 						required
+						className='recipe-string'
 					/>
 					{errors.firstName && <p className="errors">{errors.firstName}</p>}
 				</div>
@@ -130,6 +132,7 @@ function SignupFormModal() {
 						onChange={(e) => setLastName(e.target.value)}
 						placeholder="Last Name"
 						required
+						className='recipe-string'
 					/>
 					{errors.lastName && <p className="errors">{errors.lastName}</p>}
 				</div>
@@ -143,6 +146,7 @@ function SignupFormModal() {
 						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Email"
 						required
+						className='recipe-string'
 					/>
 					{errors.email && <p className="errors">{errors.email}</p>}
 				</div>
@@ -172,6 +176,7 @@ function SignupFormModal() {
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder="Password"
 						required
+						className='recipe-string'
 					/>
 					{errors.password && <p className="errors">{errors.password}</p>}
 				</div>
@@ -185,6 +190,7 @@ function SignupFormModal() {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						placeholder="Confirm Password"
 						required
+						className='recipe-string'
 					/>
 					{errors.confirmPassword && <p className="errors">{errors.confirmPassword}</p>}
 				</div>

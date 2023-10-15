@@ -6,14 +6,11 @@
   height: 100%;
   margin-left: -8px;
   margin-bottom: -8px;
-  /* background-size: contain; */
 }
 
 #detail-overlord {
   display: flex;
   flex-direction: row;
-  /* background-color: rgb(91, 179, 216); */
-  /* background-color: rgb(131, 192, 217); */
   margin-top: 30px;
   background-color: #9cd4ea;
   border: 5px solid rgb(255, 166, 0);
@@ -34,7 +31,6 @@
   display: flex;
   align-items: flex-start;
   width: 750px;
-  /* border: 3px solid rgb(194, 0, 0); */
   border: 1px solid rgb(255, 166, 0);
   border-radius: 8px;
   background-color: white;
@@ -91,7 +87,6 @@
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
   max-height: 275px;
-  /* max-height: 400px; */
 }
 
 #profile-pic-n-detail-meat {
@@ -104,7 +99,6 @@
 #small-profile-pic {
   width: 150px;
   height: 200px;
-  /* height: 100%; */
   object-fit: cover;
   border-radius: 3px;
   border: 5px solid white;
@@ -121,9 +115,7 @@
 
 #cooking-part {
   display: flex;
-  /* align-items: stretch; */
   font-size: 26px;
-  /* background-color: rgb(252, 250, 241); */
   background-color: red;
   border-bottom-left-radius: 17px;
   min-height: 657px;
@@ -156,11 +148,9 @@
   border-left: 5px dashed red;
   display: flex;
   flex-direction: column;
-  /* overflow-y: scroll; */
 }
 
 #whats-this {
-  /* border-left: 2px solid red; */
   border-bottom: 2px solid red;
 }
 
@@ -174,15 +164,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/sushi-background.jpg');
+  background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/cupcake-blue.png');
   padding: 10px 0px;
-  /* background-color: rgba(255, 255, 255, 0.9); */
   height: 1300px;
   overflow-y: scroll;
 }
 
 #be-first {
-  /* margin-top: 10px; */
   font-size: 36px;
   text-align: center;
   color: rgb(0, 32, 193);
