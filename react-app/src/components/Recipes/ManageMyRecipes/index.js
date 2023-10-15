@@ -33,7 +33,10 @@ function GetAllRecipesOfCurrentFunction () {
   return (
     <div id='manage-overlord'>
       <div id='all-my-recipes-container'>
-        <div><h2 id='manage-title'>Manage Your Recipes</h2></div>
+
+        <div>
+          <h2 id='manage-title'>Manage Your Recipes</h2>
+        </div>
         
         <div id='manage-cards-container'>
           {userRecipes.length ? userRecipes.map(recipe => 
@@ -49,17 +52,17 @@ function GetAllRecipesOfCurrentFunction () {
               <div id='manage-buttons-container'>
                 {/* <button onClick={() => RecipeFormFunction(recipe.id)} formType="Update">Update</button> */}
                 <Link to={`/recipes/${recipe.id}/edit`} formType='Update'>
-                  <button>Edit</button>
+                  <button className="comment-button">Edit</button>
                 </Link>
                 {/* <RecipeFormFunction recipeId={recipe.id} formType="Update"/> */}
                 <OpenModalButton 
-                  // className='update-or-delete'
+                  className="comment-button"
                   buttonText='Delete'
                   modalComponent={<DeleteRecipeModalFunction recipeId={recipe.id} />}
                 />
               </div>
             </div>
-            ) : 'No recipes yet'}
+            ) : <div id='no-recipes'>No recipes yet</div>}
         </div>
       </div>
     </div>

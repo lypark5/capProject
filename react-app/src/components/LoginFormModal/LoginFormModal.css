@@ -59,9 +59,8 @@
 #demo-button {
   padding: 8px 12px;
   color: brown;
-  background-color: rgb(254, 232, 145);
-  /* background-color: rgb(238, 246, 255); */
-  border: 2px solid brown;
+  background-color: rgb(255, 245, 204);
+  border: 2px solid rgba(165, 42, 42, 0.6);
   border-radius: 10px;
   margin: 15px 0px 25px 0px;
   cursor: pointer;

@@ -3,12 +3,22 @@
   flex-direction: column;
   align-items: center;
   width: 250px;
-  padding: 10px 20px 30px;
-  border: 5px solid rgb(255, 166, 0);
-  border-radius: 20px;
+  gap: 10px;
+  padding: 40px 0px;
+  border-top: 10px solid brown;
+  background-color: white;
+  border-bottom: 3px solid rgb(255, 166, 0);
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.yes-no-buttons {
+.confirm-title {
+  margin: 0px;
+  /* border: 1px solid blue; */
+}
+
+.yes-no-buttons-div {
+  /* border: 1px solid red; */
   display: flex;
   gap: 5px;
 }
