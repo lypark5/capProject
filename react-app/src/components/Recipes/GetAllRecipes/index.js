@@ -14,7 +14,7 @@ const GetAllRecipesFunction = () => {
   const userArr = Object.values(users);
   const [searchWord, setSearchWord] = useState("");
   const [errors, setErrors] = useState({});
-  const [chosenBgImg, setChosenBgImg] = useState('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/foodv2.png');
+  const [chosenBgImg, setChosenBgImg] = useState('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2v2.png');
   const [recipeArr, setRecipeArr] = useState([]);
   const background_imgs = [
     'https://recipe-capstone-project.s3.us-east-2.amazonaws.com/food2v2.png',
@@ -99,9 +99,9 @@ const GetAllRecipesFunction = () => {
                 <img src={recipe.url} alt={recipe.foodName} id='all-recipes-pic'></img>
                 <div id='profile-card'>
                   <img src={recipe.Author?.profilePic} alt={recipe.Author?.username} id='all-recipes-profile-pic'></img>
-                  <div id='little-caption'>
-                    <span>{recipe.foodName}</span>
-                    <span>by: {recipe.Author?.username}</span>
+                  <div id='recipe-card-author-info'>
+                    <span id='recipe-card-food-name'>{recipe.foodName}</span>
+                    <span id='recipe-card-author-name'>by: {recipe.Author?.username}</span>
                   </div>
                 </div>
               </span>
