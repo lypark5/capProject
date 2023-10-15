@@ -90,6 +90,8 @@
   display: flex;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.5);
+  max-height: 275px;
+  /* max-height: 400px; */
 }
 
 #profile-pic-n-detail-meat {
@@ -119,10 +121,12 @@
 
 #cooking-part {
   display: flex;
-  align-items: stretch;
+  /* align-items: stretch; */
   font-size: 26px;
-  background-color: rgb(252, 250, 241);
+  /* background-color: rgb(252, 250, 241); */
+  background-color: red;
   border-bottom-left-radius: 17px;
+  min-height: 657px;
 }
 
 #ing-div {
@@ -135,7 +139,6 @@
   border-bottom-left-radius: 17px;
   padding-top: 40px;
   padding-bottom: 40px;
-
 }
 
 #instructions-div {
@@ -174,7 +177,8 @@
   background-image: url('https://recipe-capstone-project.s3.us-east-2.amazonaws.com/sushi-background.jpg');
   padding: 10px 0px;
   /* background-color: rgba(255, 255, 255, 0.9); */
-  /* overflow-y: scroll; */
+  height: 1300px;
+  overflow-y: scroll;
 }
 
 #be-first {

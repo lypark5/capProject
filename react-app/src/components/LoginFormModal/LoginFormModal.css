@@ -2,11 +2,20 @@
   display: flex;
   flex-direction: column;
   width: 350px;
-  height: 340px;
   align-items: center;
-  padding: 15px 30px 50px;
-  border: 5px solid brown;
-  border-radius: 20px;
+  justify-content: center;
+  padding: 15px;
+  border-top: 20px solid rgb(0, 147, 210);
+  border-bottom: 5px solid rgb(194, 0, 0);
+  background-color: rgb(255, 251, 235);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+#login-title {
+  margin: 18px 0px 5px 0px;
 }
 
 #login-form {
@@ -20,19 +29,40 @@
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
-  border: 1px solid blue;
+  border: 1px solid rgb(0, 147, 210);
+  border-radius: 5px;
 }
 
-#login-button-div {
+/* #login-button-div {
+  display: flex;
+  justify-content: center;
+} */
+
+#login-submit-button {
+  margin: 15px 0px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: rgb(0, 32, 193);
+  border: 2px solid rgb(93, 122, 196);
+  border-radius: 10px;
+  background-color: rgb(238, 246, 255);
+  cursor: pointer;
+}
+
+#demo-button-div {
+  border-top: 2px dashed brown;
+  width: 100%;
   display: flex;
   justify-content: center;
 }
 
-#login-submit-button {
-  margin: 30px 0px;
-  padding: 5px 10px;
-}
-
 #demo-button {
-  padding: 5px 10px;
+  padding: 8px 12px;
+  color: brown;
+  background-color: rgb(254, 232, 145);
+  /* background-color: rgb(238, 246, 255); */
+  border: 2px solid brown;
+  border-radius: 10px;
+  margin: 15px 0px 25px 0px;
+  cursor: pointer;
 }
