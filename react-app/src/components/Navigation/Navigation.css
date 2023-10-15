@@ -142,10 +142,18 @@
   color: rgb(0, 103, 193);
 }
 
+#about-me-link:hover {
+  color: rgb(79, 173, 255);
+}
+
 #create-recipe-link-nav {
   color:rgb(0, 147, 210);
   font-family: 'Lobster', cursive;
   font-size: 18px;
   margin-right: 80px;
+}
+
+#create-recipe-link-nav:hover {
+  color: rgb(79, 173, 255);
 }
 
