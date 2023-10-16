@@ -49,6 +49,11 @@
   cursor: pointer;
 }
 
+#login-submit-button:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
+}
+
 #demo-button-div {
   border-top: 2px dashed brown;
   width: 100%;
@@ -64,4 +69,9 @@
   border-radius: 10px;
   margin: 15px 0px 25px 0px;
   cursor: pointer;
+}
+
+#demo-button:hover {
+  color: rgb(255, 122, 46);
+  border: 2px solid rgb(255, 122, 46);
 }

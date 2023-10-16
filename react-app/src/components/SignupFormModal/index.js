@@ -104,7 +104,7 @@ function SignupFormModal() {
 						onChange={(e) => setUsername(e.target.value)}
 						placeholder="Username"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.username && <p className="errors">{errors.username}</p>}
 				</div>
@@ -118,7 +118,7 @@ function SignupFormModal() {
 						onChange={(e) => setFirstName(e.target.value)}
 						placeholder="First Name"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.firstName && <p className="errors">{errors.firstName}</p>}
 				</div>
@@ -132,7 +132,7 @@ function SignupFormModal() {
 						onChange={(e) => setLastName(e.target.value)}
 						placeholder="Last Name"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.lastName && <p className="errors">{errors.lastName}</p>}
 				</div>
@@ -146,7 +146,7 @@ function SignupFormModal() {
 						onChange={(e) => setEmail(e.target.value)}
 						placeholder="Email"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.email && <p className="errors">{errors.email}</p>}
 				</div>
@@ -160,7 +160,7 @@ function SignupFormModal() {
 							onChange={(e) => setProfilePic(e.target.files[0])}
 							accept="image/png, image/jpeg, image/jpg, image/gif, image/pdf"
 							required
-							style={{width:'87px', margin:'0px', border:'1px solid blue'}}
+							style={{width:'87px', margin:'0px'}}
 						/>
 						{profilePic? <p style={{margin:'0px 0px 0px 10px', border:'1px solid red', maxWidth:'150px'}}>{profilePic.name}</p>
 							: null}
@@ -176,7 +176,7 @@ function SignupFormModal() {
 						onChange={(e) => setPassword(e.target.value)}
 						placeholder="Password"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.password && <p className="errors">{errors.password}</p>}
 				</div>
@@ -190,7 +190,7 @@ function SignupFormModal() {
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						placeholder="Confirm Password"
 						required
-						className='recipe-string'
+						className='signup-string'
 					/>
 					{errors.confirmPassword && <p className="errors">{errors.confirmPassword}</p>}
 				</div>

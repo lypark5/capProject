@@ -28,6 +28,11 @@
   /* font-weight: bold; */
 }
 
+#enabled-comment-button:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
+}
+
 #disabled-comment-button {
   padding: 8px 12px;
   font-size: 16px;
