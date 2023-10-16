@@ -68,6 +68,36 @@ def seed_comments():
     comment="BRIAN'S CHIN YALL WOOOOOOO",
     comment_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/brianChin.png'
   )
+  comment13 = Comment(
+    user_id=3,
+    recipe_id=18,
+    comment="I gotta try this out, man!"
+  )
+  comment14 = Comment(
+    user_id=2,
+    recipe_id=18,
+    comment="i love cake!"
+  )
+  comment15 = Comment(
+    user_id=3,
+    recipe_id=16,
+    comment="GOTEEEMMM!!"
+  )
+  comment16 = Comment(
+    user_id=8,
+    recipe_id=16,
+    comment="FAKE NEWS"
+  )
+  comment17 = Comment(
+    user_id=10,
+    recipe_id=14,
+    comment="That looks delicious!"
+  )
+  comment18 = Comment(
+    user_id=3,
+    recipe_id=14,
+    comment="When you gon gimme a piece"
+  )
 
   db.session.add(comment1)
   db.session.add(comment2)
@@ -81,6 +111,12 @@ def seed_comments():
   db.session.add(comment10)
   db.session.add(comment11)
   db.session.add(comment12)
+  db.session.add(comment13)
+  db.session.add(comment14)
+  db.session.add(comment15)
+  db.session.add(comment16)
+  db.session.add(comment17)
+  db.session.add(comment18)
   db.session.commit()
 
 def undo_comments():
