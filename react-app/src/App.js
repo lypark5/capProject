@@ -14,6 +14,7 @@ import RecipeFormFunction from "./components/Recipes/CreateRecipe";
 import EditRecipeFunction from "./components/Recipes/EditRecipe";
 import GetAllBookmarksFunction from "./components/Bookmarks/ManageBookmarks";
 import AboutMePage from "./components/AboutMe";
+import NotFound from "./components/404";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ function App() {
             <AboutMePage />
           </ProtectedRoute>
           <Route path='/*'>
-            <h1>Page Not Found</h1>
+            <NotFound />
           </Route>
         </Switch>
       )}
