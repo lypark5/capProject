@@ -25,7 +25,7 @@ function Navigation({ isLoaded }){
 				<ProfileButton user={sessionUser} />
 				<span id='center-logo-span' onClick={() => rerenderFunction()}>
 					<img src='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/spoon-icon.png' id='logo'></img>
-					<span id='recipe-share'>recipe-share</span>
+					<span id='recipe-share-clickable'>recipe-share</span>
 				</span>
 				<span id='right-nav-span'>
 					<NavLink to="/aboutMe" id='about-me-link' className='link'>About Me</NavLink>

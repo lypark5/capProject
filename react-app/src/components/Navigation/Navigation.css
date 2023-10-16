@@ -38,11 +38,16 @@
   border: 2px solid rgb(0, 147, 210);
   margin-left: 50px;
   cursor: pointer;
+  color: rgb(0, 147, 210);
+}
+
+#profile-button:hover {
+  border: 2px solid rgb(79, 173, 255);
+  color: rgb(79, 173, 255);
 }
 
 .fa-user-circle {
   font-size: 20px;
-  color: rgb(0, 147, 210);
 }
 
 #drop-down-menu {
@@ -107,6 +112,10 @@
   cursor: pointer;
 }
 
+/* #center-logo-span:hover {
+  color: red;
+} */
+
 #logo-obj {
   display: flex;
   align-items: center;
@@ -122,6 +131,17 @@
   font-size: 30px;
   color: brown;
   padding-bottom: 6px;
+}
+
+#recipe-share-clickable {
+  font-family: 'Lobster', cursive;
+  font-size: 30px;
+  color: brown;
+  padding-bottom: 6px;
+}
+
+#recipe-share-clickable:hover {
+  color: rgb(219, 0, 0);
 }
 
 #blank {

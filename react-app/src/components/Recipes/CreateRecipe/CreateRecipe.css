@@ -80,3 +80,8 @@
   background-color: rgb(238, 246, 255);
 }
 
+.recipe-button:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
+}
+
