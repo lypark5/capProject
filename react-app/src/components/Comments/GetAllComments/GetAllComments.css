@@ -54,6 +54,11 @@
   cursor: pointer;
 }
 
+.comment-button:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
+}
+
 #commentator-item {
   display: flex;
   gap: 10px;

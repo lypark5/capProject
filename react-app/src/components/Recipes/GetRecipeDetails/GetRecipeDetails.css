@@ -58,6 +58,11 @@
   border-bottom: 2px solid rgba(0, 32, 193, 0.3);
 }
 
+#bookmark:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
+}
+
 #unbookmark {
   font-size: 20px;
   cursor: pointer;
@@ -67,6 +72,11 @@
   border-bottom-right-radius: 15px;
   border-right: 2px solid rgba(0, 32, 193, 0.3);
   border-bottom: 2px solid rgba(0, 32, 193, 0.3);
+}
+
+#unbookmark:hover {
+  color: rgb(79, 173, 255);
+  border: 2px solid rgb(79, 173, 255);
 }
 
 #food-pic {
