@@ -26,6 +26,8 @@ def seed_users():
         username='Remy', first_name='Remy', last_name='Mouse', email='remy@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/remy.jpg', password='password')
     icebear = User(
         username='IceBear', first_name='Ice', last_name='Bear', email='icebear@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/icebear.jpg', password='password')
+    lars = User(
+        username='Lars', first_name='Lars', last_name='Barriga', email='lars@aa.io', profile_pic='https://recipe-capstone-project.s3.us-east-2.amazonaws.com/lars.jpg', password='password')
 
     db.session.add(demo)
     db.session.add(kiki)
@@ -38,9 +40,10 @@ def seed_users():
     db.session.add(jiji)
     db.session.add(remy)
     db.session.add(icebear)
+    db.session.add(lars)
     db.session.commit()
 
-    return [demo, kiki, jake, lisa, spongebob, shokugeki, megumi, gordon, jiji]
+    return [demo, kiki, jake, lisa, spongebob, shokugeki, megumi, gordon, jiji, remy, icebear, lars]
 
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
