@@ -9,13 +9,10 @@ import './ManageBookmarks.css';
 const GetAllBookmarksFunction = () => {
   const dispatch = useDispatch();
   const { userId } = useParams();
-  // const currentUser = (useSelector(state => state.session.user));
   const singleUser = (useSelector(state => state.users.singleUser));
   const allRecipes = Object.values(useSelector(state => state.recipes.allRecipes));
   const myRecipeIds = singleUser.bookmark_recipe_ids;
 
-  console.log('i am all recipes', allRecipes)
-  console.log('myrecipe ids', myRecipeIds)
 
   // so i filled single user slice during useEffect recipe details when i push bookmark button.
   // now i have to check if state.users.singleUser variable .bookmark_recipe_ids array has length.
@@ -48,19 +45,6 @@ const GetAllBookmarksFunction = () => {
         <div>
           <h1 id='bookmark-title'>My Bookmarks</h1>
         </div>
-
-
-        {/* <div id='manage-bookmark-cards-container'>
-          {myRecipeBookmarks.length === 0 ? 
-            <p>no bookmarks yet!</p> 
-          : myRecipeBookmarks.map(recipe =>
-            <div id='bookmark-card'>
-              <img src={recipe.url} id='bookmark-pic'/>
-              <button onClick={() => unBookmarkFunction(recipe)}>Unbookmark</button>
-            </div>)
-          }
-        </div> */}
-
         <div id='manage-bookmark-cards-container'>
           {myRecipeBookmarks.length ? myRecipeBookmarks.map(recipe =>
             <div id='bookmark-card'>

@@ -18,7 +18,7 @@ const GetRecipeDetailsFunction = () => {
   const comments = Object.values(useSelector(state => state.comments.recipeComments)).filter(comment => comment.recipeId == recipeId);
   const history = useHistory();
   const ingArr = recipe.ingredients?.split(', ');
-  console.log('ingredients array', ingArr)
+  // console.log('ingredients array', ingArr)
 
   useEffect(() => {
     dispatch(getRecipeDetailsThunk(recipeId));
@@ -40,8 +40,6 @@ const GetRecipeDetailsFunction = () => {
     if (!recipe.bookmark_user_ids?.length) return false;
     return recipe.bookmark_user_ids.includes(currentUser.id);
   }
-
-  console.log('recipe bookmarks', recipe?.recipe_bookmark)
 
 // in <img> Author? needs ? or else it'll hang before getting assigned an author from useEffect.
   return (

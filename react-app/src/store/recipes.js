@@ -125,7 +125,6 @@ export const deleteRecipeThunk = (recipeId) => async (dispatch) => {
 }
 
 export const createBookmarkThunk = (recipeId, userId) => async (dispatch) => {
-  console.log("i'm in thunk", recipeId, userId)
 	const res = await fetch(`/api/recipes/bookmark/${recipeId}/${userId}`, {
 		method: 'POST',
 		headers: { "Content-Type": "application/json" },
