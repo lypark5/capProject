@@ -24,11 +24,11 @@ const GetAllRecipesFunction = () => {
 
 
   const shuffled = () => {
-    console.log('recipeARr beforeeeee', recipeArr)
+    // console.log('recipeARr beforeeeee', recipeArr)
     setRecipeArr(Object.values(recipes).map((a) => ({ sort: Math.random(), value: a }))   // recipeArr is initially empty [], gotta use Object.values(recipes) since recipeArr isn't filled yet [].
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value));
-    console.log('recipeARr afteerrrrr', recipeArr)
+    // console.log('recipeARr afteerrrrr', recipeArr)
   }
 
   useEffect(() => {

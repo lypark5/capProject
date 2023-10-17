@@ -9,7 +9,6 @@ function DeleteRecipeModalFunction({recipeId}) {
 
   const yesDeleteRecipeFunction = async() => {
     await dispatch(deleteRecipeThunk(recipeId));
-    console.log('inside yes delete option of modal')
     closeModal();
   }
 
