@@ -85,7 +85,7 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
 
 
 // reducer
-const initialState = { recipeComments: {}, userComments: {} };  
+const initialState = { recipeComments: {} };  
 export default function commentReducer (state = initialState, action) {
   let newState;
   switch(action.type) {
