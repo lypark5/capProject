@@ -5,7 +5,6 @@ import './GetAllComments.css'
 
 
 const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {  // props passed in from get recipe detail component page
-  console.log('this is comment inside getallcomm', comment)
   function convertDate(date) {                                                    // function for making nice date format
     const splitData = date.split(' ')
     const cleanData = `${splitData[2]} ${splitData[1]}, ${splitData[3]}`
