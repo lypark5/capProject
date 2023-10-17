@@ -9,7 +9,6 @@ const RecipeFormFunction = ({ recipe, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const currentUser = useSelector(state => state.session.user);
-  // const currentUserRecipes = useSelector(state => state.recipes.currentUserRecipes)   // why we need this?
   const [foodName, setFoodName] = useState(recipe ? recipe.foodName : '');      // if there is a recipe aka it is edit, useState should be pre-populated.  If no recipe, it is create, so set to empty.
   const [description, setDescription] = useState(recipe ? recipe.description : '');
   const [url, setUrl] = useState(recipe ? recipe.url : '');  
