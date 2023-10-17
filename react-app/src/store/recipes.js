@@ -169,11 +169,12 @@ export const searchRecipeThunk = (searchWord) => async (dispatch) => {
 
 
 // reducer
-const initialState = { allRecipes: {}, singleRecipe: {}, currentUserRecipes: {} };
+// const initialState = { allRecipes: {}, singleRecipe: {}, currentUserRecipes: {} };
+const initialState = { allRecipes: {}, singleRecipe: {} };
 export default function recipeReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_RECIPES: {
-      const newState = { allRecipes: {...state.allRecipes}, singleRecipe: {}, currentUserRecipes: {} };  // should i add ...state?
+      const newState = { allRecipes: {...state.allRecipes}, singleRecipe: {} };  // , currentUserRecipes: {}
       action.recipes.forEach(recipe => {                // check if this works or action.recipes.recipes.forEach
         newState.allRecipes[recipe.id] = recipe;
       });
@@ -184,7 +185,7 @@ export default function recipeReducer(state = initialState, action) {
         ...state, 
         allRecipes: {...state.allRecipes}, 
         singleRecipe: {...action.recipe}, 
-        currentUserRecipes: {} 
+        // currentUserRecipes: {} 
       };
     }
     case CREATE_RECIPE: {
@@ -192,7 +193,7 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         allRecipes: {...state.allRecipes, [action.recipe.id]: action.recipe},
         singleRecipe: action.recipe, 
-        currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: action.recipe }
+        // currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: action.recipe }
       }
     }
     case EDIT_RECIPE: {
@@ -200,15 +201,15 @@ export default function recipeReducer(state = initialState, action) {
         ...state,
         allRecipes: {...state.allRecipes, [action.recipe.id]: { ...action.recipe }},
         singleRecipe: action.recipe,        
-        currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: {...action.recipe}}
+        // currentUserRecipes: {...state.currentUserRecipes, [action.recipe.id]: {...action.recipe}}
       }
     }
     case DELETE_RECIPE: {
-      const newState = { ...state, allRecipes: { ...state.allRecipes }, singleRecipe: { ...state.singleRecipe }, currentUserRecipes: { ...state.currentUserRecipes } }
+      const newState = { ...state, allRecipes: { ...state.allRecipes }, singleRecipe: { ...state.singleRecipe } } // , currentUserRecipes: { ...state.currentUserRecipes }
       delete newState.allRecipes[action.recipeId]
-      delete newState.currentUserRecipes[action.recipeId]
+      // delete newState.currentUserRecipes[action.recipeId]
       delete newState.singleRecipe;
-      return { ...newState, allRecipes: { ...newState.allRecipes }, singleRecipe: { ...newState.singleRecipe }, currentUserRecipes: { ...newState.currentUserRecipes } };
+      return { ...newState, allRecipes: { ...newState.allRecipes }, singleRecipe: { ...newState.singleRecipe } };  // , currentUserRecipes: { ...newState.currentUserRecipes }
     }
     case SEARCH_RECIPE: {
       const newState = {...state, allRecipes: {}, singleRecipes: {} }
