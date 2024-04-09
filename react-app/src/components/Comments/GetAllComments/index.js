@@ -1,7 +1,7 @@
 import OpenModalButton from "../../OpenModalButton";
 import DeleteCommentModalFunction from "../DeleteCommentModal";
 import EditCommentModalFunction from "../EditCommentModal";
-import './GetAllComments.css'
+import './GetAllComments.css';
 
 
 const GetAllCommentsByRecipeIdFunction = ({comment, currentUser, recipeId}) => {  // props passed in from get recipe detail component page
